@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>메인 페이지</h1>
-<a href="a">로그인</a><br>
+<a href="${pageContext.request.contextPath}/LoginController">로그인</a><br>
 <a href="a">회원가입</a><br>
 <a href="a">비밀번호 id 찾기</a><br>
 <a href="a">마이페이지</a><br>
