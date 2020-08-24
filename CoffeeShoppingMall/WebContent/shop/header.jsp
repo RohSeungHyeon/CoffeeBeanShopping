@@ -56,8 +56,8 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="info">
-						<a href="#" class="d-block">로그인</a> <a href="#" class="d-block">회원가입</a>
-						<a href="#" class="d-block">아이디/비밀번호 찾기</a>
+						<a href="#" class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
+						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
 					</div>
 				</div>
 

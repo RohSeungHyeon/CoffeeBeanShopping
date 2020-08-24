@@ -170,21 +170,38 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-4">
-							<div class="position-relative p-3 bg-white" style="height: 180px">
-								<div class="ribbon-wrapper">
-									<div class="ribbon bg-success">추천상품</div>
+						<div class="col-12">
+							<article>
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">추천 상품</h3>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body">
+										<div class="row">
+											<div class="col-sm-3">
+												<div class="position-relative p-3 bg-white"
+													style="height: 180px; border: thin solid gray;">
+													<div class="ribbon-wrapper">
+														<div class="ribbon bg-success">추천</div>
+													</div>
+													<h3>생두 커피 이름</h3>
+													<div class="col-5">
+														<img src="../resources/img/main/GreenCoffeeLogo.png"
+															class="product-image" alt="Product Image" />
+													</div>
+													<small class="mt-2">지역명/국가명/브랜드/용량</small><br>
+													<h5 class="mt-2">가격</h5>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- /.card-body -->
 								</div>
-								<div class="col-8 col-sm-6">
-									<img src="../resources/img/main/GreenCoffeeLogo.png"
-										class="product-image" alt="Product Image" />
-								</div>
-								<div class="col-10">
-									생두 이름 <br> <small>.ribbon-wrapper.ribbon-lg
-										.ribbon</small>
-								</div>
-							</div>
+								<!-- /.card -->
+							</article>
 						</div>
+						<!-- /.col -->
 					</div>
 				</div>
 			</section>
