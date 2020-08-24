@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>메인 페이지</title>
 <!-- Font Awesome -->
@@ -29,11 +30,166 @@
 	<div class="wrapper">
 		<!-- Header -->
 		<%@ include file="header.jsp"%>
-		
-		<section>
-			<article></article>
-		</section>
-		
+		<div class="content-wrapper">
+			<section class="content">
+				<div class="containter-fluid">
+					<div class="row">
+						<div class="col-md-6">
+							<article>
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">공지사항</h3>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body table-responsive p-0"
+										style="height: 300px;">
+										<table class="table table-head-fixed text-nowrap">
+											<thead>
+												<tr>
+													<th style="width: 10px">#</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th style="width: auto">작성일자</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr onclick="alert('눌러짐!')">
+													<td>1.</td>
+													<td>Update software</td>
+													<td>
+														<div class="progress progress-xs">
+															<div class="progress-bar progress-bar-danger"
+																style="width: 55%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-danger">55%</span></td>
+												</tr>
+												<tr>
+													<td>2.</td>
+													<td>Clean database</td>
+													<td>
+														<div class="progress progress-xs">
+															<div class="progress-bar bg-warning" style="width: 70%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-warning">70%</span></td>
+												</tr>
+												<tr>
+													<td>3.</td>
+													<td>Cron job running</td>
+													<td>
+														<div class="progress progress-xs progress-striped active">
+															<div class="progress-bar bg-primary" style="width: 30%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-primary">30%</span></td>
+												</tr>
+												<tr>
+													<td>4.</td>
+													<td>Fix and squish bugs</td>
+													<td>
+														<div class="progress progress-xs progress-striped active">
+															<div class="progress-bar bg-success" style="width: 90%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-success">90%</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- /.card-body -->
+								</div>
+							</article>
+						</div>
+						<div class="col-md-6">
+							<article>
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">QnA</h3>
+									</div>
+									<!-- /.card-header -->
+									<div class="card-body table-responsive p-0"
+										style="height: 300px;">
+										<table class="table table-head-fixed text-nowrap">
+											<thead>
+												<tr>
+													<th style="width: 10px">#</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th style="width: auto">작성일자</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>1.</td>
+													<td>Update software</td>
+													<td>
+														<div class="progress progress-xs">
+															<div class="progress-bar progress-bar-danger"
+																style="width: 55%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-danger">55%</span></td>
+												</tr>
+												<tr>
+													<td>2.</td>
+													<td>Clean database</td>
+													<td>
+														<div class="progress progress-xs">
+															<div class="progress-bar bg-warning" style="width: 70%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-warning">70%</span></td>
+												</tr>
+												<tr>
+													<td>3.</td>
+													<td>Cron job running</td>
+													<td>
+														<div class="progress progress-xs progress-striped active">
+															<div class="progress-bar bg-primary" style="width: 30%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-primary">30%</span></td>
+												</tr>
+												<tr>
+													<td>4.</td>
+													<td>Fix and squish bugs</td>
+													<td>
+														<div class="progress progress-xs progress-striped active">
+															<div class="progress-bar bg-success" style="width: 90%"></div>
+														</div>
+													</td>
+													<td><span class="badge bg-success">90%</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- /.card-body -->
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="position-relative p-3 bg-white" style="height: 180px">
+								<div class="ribbon-wrapper">
+									<div class="ribbon bg-success">추천상품</div>
+								</div>
+								<div class="col-8 col-sm-6">
+									<img src="../resources/img/main/GreenCoffeeLogo.png"
+										class="product-image" alt="Product Image" />
+								</div>
+								<div class="col-10">
+									생두 이름 <br> <small>.ribbon-wrapper.ribbon-lg
+										.ribbon</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
 		<!-- Main Footer -->
 		<%@ include file="footer.jsp"%>
 	</div>
