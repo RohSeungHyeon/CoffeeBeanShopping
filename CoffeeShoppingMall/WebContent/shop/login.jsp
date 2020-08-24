@@ -14,23 +14,32 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css" />
 	</head>
 	<body>
+	
+	<%-- OAuth 2.0을 이용한 로그인 처리 --%>
+	<%!
+		private String stateToken;
+	%>
 	<%
 		// NAVER, DAUM OAuth 이용을 위한 설정
-    	String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
-   		String redirectURI = URLEncoder.encode("YOUR_CALLBACK_URL", "UTF-8");
+    	String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
+   		String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
+   		
+   		// 세션 유지 및 위변조 방지를 위한 상태 토큰 생성
     	SecureRandom random = new SecureRandom();
     	String state = new BigInteger(130, random).toString();
-    	String apiURL_Naver = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    	String apiURL_Kakao = "";
+    	
+    	// 요청 URI
+    	String apiURL_Naver = "https://nid.naver.com/oauth2.0/authorize?";
+    	String apiURL_Kakao = ""; // Kakao는 추후 구현 예정
+    	
+    	// 네아로 로그인 인증 API에서 요구하는 URI의 헤더 값들
     	apiURL_Naver += "&client_id=" + clientId;
+    	apiURL_Naver += "&response_type=code";
     	apiURL_Naver += "&redirect_uri=" + redirectURI;
     	apiURL_Naver += "&state=" + state;
-    	apiURL_Kakao += "&client_id=" + clientId;
-    	apiURL_Kakao += "&redirect_uri=" + redirectURI;
-    	apiURL_Kakao += "&state=" + state;
-    	session.setAttribute("state", state);
     	
-    
+    	// 세션 객체에 위변조 방지를 위한 상태 토큰 저장
+    	session.setAttribute("state", state);
     %>
     
     
@@ -38,7 +47,7 @@
     	<h3>로그인</h3>
     	
     	<form method="POST" action="" name="loginForm">
-    	<table id="loginTable" border = "0">
+    	<table id="loginTable" border="0">
     		<tr>
     			<th>아이디 </th>
     			<td> <input type="text" id="id" name="id"/> </td>
