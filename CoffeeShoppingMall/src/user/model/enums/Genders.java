@@ -5,6 +5,7 @@ public enum Genders {
 	
 	F("F"), M("M");
 	
+	@SuppressWarnings("unused")
 	private final String genders;
 	
 	private Genders(String genders) { this.genders = genders; }

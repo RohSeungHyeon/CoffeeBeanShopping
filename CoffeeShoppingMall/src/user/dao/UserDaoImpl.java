@@ -40,6 +40,7 @@ public class UserDaoImpl implements UserDao {
 		
 		String companyName = "";
 		String companyAddress = "";
+		@SuppressWarnings("unused")
 		String companyPhone = "";
 		String rank = "";
 		

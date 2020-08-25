@@ -13,6 +13,7 @@ public enum AgeGroups {
 	GROUP3("40~50대"), 
 	GROUP4("60대 이상");
 	
+	@SuppressWarnings("unused")
 	private final String ageGroups;
 	
 	private AgeGroups(String ageGroups) {
