@@ -36,7 +36,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<article>
-								<div class="card">
+								<div class="card mt-2">
 									<div class="card-header">
 										<h3 class="card-title">공지사항</h3>
 									</div>
@@ -103,7 +103,7 @@
 						</div>
 						<div class="col-md-6">
 							<article>
-								<div class="card">
+								<div class="card mt-2">
 									<div class="card-header">
 										<h3 class="card-title">QnA</h3>
 									</div>
