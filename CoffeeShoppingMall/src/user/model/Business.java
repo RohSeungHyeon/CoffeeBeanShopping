@@ -3,16 +3,16 @@ package user.model;
 public class Business extends User{
 	
 	// 사업자 추가 정보
-	private String companyName;
-	private String companyAddress;
-	private String companyPhone;
-	private String rank;
+	private String companyName = "";
+	private String companyAddress = "";
+	private String companyPhone = "";
+	private String rank = "";
 	
 	public Business() {
 		super();
 	}
-	public Business(String id, String password, String userName, String userNickName, String email, String phone) {
-		super(id, password, userName, userNickName, email, phone);
+	public Business(String id, String password, String userName, String userNickName, String address, String email, String phone) {
+		super(id, password, userName, userNickName, address, email, phone);
 	}
 	
 	public String getCompanyName() {

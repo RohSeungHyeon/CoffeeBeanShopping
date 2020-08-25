@@ -1,5 +1,7 @@
 package user.model;
 
+import java.sql.*;
+
 import user.model.enums.*;
 
 public abstract class User {
@@ -9,22 +11,25 @@ public abstract class User {
 	private String password;
 	private String userName;
 	private String userNickName;
+	private String address;
 	private String email;
 	private String phone;
 	
 	// 선택 기입 정보
-	private String gender;
-	private AgeGroup ageGroup;
-	private String address;
+	private Genders gender;
+	private Date birth;
+	
 	
 	
 	public User() {} 
 	
-	public User(String id, String password, String userName, String userNickName, String email, String phone) {
+	public User(String id, String password, String userName, String userNickName, 
+			String address, String email, String phone) {
 		this.id = id;
 		this.password = password;
 		this.userName = userName;
 		this.userNickName = userNickName;
+		this.address = address;
 		this.email = email;
 		this.phone = phone;
 	}
@@ -61,6 +66,14 @@ public abstract class User {
 		this.userNickName = userNickName;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -76,5 +89,23 @@ public abstract class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public Genders getGender() {
+		return gender;
+	}
+
+	public void setGender(Genders gender) {
+		this.gender = gender;
+	}
+
+	public Date getBirth() {
+		return birth;
+	}
+
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+
+	
 
 }
