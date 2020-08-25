@@ -206,8 +206,7 @@
 				</div>
 			</section>
 		</div>
-
-		<!-- Main Footer -->
+		<!-- Footer -->
 		<%@ include file="footer.jsp"%>
 	</div>
 
