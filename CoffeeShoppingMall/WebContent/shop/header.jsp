@@ -56,7 +56,8 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="info">
-						<a href="#" class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
+						<a href="${pageContext.request.contextPath}/shop/login.jsp"
+							class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
 						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
 					</div>
 				</div>
@@ -74,16 +75,16 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>아시아/태평양</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>중남미</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>아프리카</p>
 								</a></li>
 							</ul></li>
@@ -94,44 +95,44 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>브라질</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>베트남</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>콜롬비아</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>인도네시아</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>온두라스</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>에티오피아</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>인도</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>우간다</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>페루</p>
 								</a></li>
-								<li class="nav-item"><a href="#"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="#" class="nav-link"> <i
+										class="far fa-circle nav-icon"></i>
 										<p>멕시코</p>
 								</a></li>
 							</ul></li>
