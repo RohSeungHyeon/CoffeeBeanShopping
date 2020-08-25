@@ -10,7 +10,7 @@
     String email = "boyboice@naver.com";
     String phone = m.getPhone();
     String address = (String)request.getParameter("address");
-    int totalPrice = 500;    
+    int totalPrice = Integer.parseInt((String)request.getParameter("total"));    
 %>
 <!DOCTYPE html>
 <html>
@@ -67,12 +67,12 @@
                     }
                 });
                 //성공시 이동할 페이지
-                location.href='<%=request.getContextPath()%>/shop/pay_success?msg='+msg;
+                location.href='<%=request.getContextPath()%>/PaySuccessController';
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 이동할 페이지
-                location.href="<%=request.getContextPath()%>/shop/pay_fail";
+                location.href="<%=request.getContextPath()%>/shop/pay_fail.jsp";
                 alert(msg);
             }
         });

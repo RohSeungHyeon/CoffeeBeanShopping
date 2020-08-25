@@ -11,7 +11,15 @@ public class OrderList {
 	private int pro_id;
 	
 	
-	
+	public OrderList( String order_address, Date order_date, int order_count, int id, int pro_id) {
+		super();
+		this.order_id = order_id;
+		this.order_address = order_address;
+		this.order_date = order_date;
+		this.order_count = order_count;
+		this.id = id;
+		this.pro_id = pro_id;
+	}	
 	public OrderList(int order_id, String order_address, Date order_date, int order_count, int id, int pro_id) {
 		super();
 		this.order_id = order_id;

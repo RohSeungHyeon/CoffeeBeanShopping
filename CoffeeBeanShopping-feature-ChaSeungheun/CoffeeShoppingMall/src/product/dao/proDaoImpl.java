@@ -1,6 +1,7 @@
 package product.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -166,5 +167,34 @@ public class proDaoImpl implements proDao {
 			}
 		}
 		return 1;
+	}
+
+	@Override
+	public void addOrder( String addr, Date date, int cnt, String m_id, int pro_id) {
+		Connection conn = null;
+		String sql = "insert into orderlist values(SEQ_ORD.nextval,?,?,?,?,?)";
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, addr);
+			pstmt.setDate(2, date);
+			pstmt.setInt(3, cnt);
+			pstmt.setString(4, m_id);
+			pstmt.setInt(5, pro_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		
 	}
 }

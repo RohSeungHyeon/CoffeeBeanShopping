@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="../resources/dist/css/adminlte.min.css">
 </head>
 <body>
-	결제 성공
+	결제 성공<br>
+	
+	<a href="${pageContext.request.contextPath}/shop/index.jsp">홈페이지로</a>
 </body>
 </html>

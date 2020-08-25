@@ -1,5 +1,6 @@
 package product.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import conn.DBConnect;
@@ -29,5 +30,10 @@ public class proServiceImpl implements proService{
 	public int delCart(String m_id, int pro_id) {
 		return dao.delCart(m_id, pro_id);
 	}
+	@Override
+	public void addOrder(String addr, Date date, int cnt, String m_id, int pro_id) {
+		dao.addOrder( addr, date, cnt, m_id, pro_id);
+	}
+
 
 }

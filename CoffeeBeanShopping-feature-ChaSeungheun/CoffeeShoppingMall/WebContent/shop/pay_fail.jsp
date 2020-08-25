@@ -11,6 +11,6 @@
 </head>
 <body>
 	결제 실패
-	
+	<a href="${pageContext.request.contextPath}/shop/index.jsp">홈페이지로</a>
 </body>
 </html>
