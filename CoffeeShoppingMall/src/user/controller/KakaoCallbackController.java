@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class KakaoCallback
  */
-@WebServlet("/LoginServlet")
-public class Login extends HttpServlet {
+@WebServlet("/KakaoCallback")
+public class KakaoCallbackController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public KakaoCallbackController() {
         super();
         // TODO Auto-generated constructor stub
     }

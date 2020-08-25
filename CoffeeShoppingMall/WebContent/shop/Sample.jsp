@@ -32,7 +32,9 @@
 		<%@ include file="header.jsp"%>
 
 		<div class="content-wrapper">
-			<section class="content"></section>
+			<section class="content">
+				샘플 페이지
+			</section>
 		</div>
 
 		<!-- Main Footer -->

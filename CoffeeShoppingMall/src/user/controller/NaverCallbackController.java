@@ -1,21 +1,48 @@
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="java.net.HttpURLConnection" %>
-<%@ page import="java.io.BufferedReader" %>
-<%@ page import="java.io.InputStreamReader" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>네이버 로그인</title>
-</head>
-<body>
+package user.controller;
 
-	<%
-	    String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
+import java.io.*;
+import java.net.*;
+
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
+
+/**
+ * Servlet implementation class NaverCallback
+ */
+@WebServlet(name="NaverCallback", urlPatterns="/OAuth/naver")
+public class NaverCallbackController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NaverCallbackController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+		
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
 	    String clientSecret = "ttq2Let4Q8";//애플리케이션 클라이언트 시크릿값";
 	    
 	    // 메시지로 받은 위/변조 공격 방지 상태 토큰과 세션 객체에 저장 된 상태 토큰 값 비교
@@ -28,7 +55,7 @@
 	    
 	    // Authentication code
 	    String code = request.getParameter("code");
-	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
+	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/OAuth/naver", "UTF-8");
 	    String apiURL;
 	    
 	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
@@ -71,7 +98,6 @@
 	    } catch (Exception e) {
 	      System.out.println(e);
 	    }
-  %>
+	}
 
-</body>
-</html>
+}

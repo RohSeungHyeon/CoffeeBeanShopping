@@ -1,23 +1,22 @@
 package user.controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 /**
- * Servlet implementation class NaverCallback
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/NaverCallback")
-public class NaverCallback extends HttpServlet {
+@WebServlet(name="LoginController", urlPatterns = "/Login")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NaverCallback() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
