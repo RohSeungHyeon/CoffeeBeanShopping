@@ -53,7 +53,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr onclick="alert('눌러짐!')">
+												<tr onclick="alert('눌러짐')">
 													<td>1.</td>
 													<td>Update software</td>
 													<td>
@@ -179,7 +179,7 @@
 									<!-- /.card-header -->
 									<div class="card-body">
 										<div class="row">
-											<div class="col-sm-3">
+											<div class="col-sm-3 mt-2">
 												<div class="position-relative p-3 bg-white"
 													style="height: 180px; border: thin solid gray;">
 													<div class="ribbon-wrapper">

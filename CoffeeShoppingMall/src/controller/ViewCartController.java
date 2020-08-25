@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,46 +11,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.service.Service;
-import member.service.ServiceImpl;
 import model.Member;
+import model.Product;
+import product.service.proService;
+import product.service.proServiceImpl;
 
-
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
-
-	/**
-	 * 
-	 */
+/**
+ * Servlet implementation class ViewCartController
+ */
+@WebServlet("/ViewCartController")
+public class ViewCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		Service service = new ServiceImpl();
-		boolean flag = false;
-		
 		HttpSession session = request.getSession();
-		String id = request.getParameter("id");
-		String pwd= request.getParameter("pw");
-		Member m = service.getMember(id);
-		if(m != null && pwd.equals(m.getPw())) {
-			session.setAttribute("id", id);
-			flag= true;
+		String id = (String)session.getAttribute("id");
+		proService ps = new proServiceImpl();
+		
+		ArrayList<Product> p = ps.getCart(id);
+
+		session.setAttribute("products", p);
+		
+		for(Product a : p) {
+			System.out.println(a.toString());
 		}
-		session.setAttribute("m", m);
 		
-		session.setAttribute("flag", flag);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/shop/index.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/shop/cart_detail.jsp");
 		dis.forward(request, response);
 		
 		
 	}
-	
-	
 
 }

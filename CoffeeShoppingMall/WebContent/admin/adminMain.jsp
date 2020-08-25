@@ -9,17 +9,19 @@
 <title>관리자 페이지</title>
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="../resources/plugins/fontawesome-free/css/all.min.css">
+	href="${pageContext.request.contextPath}/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
+	href="${pageContext.request.contextPath}/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="../resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -77,8 +79,8 @@
 							<div class="tab-content" id="custom-tabs-one-tabContent">
 								<div class="tab-pane fade show active" id="custom-tabs-one-home"
 									role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-									이 페이지는 관리자 페이지입니다.<br>회원관리/주문내역 관리/공지사항 관리/QnA 관리 등 할 수
-									있습니다.
+									이 페이지는 관리자 페이지입니다.<br> <br>회원관리/주문내역 관리/공지사항 관리/QnA
+									관리/상품관리 등 할 수 있습니다.
 								</div>
 								<div class="tab-pane fade" id="custom-tabs-one-member"
 									role="tabpanel" aria-labelledby="custom-tabs-one-member-tab">
@@ -113,8 +115,72 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- bs-custom-file-input -->
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 	<!-- AdminLTE -->
-	<script src="../resources/dist/js/adminlte.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/dist/js/adminlte.js"></script>
+
+	<!-- Developer -->
+	<script>
+		$(document).ready(function() {
+			$('#addProductForm').hide();
+			bsCustomFileInput.init();
+		});
+
+		$('#addFormToggleBtn').on('click', function() {
+			if ($(this).text() == '상품 추가') {
+				$('#addProductForm').show();
+				$(this).text('숨기기');
+			} else {
+				$('#addProductForm').hide();
+				$(this).text('상품 추가');
+			}
+		});
+
+		function checkAddProductForm(f) {
+			if (f.name.value == '') {
+				alert('상품명을 채워주십시오.');
+				f.name.focus();
+				return;
+			} else if (isNaN(f.price.value)) {
+				alert('숫자로만 입력해주세요.');
+				f.price.focuse();
+				return;
+			} else if (f.price.value == '') {
+				alert('가격을 입력해주세요.');
+				f.price.focus();
+				return;
+			} else if (f.category.value == '') {
+				alert('대륙을 입력해주세요.');
+				f.category.focus();
+				return;
+			} else if (f.country.value == '') {
+				alert('국가를 입력해주세요.');
+				f.country.focus();
+				return;
+			} else if (f.brand.value == '') {
+				alert('브랜드를 입력해주세요.');
+				f.brand.focus();
+				return;
+			} else if (f.dry.value == '') {
+				alert('가공 방식을 입력해주세요.');
+				f.dry.value();
+				return;
+			} else if (f.img.value == '') {
+				alert('상품 사진을 업로드해주세요.');
+				return;
+			}
+
+			f.submit();
+
+			$('#addProductForm').hide();
+			$('#addFormToggleBtn').text('상품 추가');
+
+		}
+	</script>
 </body>
 </html>
