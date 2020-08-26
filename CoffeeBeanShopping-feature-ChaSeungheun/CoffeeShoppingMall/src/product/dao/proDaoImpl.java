@@ -30,7 +30,7 @@ public class proDaoImpl implements proDao {
 			if (rs.next()) {
 				System.out.println("!!!!");
 				return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7), rs.getString(8));
+						rs.getString(6), rs.getString(7));
 			}
 		} catch (Exception e) {
 
@@ -109,7 +109,7 @@ public class proDaoImpl implements proDao {
 	@Override
 	public ArrayList<Product> getCart(String id) {
 		Connection conn = null;
-		String sql = "select * from cart where id = ?";
+		String sql = "select * from cart where id = ? order by pro_id";
 		String sql1 = "select * from product where pro_id = ?";
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
@@ -127,7 +127,7 @@ public class proDaoImpl implements proDao {
 				rs1 = pstmt1.executeQuery();
 				while (rs1.next()) {
 					p.add(new Product(rs1.getInt(1), rs1.getString(2), rs1.getInt(3), rs1.getString(4), rs1.getString(5),
-							rs1.getString(6), rs1.getString(7), rs1.getString(8)));
+							rs1.getString(6), rs1.getString(7)));
 				}
 			}
 		} catch (Exception e) {

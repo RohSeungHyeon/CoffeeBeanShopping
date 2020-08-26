@@ -1,13 +1,13 @@
-<%@page import="model.Member"%>
+<%@page import="model.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	Member m = (Member)session.getAttribute("m");
-    String name = m.getName();
-    String email = "boyboice@naver.com";
+	User m = (User)session.getAttribute("m");
+    String name = m.getUserName();
+    String email = m.getEmail();
     String phone = m.getPhone();
     String address = (String)request.getParameter("address");
     int totalPrice = Integer.parseInt((String)request.getParameter("total"));    

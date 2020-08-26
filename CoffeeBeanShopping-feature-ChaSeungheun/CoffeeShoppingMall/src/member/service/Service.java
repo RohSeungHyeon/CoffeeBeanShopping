@@ -1,8 +1,8 @@
 package member.service;
 
-import model.Member;
+import model.User;
 
 public interface Service {
-	Member getMember(String id);
-	void join(Member m);
+	User getMember(String id);
+	void join(User m);
 }

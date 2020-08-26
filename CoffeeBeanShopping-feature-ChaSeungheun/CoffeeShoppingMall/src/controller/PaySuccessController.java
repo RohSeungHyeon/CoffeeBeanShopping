@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Member;
+import model.User;
 import product.service.proService;
 import product.service.proServiceImpl;
 
@@ -34,7 +34,7 @@ public class PaySuccessController extends HttpServlet {
 		String[] order = cnt.split("@");
 		proService ps = new proServiceImpl();
 		
-		Member m = (Member)session.getAttribute("m");
+		User m = (User)session.getAttribute("m");
 		
 		//주문 날짜
 		
@@ -44,7 +44,7 @@ public class PaySuccessController extends HttpServlet {
 			String count= order[i].split(",")[1];
 			
 			ps.addOrder((String)session.getAttribute("addr"), 
-					 new java.sql.Date(System.currentTimeMillis()), Integer.parseInt(count), m.getId(),
+					 new java.sql.Date(System.currentTimeMillis()), Integer.parseInt(count),m.getId(),
 					Integer.parseInt(pro_id));
 		}
 		

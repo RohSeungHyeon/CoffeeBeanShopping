@@ -1,7 +1,7 @@
 package member.dao;
 
-import model.Member;
+import model.User;
 
 public interface Dao {
-	Member select(String id);
+	User select(String id);
 }

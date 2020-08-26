@@ -29,6 +29,7 @@ public class ProDetailController extends HttpServlet {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		Product p = ps.getProduct(id);
+		System.out.println(p.toString());
 		request.setAttribute("product", p);
 		
 		
