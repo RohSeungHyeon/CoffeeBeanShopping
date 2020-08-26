@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Product;
+import model.User;
 import product.service.proService;
 import product.service.proServiceImpl;
 
 /**
- * Servlet implementation class PayController
+ * Servlet implementation class PaySuccessController
  */
-@WebServlet("/PayController")
-public class PayController extends HttpServlet {
+@WebServlet("/PaySuccessController")
+public class PaySuccessController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@Override
@@ -29,21 +29,31 @@ public class PayController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		
+		String cnt = (String)session.getAttribute("cnt");
+		String[] order = cnt.split("@");
 		proService ps = new proServiceImpl();
 		
-		ArrayList<Product> p = ps.getCart(id);
+		User m = (User)session.getAttribute("m");
 		
-		session.setAttribute("products", p);
+		//주문 날짜
 		
-		for(Product a : p) {
-			System.out.println(a.toString());
+		// 오더리스트 데이터 생성
+		for(int i=0;i<order.length;i++) {
+			String pro_id = order[i].split(",")[0];
+			String count= order[i].split(",")[1];
+			
+			ps.addOrder((String)session.getAttribute("addr"), 
+					 new java.sql.Date(System.currentTimeMillis()), Integer.parseInt(count),m.getId(),
+					Integer.parseInt(pro_id));
 		}
-
+		// 카트 목록 삭제
+		ps.clearCart(m.getId());
 		
-		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_detail.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_success.jsp");
 		dis.forward(request, response);
 		
 		
 	}
+
 }

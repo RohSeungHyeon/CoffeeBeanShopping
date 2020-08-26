@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 
 
 import conn.DBConnect;
-import model.Member;
+import model.Indivisual;
+import model.User;
 
 public class DaoImpl implements Dao{
 	private DBConnect db;
@@ -16,7 +17,7 @@ public class DaoImpl implements Dao{
 	}
 	
 	@Override
-	public Member select(String id) {
+	public User select(String id) {
 		Connection conn = null;
 		ResultSet rs = null;
 		String sql = "select * from member where id = ?";
@@ -27,9 +28,10 @@ public class DaoImpl implements Dao{
 			pstmt.setString(1,id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return new Member(rs.getString(1),rs.getString(2),
-						rs.getString(3),rs.getString(4),
-						rs.getString(5),rs.getString(6)
+				return new Indivisual(rs.getString(1),rs.getString(2),
+						rs.getString(4),rs.getString(5),
+						rs.getString(8),rs.getString(6),
+						rs.getString(7)
 						);
 			}
 		}catch(Exception e) {

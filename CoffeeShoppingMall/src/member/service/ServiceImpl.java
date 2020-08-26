@@ -2,7 +2,7 @@ package member.service;
 
 import member.dao.Dao;
 import member.dao.DaoImpl;
-import model.Member;
+import model.User;
 
 public class ServiceImpl implements Service{
 	private Dao dao;
@@ -10,12 +10,12 @@ public class ServiceImpl implements Service{
 		dao = new DaoImpl();
 	}
 	@Override
-	public void join(Member m) {
+	public void join(User u) {
 		
 	}
 
 	@Override
-	public Member getMember(String id) {
+	public User getMember(String id) {
 		return dao.select(id);
 	}
 

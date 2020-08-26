@@ -10,22 +10,20 @@ public class DBConnect {
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String id = "c##ora_user_2";
 	String pw = "88888888";
-
 	private DBConnect() {
 	}
-
 	public static DBConnect getInstance() {
 		return db;
 	}
-
+	
 	public Connection getConnection() {
 		try {
 			Class.forName(dri);
-			conn = DriverManager.getConnection(url, id, pw);
-		} catch (Exception e) {
-
+			conn = DriverManager.getConnection(url,id,pw);
+		}catch(Exception e) {
+			
 		}
 		return conn;
 	}
-
+	
 }

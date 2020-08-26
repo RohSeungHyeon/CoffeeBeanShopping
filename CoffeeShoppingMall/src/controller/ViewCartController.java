@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Member;
 import model.Product;
 import product.service.proService;
 import product.service.proServiceImpl;
@@ -32,9 +31,9 @@ public class ViewCartController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		proService ps = new proServiceImpl();
-		
+		System.out.println("view cart id="+id);
 		ArrayList<Product> p = ps.getCart(id);
-
+		
 		session.setAttribute("products", p);
 		
 		for(Product a : p) {

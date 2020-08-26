@@ -1,6 +1,7 @@
 package product.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class proDaoImpl implements proDao {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
+				System.out.println("!!!!");
 				return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), rs.getString(7));
 			}
@@ -42,6 +44,181 @@ public class proDaoImpl implements proDao {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean addCart(String m_id, int pro_id) {
+		Connection conn = null;
+		String sql = "insert into cart values(SEQ_CAR.nextval, ?, ?)";
+		PreparedStatement pstmt = null;
+		boolean ok = false;
+		if (!cart_check(m_id, pro_id)) {
+			System.out.println("Áßº¹Á¸Àç");
+			return false;
+		}
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setInt(2, pro_id);
+			pstmt.executeUpdate();
+			ok = true;
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return ok;
+	}
+
+	// Àå¹Ù±¸´Ï Áßº¹Ã¼Å©
+	public boolean cart_check(String m_id, int pro_id) {
+		Connection conn = null;
+		String sql = "select * from cart where id = ? and pro_id=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setInt(2, pro_id);
+			rs = pstmt.executeQuery();
+			if (!rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public ArrayList<Product> getCart(String id) {
+		Connection conn = null;
+		String sql = "select * from cart where id = ? order by pro_id";
+		String sql1 = "select * from product where pro_id = ?";
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ArrayList<Product> p = new ArrayList<Product>();
+		ResultSet rs = null;
+		ResultSet rs1 = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				pstmt1 = conn.prepareStatement(sql1);
+				pstmt1.setInt(1, rs.getInt(3));
+				rs1 = pstmt1.executeQuery();
+				while (rs1.next()) {
+					p.add(new Product(rs1.getInt(1), rs1.getString(2), rs1.getInt(3), rs1.getString(4), rs1.getString(5),
+							rs1.getString(6), rs1.getString(7)));
+				}
+			}
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return p;
+	}
+
+	@Override
+	public int delCart(String m_id, int pro_id) {
+		Connection conn = null;
+		String sql = "delete cart where id = ? and pro_id = ?";
+		PreparedStatement pstmt = null;
+		System.out.println("delcart = "+m_id+pro_id);
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setInt(2, pro_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return 1;
+	}
+
+	@Override
+	public void addOrder( String addr, Date date, int cnt, String m_id, int pro_id) {
+		Connection conn = null;
+		String sql = "insert into orderlist values(SEQ_ORD.nextval,?,?,?,?,?)";
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, addr);
+			pstmt.setDate(2, date);
+			pstmt.setInt(3, cnt);
+			pstmt.setString(4, m_id);
+			pstmt.setInt(5, pro_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		
+	}
+
+	@Override
+	public void clearCart(String m_id) {
+		Connection conn = null;
+		String sql = "delete cart where id = ?";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
 	}
 
 	@Override
@@ -123,128 +300,5 @@ public class proDaoImpl implements proDao {
 			}
 		}
 
-	}
-
-	@Override
-	public boolean addCart(String m_id, int pro_id) {
-		Connection conn = null;
-		String sql = "insert into cart values(SEQ_CAR.nextval, ?, ?)";
-		PreparedStatement pstmt = null;
-		boolean ok = false;
-		if (!cart_check(m_id, pro_id)) {
-			System.out.println("ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½");
-			return false;
-		}
-		try {
-			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			pstmt.setInt(2, pro_id);
-			pstmt.executeUpdate();
-			ok = true;
-		} catch (Exception e) {
-
-		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-
-			}
-		}
-		return ok;
-	}
-
-	// ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ßºï¿½Ã¼Å©
-	public boolean cart_check(String m_id, int pro_id) {
-		Connection conn = null;
-		String sql = "select * from cart where id = ? and pro_id=?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			pstmt.setInt(2, pro_id);
-			rs = pstmt.executeQuery();
-			if (!rs.next()) {
-				return true;
-			} else {
-				return false;
-			}
-		} catch (Exception e) {
-
-		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public ArrayList<Product> getCart(String id) {
-		Connection conn = null;
-		String sql = "select * from cart where id = ?";
-		String sql1 = "select * from product where pro_id = ?";
-		PreparedStatement pstmt = null;
-		PreparedStatement pstmt1 = null;
-		ArrayList<Product> p = new ArrayList<Product>();
-		ResultSet rs = null;
-		ResultSet rs1 = null;
-		try {
-			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				pstmt1 = conn.prepareStatement(sql1);
-				pstmt1.setInt(1, rs.getInt(3));
-				rs1 = pstmt1.executeQuery();
-				while (rs1.next()) {
-					p.add(new Product(rs1.getInt(1), rs1.getString(2), rs1.getInt(3), rs1.getString(4),
-							rs1.getString(5), rs1.getString(6), rs1.getString(7)));
-				}
-			}
-		} catch (Exception e) {
-
-		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-
-			}
-		}
-		return p;
-	}
-
-	@Override
-	public int delCart(String m_id, int pro_id) {
-		Connection conn = null;
-		String sql = "delete cart where id = ? and pro_id = ?";
-		PreparedStatement pstmt = null;
-		System.out.println("delcart = " + m_id + pro_id);
-		try {
-			conn = db.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			pstmt.setInt(2, pro_id);
-			pstmt.executeUpdate();
-
-		} catch (Exception e) {
-
-		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (Exception e) {
-
-			}
-		}
-		return 1;
 	}
 }

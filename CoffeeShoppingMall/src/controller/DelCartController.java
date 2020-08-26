@@ -27,7 +27,7 @@ public class DelCartController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		int num = Integer.parseInt(request.getParameter("num"));
-		
+		System.out.println("del="+num);
 		proService ps = new proServiceImpl();
 		HttpSession session = request.getSession();
 		ps.delCart((String)session.getAttribute("id"), num);

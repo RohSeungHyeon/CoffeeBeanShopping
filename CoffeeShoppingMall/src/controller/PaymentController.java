@@ -27,8 +27,14 @@ public class PaymentController extends HttpServlet {
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
 		
+		String addr = request.getParameter("address");
+		String to = request.getParameter("total");
+		System.out.println(addr+to);
 		
-		
+		HttpSession session = request.getSession();
+		session.setAttribute("addr", addr);
+		session.setAttribute("cnt", request.getParameter("count"));
+		System.out.println(request.getParameter("count"));
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay.jsp");
 		dis.forward(request, response);

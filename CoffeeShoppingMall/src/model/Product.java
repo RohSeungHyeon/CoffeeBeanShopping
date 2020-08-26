@@ -1,8 +1,6 @@
 package model;
 
-import org.json.simple.JSONAware;
-
-public class Product implements JSONAware {
+public class Product {
 	private int pro_id;
 	private String pro_name;
 	private int pro_price;
@@ -88,11 +86,6 @@ public class Product implements JSONAware {
 				+ pro_description + "]";
 	}
 
-	@Override
-	public String toJSONString() {
-		return "{\"pro_id\" : \"" + pro_id + "\", \"pro_name\" : \"" + pro_name + "\", \"pro_price\" : \"" + pro_img
-				+ "\", \"pro_region\" : \"" + pro_region + "\", \"pro_country\" : \"" + pro_country
-				+ "\", \"pro_description\" : \"" + pro_description + "\"}";
-	}
-
+	
+	
 }

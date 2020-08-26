@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import member.service.Service;
 import member.service.ServiceImpl;
-import model.Member;
+import model.User;
 
 
 @WebServlet("/LoginController")
@@ -35,8 +35,8 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		String pwd= request.getParameter("pw");
-		Member m = service.getMember(id);
-		if(m != null && pwd.equals(m.getPw())) {
+		User m = service.getMember(id);
+		if(m != null && pwd.equals(m.getPassword())) {
 			session.setAttribute("id", id);
 			flag= true;
 		}

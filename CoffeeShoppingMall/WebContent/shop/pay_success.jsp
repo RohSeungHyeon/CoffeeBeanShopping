@@ -27,8 +27,14 @@
 
 		<div class="content-wrapper">
 			<section class="content">
-				
-			</section>
+			<div style="text-align:center;">
+					<br><br><br>
+					<h3>결제 성공!</h3><br>
+					<h2>주문해 주셔서 감사합니다!!!</h2><br><br>
+	<A HREF="${pageContext.request.contextPath}/shop/index.jsp">홈페이지로</A>
+
+			</div>
+			</SECTION>
 		</div>
 
 		<!-- Main Footer -->
