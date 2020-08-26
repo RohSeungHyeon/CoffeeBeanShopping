@@ -17,22 +17,19 @@
 <body>
 
 	<%
-	    String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
-	    String clientSecret = "ttq2Let4Q8";//애플리케이션 클라이언트 시크릿값";
+	    String clientId = "saB2IXUZKHMePX6dD7xG"; //애플리케이션 클라이언트 아이디
+	    String clientSecret = "ttq2Let4Q8"; //애플리케이션 클라이언트 시크릿
 	    
 	    // 메시지로 받은 위/변조 공격 방지 상태 토큰과 세션 객체에 저장 된 상태 토큰 값 비교
 	    String state = request.getParameter("state");
 	    
-	    /* if(!storedState.equals(state)) {
-	    	System.out.println("Not matched status code");
-	    	return;
-	    } */
-	    
-	    // Authentication code
+	    // 메시지로 받은 Authentication code
 	    String code = request.getParameter("code");
-	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
-	    String apiURL;
 	    
+	    // Access token을 요청 할 리소스 서버 주소와 리소스 서버에서 콜백 할 주소 설정
+	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
+	    
+	    String apiURL;
 	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 	    apiURL += "client_id=" + clientId;
 	    apiURL += "&client_secret=" + clientSecret;
@@ -40,8 +37,7 @@
 	    apiURL += "&code=" + code;
 	    apiURL += "&state=" + state;
 	    
-	    System.out.println("apiURL="+apiURL);
-	    
+	    // 리소스 서버에서 정상 응답 시 보내는 데이터를 저장할 변수 선언
 	    String access_token = "";
 	    String refresh_token = "";
 	    String token_type = "";
@@ -51,12 +47,13 @@
 	      URL url = new URL(apiURL);
 	      HttpURLConnection con = (HttpURLConnection)url.openConnection();
 	      con.setRequestMethod("GET");
-	      // Access Token 요청
+	      
+	      // 리소스 서버에 Access Token 요청
 	      int responseCode = con.getResponseCode();
 	      
 	      BufferedReader br;
-	      System.out.print("responseCode="+responseCode);
-	      if(responseCode==200) { // 정상 호출 시 출력 스트림
+	      // System.out.print("responseCode="+responseCode);
+	      if(responseCode==200) { // 정상 응답 시 출력 스트림
 	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	      } else {  // 에러 발생 시 에러 출력 스트림
 	        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
@@ -69,8 +66,10 @@
 	      }
 	      br.close();
 	      
+	   	  // Access token 요청에 대한 응답이 성공적으로 올 경우,
 	      if(responseCode==200) {
 	        
+	    	// 응답 메시지를 JSON 객체로 변환하여 Access token과 관련 정보를 얻어 세션 객체에 저장
 	        JSONParser parser = new JSONParser();
 	        JSONObject obj = (JSONObject)parser.parse(res.toString());
 	        
@@ -79,11 +78,13 @@
 	        token_type = (String)obj.get("token_type");
 	        expires_in = (String)obj.get("expires_in");
 	        
+	        session.setAttribute("platform", "naver");
 	        session.setAttribute("access_token", access_token);
 	        session.setAttribute("refresh_token", refresh_token);
 	        session.setAttribute("token_type", token_type);
 	        session.setAttribute("expires_in", expires_in);
 	        
+	        // 사용자 정보 요청 컨트롤러로 포워드
 	        RequestDispatcher dispatcher = 
 	        		request.getRequestDispatcher("/oauth/requestprofile_naver");
 	        
@@ -92,7 +93,7 @@
 	        
 	      }
 	    } catch (Exception e) {
-	      System.out.println(e);
+	      e.printStackTrace();
 	    }
   %>
 

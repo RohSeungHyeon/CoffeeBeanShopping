@@ -20,7 +20,7 @@ public enum AgeGroups {
 		this.ageGroups = ageGroups;
 	}
 	
-	public static AgeGroups findByAgreGroups(String ageGroups) {
+	public static AgeGroups findByAgreGroups(AgeGroups ageGroups) {
 		
 		for(AgeGroups ageGroup : AgeGroups.values()) {
 			

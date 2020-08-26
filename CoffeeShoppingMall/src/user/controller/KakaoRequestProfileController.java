@@ -7,6 +7,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
+import org.json.simple.*;
+import org.json.simple.parser.*;
+
 /**
  * Servlet implementation class KakaoRequestProfileController
  */
@@ -46,8 +49,8 @@ public class KakaoRequestProfileController extends HttpServlet {
 		String token_type = (String)session.getAttribute("token_type");
 		String access_token = (String)session.getAttribute("access_token");
 		String keyVal = token_type + " " + access_token;
-		String apiUrl = "https://kapi.kakao.com";
-		//apiUrl += "Authorization=" + keyVal;
+		String apiUrl = "https://kapi.kakao.com/v2/user/me";
+		
 		
 		StringBuffer res = new StringBuffer();
 		
@@ -62,6 +65,7 @@ public class KakaoRequestProfileController extends HttpServlet {
 			
 			if(responseCode == HttpURLConnection.HTTP_OK) {
 				
+				// 응답 메시지를 스트림을 통해 읽어옴
 				BufferedInputStream bis = new BufferedInputStream(con.getInputStream());
 				byte[] buffer = new byte[100];
 				int readByteNo = 0;
@@ -73,7 +77,33 @@ public class KakaoRequestProfileController extends HttpServlet {
 				
 				bis.close();
 				
-				out.println(res.toString());
+				// 스트림을 통해 읽어 온 메시지를 JSON 객체로 변환
+				JSONParser parser = new JSONParser();
+				JSONObject responseObj = (JSONObject)parser.parse(res.toString());
+				
+				JSONObject kakaoAccountObj = (JSONObject)responseObj.get("kakao_account");
+				JSONObject profileObj = (JSONObject)kakaoAccountObj.get("profile");
+				
+				String id = String.valueOf((long)responseObj.get("id"));
+				String nickName = (String)profileObj.get("nickname");
+				String age = ((boolean)kakaoAccountObj.get("has_age_range") == true) ? (String)kakaoAccountObj.get("age_range") : "noInfo";
+				String gender = ((boolean)kakaoAccountObj.get("has_gender") == true) ? (String)kakaoAccountObj.get("gender") : "noInfo";
+				String email = ((boolean)kakaoAccountObj.get("has_email") == true) ? (String)kakaoAccountObj.get("email") : "noInfo";
+				String name = (String)profileObj.get("nickname");
+				String birthday = ((boolean)kakaoAccountObj.get("has_birthday") == true) ? (String)kakaoAccountObj.get("birthday") : "noInfo";
+				
+				
+				JSONObject resultObj = new JSONObject();
+				resultObj.put("infoFrom", "kakao");
+				resultObj.put("id", id);
+				resultObj.put("nickname", nickName);
+				resultObj.put("age", age);
+				resultObj.put("gender", (gender.equals("male")) ? "M" : "F");
+				resultObj.put("email", email);
+				resultObj.put("name", name);
+				resultObj.put("birthday", birthday);
+				
+				//out.println(resultObj.toString());
 						
 			} else {
 				out.print("error: " + responseCode);
@@ -85,32 +115,35 @@ public class KakaoRequestProfileController extends HttpServlet {
 		}
 		
 		
-		/*
-		 * try { JSONParser parser = new JSONParser(); JSONObject obj =
-		 * (JSONObject)parser.parse(res.toString());
-		 * 
-		 * String resultcode = (String)obj.get("resultcode"); String message =
-		 * (String)obj.get("message");
-		 * 
-		 * if(resultcode.equals("00") && message.equals("success")) {
-		 * 
-		 * JSONObject resObject = (JSONObject)obj.get("response");
-		 * session.setAttribute("userprofile", resObject);
-		 * 
-		 * } else {
-		 * 
-		 * JSONObject errorObject = new JSONObject(); errorObject.put("id", "error");
-		 * session.setAttribute("userprofile", errorObject);
-		 * 
-		 * } } catch (ParseException e) { e.printStackTrace(); }
-		 * 
-		 * RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-		 * 
-		 * if(dispatcher != null) dispatcher.forward(request, response);
-		 */
-		 
 		
-		
+		try {
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject) parser.parse(res.toString());
+
+			String resultcode = (String) obj.get("resultcode");
+			String message = (String) obj.get("message");
+
+			if (resultcode.equals("00") && message.equals("success")) {
+
+				JSONObject resObject = (JSONObject) obj.get("response");
+				session.setAttribute("userprofile", resObject);
+
+			} else {
+
+				JSONObject errorObject = new JSONObject();
+				errorObject.put("id", "error");
+				session.setAttribute("userprofile", errorObject);
+
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+
+		if (dispatcher != null)
+			dispatcher.forward(request, response);
+		 		
 		out.close();
 	}
 

@@ -97,25 +97,27 @@ public class NaverRequestProfileController extends HttpServlet {
 			if(resultcode.equals("00") && message.equals("success")) {
 		
 				JSONObject resObject = (JSONObject)obj.get("response");
+				resObject.put("infoFrom", "naver");
 				session.setAttribute("userprofile", resObject);
+				
+				//out.println(resObject.toString());
 				
 			} else {
 				
 				JSONObject errorObject = new JSONObject();
 				errorObject.put("id", "error");
 				session.setAttribute("userprofile", errorObject);
-				
+
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-		
-		if(dispatcher != null)
+
+		if (dispatcher != null)
 			dispatcher.forward(request, response);
-		
-		
+
 		out.close();
  	}
 
