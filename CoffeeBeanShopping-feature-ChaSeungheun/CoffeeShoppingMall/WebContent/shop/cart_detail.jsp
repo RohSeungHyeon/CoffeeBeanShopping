@@ -55,7 +55,10 @@
 											<tr>
 												<td>${p.getPro_id() }</td>
 												<td>${p.getPro_name() }</td>
-												<td><img src=${p.getPro_img() }></td>
+												<td>
+												<img src="${pageContext.request.contextPath}/${p.getPro_img()}" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" />
+												</td>
 												<td>${p.getPro_region() }</td>
 												<td>${p.getPro_price() }</td>
 												<td><input type='button'

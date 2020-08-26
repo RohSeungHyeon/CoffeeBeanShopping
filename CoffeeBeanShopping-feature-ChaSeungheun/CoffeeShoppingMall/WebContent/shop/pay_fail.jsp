@@ -31,7 +31,7 @@
 					<br><br><br>
 					<h3>결제 실패!</h3><br>
 					<h2>주문이 성공적으로 이루어지지 않았습니다.</h2><br><br>
-	<A HREF="${pageContext.request.contextPath}/shop/index.jsp">홈페이지로</A>
+	<A HREF="${pageContext.request.contextPath}/shop/main.jsp">홈페이지로</A>
 
 			</div>
 			</section>

@@ -59,6 +59,10 @@
 						<a href="${pageContext.request.contextPath}/shop/login.jsp"
 							class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
 						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath}/ViewCartController">장바구니</a>
+						<a href="${pageContext.request.contextPath}/goAdmin"
+							class="d-block mt-2">관리자페이지</a>
+
 					</div>
 				</div>
 
@@ -68,6 +72,11 @@
 						data-widget="treeview" role="menu">
 						<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               			
+               			<a href="${pageContext.request.contextPath }/ViewProductController">
+							모든 상품 보기
+						</a>
+						
 						<li class="nav-item has-treeview"><a href="#"
 							class="nav-link">
 								<p>

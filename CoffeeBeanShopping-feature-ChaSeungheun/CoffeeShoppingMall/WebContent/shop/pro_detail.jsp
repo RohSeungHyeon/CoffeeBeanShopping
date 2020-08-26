@@ -48,7 +48,10 @@
 									<tbody id="ttt">
 											<tr> <td>상품 번호</td><td><%=p.getPro_id() %></td></tr>
 											<tr><td>상품 명</td><td><%=p.getPro_name() %></td></tr>
-											<tr><td>사진</td><td><img src=<%=p.getPro_img() %>><%=p.getPro_img() %></td></tr>
+											<tr><td>사진</td><td>
+											<img src="${pageContext.request.contextPath}/<%=p.getPro_img() %>" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" />
+											</td></tr>
 											<tr><td>지역</td><td><%=p.getPro_region() %> </td></tr>
 											<tr><td>나라</td><td><%=p.getPro_country() %> </td></tr>
 											
