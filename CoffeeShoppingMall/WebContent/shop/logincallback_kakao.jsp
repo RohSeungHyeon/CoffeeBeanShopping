@@ -12,50 +12,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>네이버 로그인</title>
+<title>카카오 로그인</title>
 </head>
 <body>
 
 	<%
-	    String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
-	    String clientSecret = "ttq2Let4Q8";//애플리케이션 클라이언트 시크릿값";
-	    
-	    // 메시지로 받은 위/변조 공격 방지 상태 토큰과 세션 객체에 저장 된 상태 토큰 값 비교
-	    String state = request.getParameter("state");
-	    
-	    /* if(!storedState.equals(state)) {
-	    	System.out.println("Not matched status code");
-	    	return;
-	    } */
-	    
+	    String clientId = "0335ebe59915581efeeecc26d992908e";//애플리케이션 클라이언트 아이디값";
+	    String clientSecret = "xE4DQyohOQ9XADYnzbo6AeghuYSFvAfl";//애플리케이션 클라이언트 시크릿값";
+	        
 	    // Authentication code
 	    String code = request.getParameter("code");
-	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
-	    String apiURL;
+	    String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_kakao.jsp", "UTF-8");
+	    String apiURL = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 	    
-	    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-	    apiURL += "client_id=" + clientId;
+	    apiURL += "&client_id=" + clientId;
 	    apiURL += "&client_secret=" + clientSecret;
 	    apiURL += "&redirect_uri=" + redirectURI;
 	    apiURL += "&code=" + code;
-	    apiURL += "&state=" + state;
-	    
-	    System.out.println("apiURL="+apiURL);
 	    
 	    String access_token = "";
 	    String refresh_token = "";
 	    String token_type = "";
-	    String expires_in = "";
+	    long expires_in = 0;
+	    long refresh_token_expires_in = 0;
+	    String scope = "";
 	    
 	    try {
 	      URL url = new URL(apiURL);
 	      HttpURLConnection con = (HttpURLConnection)url.openConnection();
-	      con.setRequestMethod("GET");
+	      con.setRequestMethod("POST");
+	      
 	      // Access Token 요청
 	      int responseCode = con.getResponseCode();
 	      
 	      BufferedReader br;
-	      System.out.print("responseCode="+responseCode);
+	      System.out.println("responseCode="+responseCode);
 	      if(responseCode==200) { // 정상 호출 시 출력 스트림
 	        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 	      } else {  // 에러 발생 시 에러 출력 스트림
@@ -71,13 +62,16 @@
 	      
 	      if(responseCode==200) {
 	        
+	    	out.println(res.toString());
 	        JSONParser parser = new JSONParser();
 	        JSONObject obj = (JSONObject)parser.parse(res.toString());
 	        
 	        access_token = (String)obj.get("access_token");
 	        refresh_token = (String)obj.get("refresh_token");
 	        token_type = (String)obj.get("token_type");
-	        expires_in = (String)obj.get("expires_in");
+	        expires_in = (long)obj.get("expires_in");
+	        refresh_token_expires_in = (long)obj.get("refresh_token_expires_in");
+	        scope = (String)obj.get("scope");
 	        
 	        session.setAttribute("access_token", access_token);
 	        session.setAttribute("refresh_token", refresh_token);
@@ -85,15 +79,15 @@
 	        session.setAttribute("expires_in", expires_in);
 	        
 	        RequestDispatcher dispatcher = 
-	        		request.getRequestDispatcher("/oauth/requestprofile_naver");
+	        		request.getRequestDispatcher("/oauth/requestprofile_kakao"); 
 	        
 	        if(dispatcher != null)
-	        	dispatcher.forward(request, response);
+	        	dispatcher.forward(request, response); 
 	        
 	      }
 	    } catch (Exception e) {
-	      System.out.println(e);
-	    }
+	      e.printStackTrace();
+	    } 
   %>
 
 </body>

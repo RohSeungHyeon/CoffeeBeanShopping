@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet(name="LoginController", urlPatterns = "/Login")
+@WebServlet(name="LoginController", urlPatterns = "/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

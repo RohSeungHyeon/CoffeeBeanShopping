@@ -34,8 +34,10 @@
 <%-- OAuth 2.0을 이용한 로그인 처리 --%>
 	<%
 		// NAVER, DAUM OAuth 이용을 위한 설정
-    	String clientId = "saB2IXUZKHMePX6dD7xG";//애플리케이션 클라이언트 아이디값";
-   		String redirectURI = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
+    	String clientId_naver = "saB2IXUZKHMePX6dD7xG";
+		String clientId_kakao = "0335ebe59915581efeeecc26d992908e";
+   		String redirectURI_naver = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_naver.jsp", "UTF-8");
+   		String redirectURI_kakao = URLEncoder.encode("http://127.0.0.1:8080/CoffeeShoppingMall/shop/logincallback_kakao.jsp", "UTF-8");
    		
    		// 세션 유지 및 위변조 방지를 위한 상태 토큰 생성
     	SecureRandom random = new SecureRandom();
@@ -43,13 +45,19 @@
     	
     	// 요청 URI
     	String apiURL_Naver = "https://nid.naver.com/oauth2.0/authorize?";
-    	String apiURL_Kakao = ""; // Kakao는 추후 구현 예정
+    	String apiURL_Kakao = "https://kauth.kakao.com/oauth/authorize?"; // Kakao는 추후 구현 예정
     	
     	// 네아로 로그인 인증 API에서 요구하는 URI의 헤더 값들
-    	apiURL_Naver += "&client_id=" + clientId;
+    	apiURL_Naver += "&client_id=" + clientId_naver;
     	apiURL_Naver += "&response_type=code";
-    	apiURL_Naver += "&redirect_uri=" + redirectURI;
+    	apiURL_Naver += "&redirect_uri=" + redirectURI_naver;
     	apiURL_Naver += "&state=" + state;
+    	
+    	// 카카오 로그인 인증 API에서 요구하는 URI의 헤더 값들
+    	apiURL_Kakao += "&client_id=" + clientId_kakao;
+    	apiURL_Kakao += "&response_type=code";
+    	apiURL_Kakao += "&redirect_uri=" + redirectURI_kakao;
+ 
     	
     	// 세션 객체에 위변조 방지를 위한 상태 토큰 저장
     %>
@@ -98,7 +106,7 @@
 
 				<div class="social-auth-links text-center mb-3">
 					<p>- OR -</p>
-					<a href="#" class="btn btn-block"> <img
+					<a href="<%=apiURL_Kakao %>" class="btn btn-block"> <img
 						src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />
 					</a> <a href="<%=apiURL_Naver %>" class="btn btn-block"> <img
 						src="${pageContext.request.contextPath}/resources/img/login/naver_login_custom.PNG" width="300px" />
