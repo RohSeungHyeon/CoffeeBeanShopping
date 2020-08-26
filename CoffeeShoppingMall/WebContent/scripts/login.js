@@ -15,7 +15,7 @@ function button_idCheck() {
 }
 
 const textInput_PwdConfirm = document.getElementById('essential.pwd_confirm');
-const textInput_Pwd
+//const textInput_Pwd
 textInput_PwdConfirm.addEventListener('input', checkPwdValue);
 
 function checkPwdValue() {
