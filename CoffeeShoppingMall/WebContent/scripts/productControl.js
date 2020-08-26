@@ -3,15 +3,15 @@ $(document).ready(function() {
 	bsCustomFileInput.init();
 });
 
-$('#addFormToggleBtn').on('click', function() {
-	if ($(this).text() == '상품 추가') {
+function addProductFormBtn(){
+	if ($('#addFormToggleBtn').text() == '상품 추가') {
 		$('#addProductForm').show();
-		$(this).text('숨기기');
+		$('#addFormToggleBtn').text('숨기기');
 	} else {
 		$('#addProductForm').hide();
-		$(this).text('상품 추가');
+		$('#addFormToggleBtn').text('상품 추가');
 	}
-});
+}
 
 function checkAddProductForm(f) {
 	if (f.name.value == '') {
