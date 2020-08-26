@@ -47,7 +47,8 @@ public class PaySuccessController extends HttpServlet {
 					 new java.sql.Date(System.currentTimeMillis()), Integer.parseInt(count),m.getId(),
 					Integer.parseInt(pro_id));
 		}
-		
+		// 카트 목록 삭제
+		ps.clearCart(m.getId());
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_success.jsp");
 		dis.forward(request, response);

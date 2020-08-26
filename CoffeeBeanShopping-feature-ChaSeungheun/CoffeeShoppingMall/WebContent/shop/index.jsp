@@ -20,7 +20,7 @@
 <a href="${pageContext.request.contextPath}/ProDetailController">상품 디테일</a><br>
 <a href="${pageContext.request.contextPath}/ViewCartController">장바구니</a><br>
 <a href="a">결제</a><br>
-<a href="a">관리자페이지</a><br>
+<a href="${pageContext.request.contextPath}/goAdmin">관리자페이지</a><br>
 	<form action ="${pageContext.request.contextPath }/LoginController" method="post">
 		id:<input type="text" name="id"><br>
 		pw:<input type="text" name="pw"><br>

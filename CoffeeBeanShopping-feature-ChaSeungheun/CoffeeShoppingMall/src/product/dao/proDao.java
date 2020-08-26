@@ -11,4 +11,9 @@ public interface proDao {
 	ArrayList<Product> getCart(String id);
 	int delCart(String m_id,int pro_id);
 	void addOrder( String addr, Date date, int cnt, String m_id, int pro_id);
+	void clearCart(String m_id);
+	
+	ArrayList<Product> selectAll();
+	void addProduct(String name, int price, String img, String region, String country, String description);
+	void delProduct(int id);
 }

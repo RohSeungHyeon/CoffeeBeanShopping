@@ -34,6 +34,22 @@ public class proServiceImpl implements proService{
 	public void addOrder(String addr, Date date, int cnt, String m_id, int pro_id) {
 		dao.addOrder( addr, date, cnt, m_id, pro_id);
 	}
+	@Override
+	public void clearCart(String m_id) {
+		dao.clearCart(m_id);
+	}
+	@Override
+	public void addProduct(String name, int price, String img, String region, String country, String description) {
+		dao.addProduct(name, price, img, region, country, description);
+	}
+	@Override
+	public void delProduct(int id) {
+		dao.delProduct(id);
+	}
+	@Override
+	public ArrayList<Product> getAllProduct() {
+		return dao.selectAll();
+	}
 
 
 }
