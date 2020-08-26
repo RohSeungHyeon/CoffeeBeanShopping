@@ -2,7 +2,6 @@ package product.service;
 
 import java.util.ArrayList;
 
-import conn.DBConnect;
 import model.Product;
 import product.dao.proDao;
 import product.dao.proDaoImpl;
@@ -23,6 +22,17 @@ public class proServiceImpl implements proService {
 	@Override
 	public ArrayList<Product> getAllProduct() {
 		return dao.selectAll();
+	}
+	
+	@Override
+	public void addProduct(String name, int price, String img, String region, String country, String description) {
+		dao.addProduct(name, price, img, region, country, description);
+	}
+	
+
+	@Override
+	public void delProduct(int id) {
+		dao.delProduct(id);
 	}
 
 	@Override

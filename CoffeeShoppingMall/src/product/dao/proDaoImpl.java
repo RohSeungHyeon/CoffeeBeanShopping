@@ -27,7 +27,6 @@ public class proDaoImpl implements proDao {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				System.out.println("!!!!");
 				return new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
 						rs.getString(6), rs.getString(7));
 			}
@@ -73,6 +72,57 @@ public class proDaoImpl implements proDao {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void addProduct(String name, int price, String img, String region, String country, String description) {
+		Connection conn = null;
+		String sql = "insert into product values(SEQ_PRO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setInt(2, price);
+			pstmt.setString(3, img);
+			pstmt.setString(4, region);
+			pstmt.setString(5, country);
+			pstmt.setString(6, description);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+	}
+
+	@Override
+	public void delProduct(int id) {
+		Connection conn = null;
+		String sql = "delete product where pro_id = ?";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+
 	}
 
 	@Override

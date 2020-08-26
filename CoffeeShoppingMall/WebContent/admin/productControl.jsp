@@ -9,32 +9,29 @@
 <title>상품 관리 페이지</title>
 </head>
 <body>
-	수정하려면 상품을 클릭해주세요.
 	<div class="row">
-		<div class="col-sm-3 mt-2">
-			<div class="position-relative p-3 bg-white"
-				style="height: 180px; border: thin solid gray;">
-				<h3>생두 커피 이름</h3>
-				<div class="col-5">
-					<img
-						src="${pageContext.request.contextPath}/resources/img/main/GreenCoffeeLogo.png"
-						class="product-image" alt="Product Image" />
-				</div>
-				<small class="mt-2">지역명/국가명/브랜드/용량</small><br>
-				<h5 class="mt-2">가격</h5>
-			</div>
-		</div>
 		<c:forEach var="product" items="${products}">
-			<div class="col-sm-3 mt-2" id="t_${product.getId()}">
+			<div class="col-sm-3 mt-2" id="t_${product.getPro_id()}">
 				<div class="position-relative p-3 bg-white"
-					style="height: 180px; border: thin solid gray;">
-					<h3>${product.getName()}</h3>
-					<div class="col-5">
-						<img src="${product.getImg()}" class="product-image"
-							alt="Product Image" />
+					style="height: 300px; border: thin solid gray; border-radius: 0.25rem">
+					<h5>ID : ${product.getPro_id()}</h5>
+					<h3>${product.getPro_name()}</h3>
+					<div class="col-5 float-left">
+						<img src="${pageContext.request.contextPath}/${product.getPro_img()}" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" />
 					</div>
-					<small class="mt-2">지역명/국가명/브랜드/용량</small><br>
-					<h5 class="mt-2">${product.getPrice()}</h5>
+					<div>
+						<small class="mt-2"><b>지역</b> : ${product.getPro_region()}</small><br>
+						<small class="mt-2"><b>국가</b> :
+							${product.getPro_country()}</small><br> <small class="mt-2"><b>상세설명</b>
+							:<br> ${product.getPro_description()}</small><br>
+						<h5 class="mt-2">￦${product.getPro_price()}</h5>
+					</div>
+					<div class="float-right">
+						<input type='button' value="삭제"
+							class="btn btn-block btn-primary col-12"
+							onclick="deleteProduct(${product.getPro_id()})" />
+					</div>
 				</div>
 			</div>
 		</c:forEach>
@@ -47,7 +44,7 @@
 		<br> <br>
 		<div id="addProductForm" class="col-5">
 			<form role="form" enctype="multipart/form-data" method="POST"
-				action="addProduct.do">
+				id="productForm">
 				<div class="card-body">
 					<div class="form-group">
 						<label>상품명</label> <input type="text" class="form-control"
@@ -58,11 +55,14 @@
 							name="price" placeholder="가격을 입력하세요.">
 					</div>
 					<div class="form-group">
-						<label>지역</label> <input type="text" class="form-control"
-							name="region" placeholder="해당 대륙을 입력하세요.">
+						<label>지역</label><select class="form-control" name="region">
+							<option value="아시아/태평양">아시아/태평양</option>
+							<option value="중남미">중남미</option>
+							<option value="아프리카">아프리카</option>
+						</select>
 					</div>
 					<div class="form-group">
-						<label>국가</label> <input type="number" class="form-control"
+						<label>국가</label> <input type="text" class="form-control"
 							name="country" placeholder="해당 국가를 입력하세요.">
 					</div>
 					<div class="form-group">

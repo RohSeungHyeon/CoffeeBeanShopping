@@ -41,11 +41,38 @@ function checkAddProductForm(f) {
 	} else if (f.img.value == '') {
 		alert('상품 사진을 업로드해주세요.');
 		return;
-	}
+	} else {
+		var form = $('#productForm')[0];
+		var formData = new FormData(form);
 
-	f.submit();
+		$.ajax({
+			"url" : "addProduct.do",
+			"data" : formData,
+			"processData" : false,
+			"contentType" : false,
+			"type" : "POST",
+			"success" : function(data) {
+				$('#custom-tabs-one-product').html(data);
+				$('#addProductForm').hide();
+				bsCustomFileInput.init();
+			}
+		});
+	}
 
 	$('#addProductForm').hide();
 	$('#addFormToggleBtn').text('상품 추가');
 
+}
+
+function deleteProduct(id) {
+	$.ajax({
+		"url" : "delProduct.do",
+		"data" : "id=" + id,
+		"type" : "POST",
+		"success" : function(data) {
+			$('#custom-tabs-one-product').html(data);
+			$('#addProductForm').hide();
+			bsCustomFileInput.init();
+		}
+	});
 }
