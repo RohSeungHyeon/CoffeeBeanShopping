@@ -43,7 +43,7 @@
 									<!-- /.card-header -->
 									<div class="card-body table-responsive p-0"
 										style="height: 300px;">
-										<table class="table table-head-fixed text-nowrap">
+										<table class="table table-head-fixed table-hover text-nowrap">
 											<thead>
 												<tr>
 													<th style="width: 10px">#</th>
@@ -110,7 +110,7 @@
 									<!-- /.card-header -->
 									<div class="card-body table-responsive p-0"
 										style="height: 300px;">
-										<table class="table table-head-fixed text-nowrap">
+										<table class="table table-head-fixed table-hover text-nowrap">
 											<thead>
 												<tr>
 													<th style="width: 10px">#</th>
