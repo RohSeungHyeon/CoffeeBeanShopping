@@ -103,43 +103,21 @@ public class KakaoRequestProfileController extends HttpServlet {
 				resultObj.put("name", name);
 				resultObj.put("birthday", birthday);
 				
-				//out.println(resultObj.toString());
-						
+				session.setAttribute("userprofile", resultObj);
+				
 			} else {
 				out.print("error: " + responseCode);
 				out.close();
 				return;
 			}
+			
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-		
-		
-		
-		try {
-			JSONParser parser = new JSONParser();
-			JSONObject obj = (JSONObject) parser.parse(res.toString());
-
-			String resultcode = (String) obj.get("resultcode");
-			String message = (String) obj.get("message");
-
-			if (resultcode.equals("00") && message.equals("success")) {
-
-				JSONObject resObject = (JSONObject) obj.get("response");
-				session.setAttribute("userprofile", resObject);
-
-			} else {
-
-				JSONObject errorObject = new JSONObject();
-				errorObject.put("id", "error");
-				session.setAttribute("userprofile", errorObject);
-
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
+			out.close();
+			return;
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/find");
 
 		if (dispatcher != null)
 			dispatcher.forward(request, response);

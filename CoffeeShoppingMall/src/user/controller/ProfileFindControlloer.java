@@ -1,27 +1,26 @@
 package user.controller;
 
 import java.io.*;
-import java.sql.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import user.model.*;
-import user.model.enums.*;
+import org.json.simple.*;
+
 import user.service.*;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class ProfileFindControlloer
  */
-@WebServlet(name="JoinController", urlPatterns = "/join")
-public class JoinController extends HttpServlet {
+@WebServlet(name = "ProfileFindController", urlPatterns = "/find")
+public class ProfileFindControlloer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinController() {
+    public ProfileFindControlloer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,37 +30,42 @@ public class JoinController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
+	
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		response.setCharacterEncoding("utf-8");
-		
 		PrintWriter out = response.getWriter();
 		
+		HttpSession session = request.getSession();
 		Service service = new ServiceImpl();
 		
-		User user;
-		
-		user = new Indivisual("test2", "12345", "테스트이름", "테스트닉네임", "테스트주소", "테스트메일", "테스트번호");
-		user.setGender(Genders.F);
-		user.setBirth(new Date(System.currentTimeMillis()));
-
-		
-		if(service.createUser(user) == 1)
-			out.println("<html><body>성공</body></html>");
-		else {
-			out.println("<html><body>실패</body></html>");
+		JSONObject profileObject = (JSONObject)session.getAttribute("userprofile");
+		String email = (String)profileObject.get("email");
+			
+		if(service.isRegisterd(email)) {
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+			
+			if(dispatcher != null)
+				dispatcher.forward(request, response);
+			
+		} else {
+			out.print("<script type='text/javascript'>");
+			out.print("alert('서비스 이용 시 추가 정보를 기입해주셔야 합니다');");
+			out.print("location.href='join_jjt.jsp';");
+			out.print("</script>");
 		}
 		
 		
 		out.close();
-	
 	}
 
 }

@@ -7,12 +7,14 @@ import user.model.enums.*;
 public abstract class User {
 	
 	// 필수 기입 정보
-	private String id;
+
+	private String oauth_rserver;
+	private String oauth_user_id;
+	private String email;
 	private String password;
 	private String userName;
 	private String userNickName;
 	private String address;
-	private String email;
 	private String phone;
 	
 	// 선택 기입 정보
@@ -23,23 +25,39 @@ public abstract class User {
 	
 	public User() {} 
 	
-	public User(String id, String password, String userName, String userNickName, 
-			String address, String email, String phone) {
-		this.id = id;
+	
+	
+	public User(String oauth_rserver, String oauth_user_id, String email, String password, String userName,
+			String userNickName, String address, String phone, Genders gender, Date birth) {
+		super();
+		this.oauth_rserver = oauth_rserver;
+		this.oauth_user_id = oauth_user_id;
+		this.email = email;
 		this.password = password;
 		this.userName = userName;
 		this.userNickName = userNickName;
 		this.address = address;
-		this.email = email;
 		this.phone = phone;
+		this.gender = gender;
+		this.birth = birth;
 	}
 
-	public String getId() {
-		return id;
+
+
+	public String getOauth_rserver() {
+		return oauth_rserver;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOauth_rserver(String oauth_rserver) {
+		this.oauth_rserver = oauth_rserver;
+	}
+
+	public String getOauth_user_id() {
+		return oauth_user_id;
+	}
+
+	public void setOauth_user_id(String oauth_user_id) {
+		this.oauth_user_id = oauth_user_id;
 	}
 
 	public String getPassword() {
@@ -106,6 +124,8 @@ public abstract class User {
 		this.birth = birth;
 	}
 
+
+	
 	
 
 }

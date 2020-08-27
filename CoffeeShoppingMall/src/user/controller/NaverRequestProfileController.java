@@ -100,8 +100,6 @@ public class NaverRequestProfileController extends HttpServlet {
 				resObject.put("infoFrom", "naver");
 				session.setAttribute("userprofile", resObject);
 				
-				//out.println(resObject.toString());
-				
 			} else {
 				
 				JSONObject errorObject = new JSONObject();
@@ -111,9 +109,12 @@ public class NaverRequestProfileController extends HttpServlet {
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
+			
+			out.close();
+			return;
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/find");
 
 		if (dispatcher != null)
 			dispatcher.forward(request, response);

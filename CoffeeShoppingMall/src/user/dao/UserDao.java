@@ -9,6 +9,6 @@ public interface UserDao {
 	
 	public int update(User user);
 	
-	public User select(String id);
+	public User select(String email);
 
 }

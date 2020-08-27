@@ -27,7 +27,6 @@ public class UserDaoImpl implements UserDao {
 		
 		Business businessUser = null;
 		
-		String id = user.getId();
 		String password = user.getPassword();
 		String userType = (user instanceof Indivisual) ? "개인" : "사업자";
 		String userName = user.getUserName();
@@ -165,31 +164,22 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public User select(String id) {
-		
-//		conn = db.getConnection();
-//		PreparedStatement pstmt;
-//		
-//		try {
-//			
-//			
-//			
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				pstmt.close();
-//				conn.close();
-//		
-//			} catch (SQLException e2) {
-//				e2.printStackTrace();
-//			}
-//		}
-		
-		return null;
-	}
+	public User select(String email) {
 
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		User user = null;
+		
+		/*
+		 * try { String sql = "SELECT id, "
+		 * 
+		 * } catch (SQLException e) { e.printStackTrace();
+		 * 
+		 * } catch (Exception e) { e.printStackTrace(); } finally { try { pstmt.close();
+		 * conn.close();
+		 * 
+		 * } catch (SQLException e2) { e2.printStackTrace(); } }
+		 */
+		return user;
+	}
 }
