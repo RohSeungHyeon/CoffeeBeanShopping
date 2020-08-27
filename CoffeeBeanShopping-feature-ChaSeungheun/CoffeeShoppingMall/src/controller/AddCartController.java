@@ -48,10 +48,8 @@ public class AddCartController extends HttpServlet {
 		}
 		request.setAttribute("message", message);
 		
-		
-		RequestDispatcher dis = request.getRequestDispatcher("/shop/index.jsp");
-		dis.forward(request, response);
-		
+		response.sendRedirect(request.getHeader("referer"));
+
 		
 	}
 }

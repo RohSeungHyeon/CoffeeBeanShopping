@@ -14,6 +14,9 @@ public interface proDao {
 	void clearCart(String m_id);
 	
 	ArrayList<Product> selectAll();
+	ArrayList<Product> selectPro(String str);
+	
 	void addProduct(String name, int price, String img, String region, String country, String description);
 	void delProduct(int id);
+	
 }

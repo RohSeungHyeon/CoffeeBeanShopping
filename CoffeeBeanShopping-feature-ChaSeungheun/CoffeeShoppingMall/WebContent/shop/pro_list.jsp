@@ -38,8 +38,7 @@
 					<c:forEach var="product" items="${products}">
 						<div class="col-sm-3 mt-2" id="t_${product.getPro_id()}">
 							<div class="position-relative p-3 bg-white"
-								style="height: 300px; border: thin solid gray; border-radius: 0.25rem">
-								<h5>ID : ${product.getPro_id()}</h5>
+								style="height: auto; border: thin solid gray; border-radius: 0.25rem;">
 								<h3>${product.getPro_name()}</h3>
 								<div class="col-5 float-left">
 									<img
@@ -54,17 +53,18 @@
 									${product.getPro_description()}</small><br>
 									<h5 class="mt-2">￦${product.getPro_price()}</h5>
 								</div>
-								<div class="float-right">
+								<br>
+								<div style="text-align:right;">
 									<input type='button' value="장바구니"
 										class="btn btn-block btn-secondary col-12"
-										style="width: 120px;"
+										style="width: 120px; display: inline-block; "
 										onclick="addCart(${product.getPro_id()}, '${sessionScope.id }' )" />
 								</div>
-								<form action="ProDetailController?id=${product.getPro_id()}">
+								<form action = "ProDetailController?id=${product.getPro_id()}">
 									<input type="hidden" name="id" value="${product.getPro_id()}" />
-									<div class="float-right">
+									<div style="text-align:right;">
 										<input type="submit" class="btn btn-block btn-primary col-12"
-											style="width: 120px;" value="상세 보기">
+											style="width: 120px; display: inline-block;" value="상세 보기">
 									</div>
 								</form>
 

@@ -301,4 +301,35 @@ public class proDaoImpl implements proDao {
 		}
 
 	}
+
+	@Override
+	public ArrayList<Product> selectPro(String str) {
+		ArrayList<Product> list = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		String sql = "select * from product where pro_region = ? order by pro_id";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, str);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7)));
+			}
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return list;
+	}
 }

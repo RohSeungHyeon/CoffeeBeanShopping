@@ -16,4 +16,5 @@ public interface proService {
 	void addProduct(String name, int price, String img, String region, String country, String description);
 	void delProduct(int id);
 	ArrayList<Product> getAllProduct();
+	ArrayList<Product> getProduct(String region);
 }

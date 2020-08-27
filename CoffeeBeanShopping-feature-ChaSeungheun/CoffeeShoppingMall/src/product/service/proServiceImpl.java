@@ -50,6 +50,10 @@ public class proServiceImpl implements proService{
 	public ArrayList<Product> getAllProduct() {
 		return dao.selectAll();
 	}
+	@Override
+	public ArrayList<Product> getProduct(String region) {
+		return dao.selectPro(region);
+	}
 
 
 }
