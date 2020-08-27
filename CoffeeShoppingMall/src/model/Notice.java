@@ -13,7 +13,6 @@ public class Notice {
 		super();
 	}
 
-	
 	public Notice(int notID, String notTitle, String notWriter, Date notDate, String notContent) {
 		super();
 		this.notID = notID;

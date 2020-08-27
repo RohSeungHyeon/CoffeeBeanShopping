@@ -9,33 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>메인 페이지</title>
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="../resources/plugins/fontawesome-free/css/all.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<!-- SweetAlert2 -->
-<link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
-<!-- Toastr -->
-<link rel="stylesheet" href="../resources/plugins/toastr/toastr.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css">
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
 </head>
 <body>
-<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
-			<thead>
-			<h2>공지사항</h2>
-			
+<h2 align="center">공지사항</h2>
+<table class="table table-hover" style="text-align:center; border: 1px solid #dddddd">
+			<thead class="thead-dark">
 				<tr>
-					<th style="background-color: #eeeeee; text-align:center;">번호</th>
-					<th style="background-color: #eeeeee; text-align:center;">제목</th>
-					<th style="background-color: #eeeeee; text-align:center;">작성자</th>
-					<th style="background-color: #eeeeee; text-align:center;">작성날짜</th>
+					<th style=" text-align:center;">번호</th>
+					<th style="text-align:center;">제목</th>
+					<th style="text-align:center;">작성자</th>
+					<th style=" text-align:center;">작성날짜</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +29,7 @@
 					<td>2017-05-04</td>
 				</tr>
 				<c:forEach var = "n" items="${notlist }">
-				<tr>
+				<tr class = "table-default" onclick="location.href='${pageContext.request.contextPath }/NoticereadController?notID=${n.notID }'">
 					<td>${n.notID }</td>
 					<td>${n.notTitle }</td>
 					<td>${n.notWriter }</td>
@@ -56,5 +39,6 @@
 			</tbody>
 			
 			</table>
+
 </body>
 </html>

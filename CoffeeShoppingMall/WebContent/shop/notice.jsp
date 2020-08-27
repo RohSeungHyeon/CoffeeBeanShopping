@@ -10,17 +10,17 @@
 <title>메인 페이지</title>
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="../resources/plugins/fontawesome-free/css/all.min.css">
+	href="${pageContext.request.contextPath}/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
+	href="${pageContext.request.contextPath}/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="../resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -42,11 +42,12 @@
 			//로그인이 된 회원은 로그인의 정보를 담을수 있도록 설정  
 	%>
 	
-	
 	<div class="container">
 		<div class="row">
 			<c:import url = "/NoticelistController"></c:import>
-			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			<c:if test="${sessionScope.id != null }">
+					<a href="${pageContext.request.contextPath}/shop/notwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+				</c:if>
 		</div>
 	</div></section>
 		</div>
@@ -60,8 +61,8 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE -->
-	<script src="../resources/dist/js/adminlte.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/dist/js/adminlte.js"></script>
 </body>
 </html>

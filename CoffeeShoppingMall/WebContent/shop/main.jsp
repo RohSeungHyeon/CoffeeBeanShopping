@@ -12,7 +12,7 @@
 	<header>
 		<nav
 			class="main-header navbar navbar-expand navbar-white navbar-light"
-			style="background-image: url('../resources/img/main/top.jpg')">
+			style="background-image: url('${pageContext.request.contextPath }/resources/img/main/top.jpg')">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item "><a class="nav-link"
@@ -27,7 +27,7 @@
 			<!-- Brand Logo -->
 			<a href="${pageContext.request.contextPath}/shop/main.jsp"
 				class="brand-link"> <img
-				src="../resources/img/main/GreenCoffeeLogo.png" alt="Green Coffee"
+				src="${pageContext.request.contextPath }/resources/img/main/GreenCoffeeLogo.png" alt="Green Coffee"
 				class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">Green Coffee</span>
 			</a>

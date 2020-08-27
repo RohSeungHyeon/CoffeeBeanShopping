@@ -21,7 +21,7 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public Notice getNotice(int num) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.select(num);
 	}
 
 	@Override
@@ -33,13 +33,13 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public void editNotice(Notice n) {
 		// TODO Auto-generated method stub
-		
+		dao.update(n);
 	}
 
 	@Override
 	public void delNotice(int num) {
 		// TODO Auto-generated method stub
-		
+		dao.delete(num);
 	}
 
 }
