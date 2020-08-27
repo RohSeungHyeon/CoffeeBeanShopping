@@ -11,7 +11,9 @@ public interface proService {
 	ArrayList<Product> getCart(String id);
 	int delCart(String m_id,int pro_id);
 	void addOrder(String addr, Date date, int cnt, String m_id, int pro_id);
+	void addOrderStatus(Date d, String id);
 	void clearCart(String m_id);
+	
 	
 	void addProduct(String name, int price, String img, String region, String country, String description);
 	void delProduct(int id);

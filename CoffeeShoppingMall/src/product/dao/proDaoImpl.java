@@ -362,4 +362,30 @@ public class proDaoImpl implements proDao {
 		}
 		return list;
 	}
+
+	@Override
+	public void addOrder_Status(Date d, String id) {
+		Connection conn = null;
+		String sql = "insert into order_status values(?,?,'결제완료')";
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, d);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		
+	}
 }

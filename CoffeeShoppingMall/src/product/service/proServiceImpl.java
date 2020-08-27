@@ -58,6 +58,10 @@ public class proServiceImpl implements proService{
 	public ArrayList<Product> getRecoProduct() {
 		return dao.getRecoProduct();
 	}
+	@Override
+	public void addOrderStatus(Date d, String id) {
+		dao.addOrder_Status(d, id);
+	}
 
 
 }
