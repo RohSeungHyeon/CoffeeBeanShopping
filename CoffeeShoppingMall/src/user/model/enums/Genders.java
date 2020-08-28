@@ -3,7 +3,7 @@ package user.model.enums;
 
 public enum Genders {
 	
-	F("F"), M("M");
+	F("F"), M("M"), N("");
 	
 	@SuppressWarnings("unused")
 	private final String genders;

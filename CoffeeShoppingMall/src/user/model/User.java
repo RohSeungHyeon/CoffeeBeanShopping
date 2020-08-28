@@ -5,11 +5,13 @@ import java.sql.*;
 import user.model.enums.*;
 
 public abstract class User {
-	
-	// 필수 기입 정보
 
+	// OAuth를 위한 서비스 이용
+	// OAuth 인증 없이 자체 서비스 이용 시 두 필드 값 "없음"으로 db에 저장
 	private String oauth_rserver;
 	private String oauth_user_id;
+	
+	// 서비스 이용을 위한 필수 기입 정보
 	private String email;
 	private String password;
 	private String userName;
@@ -18,15 +20,12 @@ public abstract class User {
 	private String phone;
 	
 	// 선택 기입 정보
-	private Genders gender;
-	private Date birth;
-	
-	
+	// getter와 setter의 사용 유의
+	private Genders gender = null;
+	private Date birth = null;
 	
 	public User() {} 
-	
-	
-	
+		
 	public User(String oauth_rserver, String oauth_user_id, String email, String password, String userName,
 			String userNickName, String address, String phone, Genders gender, Date birth) {
 		super();

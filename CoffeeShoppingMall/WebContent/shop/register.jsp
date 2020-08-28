@@ -1,6 +1,20 @@
+<%@ page import="org.json.simple.*" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	JSONObject userProfile = (JSONObject) session.getAttribute("userprofile");
+	String id = (String)userProfile.get("id");
+	String email = (String) userProfile.get("email");
+	String[] idAndDomain = email.split("@");
+	String name = (String)userProfile.get("name");
+	String nickName = (String)userProfile.get("nickname");
+	String birthday = (String)userProfile.get("birthday");
+	String gender = (String)userProfile.get("gender");
+	
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,9 +35,11 @@
 							<tr>
 								<th class="header"> 이메일 </th>
 								<td class="content"> 
-									 <input type="text" name="essential.emailId" id="essential.emailId" />&nbsp;@&nbsp;
-									 <input type="text" name="essential.emailDomain" id="essential.emailDomain" />
-									 <select name="select_domain" id="select_domain" onchange="changeDomain()">
+									 <input type="text" name="essential.emailId" id="essential.emailId" 
+									 	value="<%=idAndDomain[0] %>" readonly/>&nbsp;@&nbsp;
+									 <input type="text" name="essential.emailDomain" id="essential.emailDomain" 
+									 	value="<%=idAndDomain[1] %>" readonly/>
+									 <select name="select_domain" id="select_domain" onchange="changeDomain()" disabled>
 									 	<option value="manual">직접 입력</option>
 									 	<option value="naver.com">naver.com</option>
 									 	<option value="kakao.com">kakao.com</option>
@@ -53,11 +69,11 @@
 							</tr>
 							<tr>
 								<th class="header"> 이름 </th>
-								<td class="content"> <input type="text" name="essential.name" id="essential.name" value="${sessionScope.userprofile.name}"/> </td>
+								<td class="content"> <input type="text" name="essential.name" id="essential.name" value="<%=name%>"/> </td>
 							</tr>
 							<tr>
 								<th class="header"> 닉네임 </th>
-								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" value="${sessionScope.userprofile.nickname}" /> </td>
+								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" value="<%=nickName%>" /> </td>
 							</tr>
 							<tr>
 								<th class="header"> 주소 </th>

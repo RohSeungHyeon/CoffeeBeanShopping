@@ -50,17 +50,18 @@ public class ProfileFindControlloer extends HttpServlet {
 		JSONObject profileObject = (JSONObject)session.getAttribute("userprofile");
 		String email = (String)profileObject.get("email");
 			
-		if(service.isRegisterd(email)) {
+		if(service.isRegisterdUser(email)) {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
 			
 			if(dispatcher != null)
 				dispatcher.forward(request, response);
 			
+			
 		} else {
 			out.print("<script type='text/javascript'>");
 			out.print("alert('서비스 이용 시 추가 정보를 기입해주셔야 합니다');");
-			out.print("location.href='join_jjt.jsp';");
+			out.print("location.href='register.jsp';");
 			out.print("</script>");
 		}
 		
