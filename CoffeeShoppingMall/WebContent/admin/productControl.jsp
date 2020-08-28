@@ -39,7 +39,8 @@
 	<div class="col-12 mt-2">
 		<div class="row float-left">
 			<button type="button" class="btn btn-block btn-primary col-12"
-				id="addFormToggleBtn" onclick="addProductFormBtn()">상품 추가</button>
+				id="addFormToggleBtn"
+				onclick="addProductFormBtn()">상품 추가</button>
 		</div>
 		<br> <br>
 		<div id="addProductForm" class="col-5">

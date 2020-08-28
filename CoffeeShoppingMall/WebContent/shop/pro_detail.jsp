@@ -48,7 +48,10 @@
 									<tbody id="ttt">
 											<tr> <td>상품 번호</td><td><%=p.getPro_id() %></td></tr>
 											<tr><td>상품 명</td><td><%=p.getPro_name() %></td></tr>
-											<tr><td>사진</td><td><img src=<%=p.getPro_img() %>><%=p.getPro_img() %></td></tr>
+											<tr><td>사진</td><td>
+											<img src="${pageContext.request.contextPath}/<%=p.getPro_img() %>" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" />
+											</td></tr>
 											<tr><td>지역</td><td><%=p.getPro_region() %> </td></tr>
 											<tr><td>나라</td><td><%=p.getPro_country() %> </td></tr>
 											
@@ -67,14 +70,19 @@
 								</table>
 								</div>
 
-				<form action="${pageContext.request.contextPath }/AddCartController"
-					method="post">
-					<input type="submit" value="장바구니 담기"
-						class="btn btn-block btn-primary"><br> <input
-						type="hidden" value=<%=p.getPro_id() %> name="p_id"> <input
-						type="hidden" value=${sessionScope.id } name="m_id">
-				</form>
-
+								<div style="text-align:right;">
+									<input type='button' value="장바구니 담기"
+										class="btn btn-block btn-secondary col-12"
+										style="width: 130px; display: inline-block; "
+										onclick="addCart(<%=p.getPro_id()%>, '${sessionScope.id }' )" />
+								</div>
+																<div style="text-align:right;">
+								<button class="btn btn-block btn-primary col-12"
+										style="width: 130px; display: inline-block; "
+										onclick="window.location.href='${pageContext.request.contextPath}/ViewCartController'">
+									장바구니 가기
+								</button>
+								</div>
 
 			</section>
 		</div>
@@ -93,6 +101,18 @@
 	<!-- AdminLTE -->
 	<script
 		src="${pageContext.request.contextPath }/resources/dist/js/adminlte.js"></script>
-
+	<script>
+	function addCart(id, m_id) {
+		var data = "p_id="+id+"&m_id="+m_id;
+		$.ajax({
+			"url" : "AddCartController",
+			"data" : data,
+			"type" : "POST",
+			"success" : function(data) {
+				alert("장바구니에 담겼습니다.");
+			}
+		});
+	}
+	</script>
 </body>
 </html>

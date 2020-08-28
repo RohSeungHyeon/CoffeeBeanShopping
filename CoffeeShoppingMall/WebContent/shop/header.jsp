@@ -26,7 +26,7 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-light-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="${pageContext.request.contextPath}/shop/main.jsp"
+			<a href="${pageContext.request.contextPath}/MainController"
 				class="brand-link"> <img
 				src="${pageContext.request.contextPath }/resources/img/main/GreenCoffeeLogo.png" alt="Green Coffee"
 				class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -36,16 +36,15 @@
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Search -->
-				<form class="form-inline mt-3">
+				<form action ="${pageContext.request.contextPath }/ViewSearchProductController"class="form-inline mt-3" method="GET">
 					<select name="category" class="form-control">
 						<option value="total">통합검색</option>
 						<option value="name">상품명</option>
-						<option value="brand">브랜드</option>
 						<option value="number">상품번호</option>
 					</select>
 					<div class="input-group mt-2">
-						<input class="form-control form-control-sidebar" type="search"
-							placeholder="Search" aria-label="Search">
+						<input class="form-control form-control-sidebar" type="text"
+							placeholder="Search" aria-label="Search" name="search">
 						<div class="input-group-append">
 							<button class="btn btn-sidebar" type="submit">
 								<i class="fas fa-search"></i>
@@ -59,6 +58,10 @@
 						<a href="${pageContext.request.contextPath}/shop/login.jsp"
 							class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
 						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
+						<a href="${pageContext.request.contextPath}/ViewCartController">장바구니</a>
+						<a href="${pageContext.request.contextPath}/goAdmin"
+							class="d-block mt-2">관리자페이지</a>
+
 					</div>
 				</div>
 
@@ -68,6 +71,11 @@
 						data-widget="treeview" role="menu">
 						<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               			
+               			<a href="${pageContext.request.contextPath }/ViewProductController?query=all">
+							모든 상품 보기
+						</a>
+						
 						<li class="nav-item has-treeview"><a href="#"
 							class="nav-link">
 								<p>
@@ -75,15 +83,15 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="#" class="nav-link"> <i
+								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=asia" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>아시아/태평양</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
+								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=amer" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>중남미</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
+								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=afri" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>아프리카</p>
 								</a></li>

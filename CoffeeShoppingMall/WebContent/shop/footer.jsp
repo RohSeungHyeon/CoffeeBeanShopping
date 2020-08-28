@@ -12,8 +12,8 @@
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<strong>Copyright &copy; 2020 <a
-				href="${pageContext.request.contextPath}/shop/main.jsp">Green
-					Cofee</a>.
+				href="${pageContext.request.contextPath}/MainController">Green
+					Coffee</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 0.0.1

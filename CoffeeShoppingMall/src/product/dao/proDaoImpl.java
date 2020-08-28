@@ -301,4 +301,91 @@ public class proDaoImpl implements proDao {
 		}
 
 	}
+
+	@Override
+	public ArrayList<Product> selectPro(String str) {
+		ArrayList<Product> list = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		String sql = "select * from product where pro_region = ? order by pro_id";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, str);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7)));
+			}
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public ArrayList<Product> getRecoProduct() {
+		ArrayList<Product> list = null;
+		Connection conn = null;
+		ResultSet rs = null;
+		String sql = "select * from product a, (select pro_id,count(*) as ord from orderlist group by pro_id ) b where a.pro_id = b.pro_id order by b.ord desc";
+		PreparedStatement pstmt = null;
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7)));
+			}
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public void addOrder_Status(Date d, String id) {
+		Connection conn = null;
+		String sql = "insert into order_status values(?,?,'결제완료')";
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, d);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e) {
+
+			}
+		}
+		
+	}
 }

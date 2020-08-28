@@ -31,7 +31,7 @@
 					<br><br><br>
 					<h3>결제 성공!</h3><br>
 					<h2>주문해 주셔서 감사합니다!!!</h2><br><br>
-	<A HREF="${pageContext.request.contextPath}/shop/index.jsp">홈페이지로</A>
+	<A HREF="${pageContext.request.contextPath}/MainController">홈페이지로</A>
 
 			</div>
 			</SECTION>

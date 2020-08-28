@@ -10,17 +10,19 @@
 <title>메인 페이지</title>
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="../resources/plugins/fontawesome-free/css/all.min.css">
+	href="${pageContext.request.contextPath }/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
+	href="${pageContext.request.contextPath }/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="../resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="../resources/dist/css/adminlte.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -39,6 +41,10 @@
 								<div class="card mt-2">
 									<div class="card-header">
 										<h3 class="card-title">공지사항</h3>
+										<div class="card-tools">
+											<a href="${pageContext.request.contextPath}/shop/notice.jsp">더
+												보기</a>
+										</div>
 									</div>
 									<!-- /.card-header -->
 									<div class="card-body table-responsive p-0"
@@ -53,47 +59,15 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr onclick="alert('눌러짐')">
-													<td>1.</td>
-													<td>Update software</td>
-													<td>
-														<div class="progress progress-xs">
-															<div class="progress-bar progress-bar-danger"
-																style="width: 55%"></div>
-														</div>
-													</td>
-													<td><span class="badge bg-danger">55%</span></td>
-												</tr>
-												<tr>
-													<td>2.</td>
-													<td>Clean database</td>
-													<td>
-														<div class="progress progress-xs">
-															<div class="progress-bar bg-warning" style="width: 70%"></div>
-														</div>
-													</td>
-													<td><span class="badge bg-warning">70%</span></td>
-												</tr>
-												<tr>
-													<td>3.</td>
-													<td>Cron job running</td>
-													<td>
-														<div class="progress progress-xs progress-striped active">
-															<div class="progress-bar bg-primary" style="width: 30%"></div>
-														</div>
-													</td>
-													<td><span class="badge bg-primary">30%</span></td>
-												</tr>
-												<tr>
-													<td>4.</td>
-													<td>Fix and squish bugs</td>
-													<td>
-														<div class="progress progress-xs progress-striped active">
-															<div class="progress-bar bg-success" style="width: 90%"></div>
-														</div>
-													</td>
-													<td><span class="badge bg-success">90%</span></td>
-												</tr>
+												<c:forEach var="notice" items="${requestScope.notices}">
+													<tr
+														onclick="location.href='${pageContext.request.contextPath }/NoticereadController?notID=${notice.getNotID()}'">
+														<td>${notice.getNotID() }</td>
+														<td>${notice.getNotTitle()}</td>
+														<td>${notice.getNotWriter()}</td>
+														<td>${notice.getNotDate()}</td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -106,6 +80,9 @@
 								<div class="card mt-2">
 									<div class="card-header">
 										<h3 class="card-title">QnA</h3>
+										<div class="card-tools">
+											<a href="#">더 보기</a>
+										</div>
 									</div>
 									<!-- /.card-header -->
 									<div class="card-body table-responsive p-0"
@@ -176,29 +153,55 @@
 									<div class="card-header">
 										<h3 class="card-title">추천 상품</h3>
 									</div>
-									<!-- /.card-header -->
-									<div class="card-body">
-										<div class="row">
-											<div class="col-sm-3 mt-2">
-												<div class="position-relative p-3 bg-white"
-													style="height: 180px; border: thin solid gray;">
-													<div class="ribbon-wrapper">
-														<div class="ribbon bg-success">추천</div>
+									<div class="row">
+										<c:set var="p_cnt" value="0" />
+										<c:forEach var="product" items="${products}">
+											<c:set var="p_cnt" value="${ p_cnt+1}" />
+											<c:if test="${p_cnt <= 4 }">
+
+												<div class="col-sm-3 mt-2" id="t_${product.getPro_id()}">
+													<div class="position-relative p-3 bg-white"
+														style="height: auto; border: thin solid gray; border-radius: 0.25rem;">
+														<h3>${product.getPro_name()}</h3>
+														<div class="col-5 float-left">
+															<img
+																src="${pageContext.request.contextPath}${product.getPro_img()}"
+																class="product-image" alt="Product Image"
+																style="height: 150px; width: auto" />
+														</div>
+														<div>
+															<small class="mt-2"><b>지역</b> :
+																${product.getPro_region()}</small><br> <small class="mt-2"><b>국가</b>
+																: ${product.getPro_country()}</small><br> <br>
+															${product.getPro_description()}</small><br>
+															<h5 class="mt-2">￦${product.getPro_price()}</h5>
+														</div>
+														<br>
+														<div style="text-align: right;">
+															<input type='button' value="장바구니"
+																class="btn btn-block btn-secondary col-12"
+																style="width: 120px; display: inline-block;"
+																onclick="addCart(${product.getPro_id()}, '${sessionScope.id }' )" />
+														</div>
+														<form
+															action="ProDetailController?id=${product.getPro_id()}">
+															<input type="hidden" name="id"
+																value="${product.getPro_id()}" />
+															<div style="text-align: right;">
+																<input type="submit"
+																	class="btn btn-block btn-primary col-12"
+																	style="width: 120px; display: inline-block;"
+																	value="상세 보기">
+															</div>
+														</form>
+
 													</div>
-													<h3>생두 커피 이름</h3>
-													<div class="col-5">
-														<img src="../resources/img/main/GreenCoffeeLogo.png"
-															class="product-image" alt="Product Image" />
-													</div>
-													<small class="mt-2">지역명/국가명/브랜드/용량</small><br>
-													<h5 class="mt-2">가격</h5>
 												</div>
-											</div>
-										</div>
+											</c:if>
+										</c:forEach>
 									</div>
-									<!-- /.card-body -->
+
 								</div>
-								<!-- /.card -->
 							</article>
 						</div>
 						<!-- /.col -->
@@ -215,8 +218,11 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE -->
-	<script src="../resources/dist/js/adminlte.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/resources/dist/js/adminlte.js"></script>
+	<script src="${pageContext.request.contextPath}/scripts/main.js"></script>
 </body>
 </html>

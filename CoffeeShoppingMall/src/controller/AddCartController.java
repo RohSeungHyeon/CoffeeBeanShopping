@@ -25,7 +25,7 @@ public class AddCartController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+
 		String m_id = request.getParameter("m_id");
 		int p_id = Integer.parseInt(request.getParameter("p_id"));
 		
@@ -48,10 +48,8 @@ public class AddCartController extends HttpServlet {
 		}
 		request.setAttribute("message", message);
 		
-		
-		RequestDispatcher dis = request.getRequestDispatcher("/shop/index.jsp");
-		dis.forward(request, response);
-		
+		response.sendRedirect(request.getHeader("referer"));
+
 		
 	}
 }

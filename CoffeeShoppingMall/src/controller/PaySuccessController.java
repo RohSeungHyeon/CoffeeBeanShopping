@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -37,18 +38,20 @@ public class PaySuccessController extends HttpServlet {
 		User m = (User)session.getAttribute("m");
 		
 		//주문 날짜
+		Date d = new java.sql.Date(System.currentTimeMillis());
 		
 		// 오더리스트 데이터 생성
 		for(int i=0;i<order.length;i++) {
 			String pro_id = order[i].split(",")[0];
 			String count= order[i].split(",")[1];
-			
 			ps.addOrder((String)session.getAttribute("addr"), 
-					 new java.sql.Date(System.currentTimeMillis()), Integer.parseInt(count),m.getId(),
+					 d, Integer.parseInt(count),m.getId(),
 					Integer.parseInt(pro_id));
 		}
 		// 카트 목록 삭제
 		ps.clearCart(m.getId());
+		// 오더스테이터스 생성
+		ps.addOrderStatus(d, m.getId());
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_success.jsp");
 		dis.forward(request, response);

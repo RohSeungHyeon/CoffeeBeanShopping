@@ -61,7 +61,8 @@
 											<tr>
 												<td>${p.getPro_id() }</td>
 												<td>${p.getPro_name() }</td>
-												<td>${p.getPro_img() }</td>
+												<td><img src="${pageContext.request.contextPath}/${p.getPro_img()}" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" /></td>
 												<td>${p.getPro_region() }</td>
 												<td>${p.getPro_price() }</td>
 												<td><input type='button' value='-' id='-'
@@ -127,7 +128,7 @@
 				cnt = cnt + td.eq(0).text() + ','
 						+ td.eq(5).children().eq(1).text() + '@';
 			});
-			alert(cnt);
+			alert("결제 페이지로 이동합니다.");
 			$('#count').val(cnt);
 		};
 		var to = '<c:out value="${total}"/>';

@@ -41,7 +41,7 @@
 							<form action="${pageContext.request.contextPath }/PayController"
 								method="post">
 								<div class="card-body table-responsive p-0"
-									style="height: 300px;">
+									style="height: 600px;">
 									<table class="table table-head-fixed text-nowrap">
 										<tr>
 											<th>상품번호</th>
@@ -55,7 +55,10 @@
 											<tr>
 												<td>${p.getPro_id() }</td>
 												<td>${p.getPro_name() }</td>
-												<td><img src=${p.getPro_img() }></td>
+												<td>
+												<img src="${pageContext.request.contextPath}/${p.getPro_img()}" class="product-image"
+							alt="Product Image" style="height: 150px; width: auto" />
+												</td>
 												<td>${p.getPro_region() }</td>
 												<td>${p.getPro_price() }</td>
 												<td><input type='button'
@@ -98,12 +101,12 @@
 		$(document).on("click", "input[value='del']", function() {
 			var num = $(this).attr("num");
 			var tr = $(this).parent().parent();
-			alert(num);
 			$.ajax({
 				url : '${pageContext.request.contextPath}/DelCartController',
 				data : "num=" + num,
 				type : 'POST',
 				success : function(result) {
+					alert(num+"번 상품이 장바구니에서 삭제되었습니다.")
 					tr.remove();
 				}
 			});

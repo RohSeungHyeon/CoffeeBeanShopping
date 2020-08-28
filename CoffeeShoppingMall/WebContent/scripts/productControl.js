@@ -4,14 +4,14 @@ $(document).ready(function() {
 });
 
 function addProductFormBtn(){
-	if ($('#addFormToggleBtn').text() == '상품 추가') {
-		$('#addProductForm').show();
-		$('#addFormToggleBtn').text('숨기기');
-	} else {
-		$('#addProductForm').hide();
-		$('#addFormToggleBtn').text('상품 추가');
+	   if ($('#addFormToggleBtn').text() == '상품 추가') {
+	      $('#addProductForm').show();
+	      $('#addFormToggleBtn').text('숨기기');
+	   } else {
+	      $('#addProductForm').hide();
+	      $('#addFormToggleBtn').text('상품 추가');
+	   }
 	}
-}
 
 function checkAddProductForm(f) {
 	if (f.name.value == '') {
@@ -76,3 +76,4 @@ function deleteProduct(id) {
 		}
 	});
 }
+

@@ -40,8 +40,11 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("id", id);
 			flag= true;
 		}
-		session.setAttribute("m", m);
 		
+		m.setPassword("???");
+		m.setBirth(null);
+
+		session.setAttribute("m", m);
 		session.setAttribute("flag", flag);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/index.jsp");
