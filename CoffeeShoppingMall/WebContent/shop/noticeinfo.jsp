@@ -9,10 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>메인 페이지</title>
 <script type="text/javascript">
-function del(notID){
-	location.href="${pageContext.request.contextPath}/NoticedeleteController?notID="+notID;
-}
-
+	function del(notID) {
+		location.href = "${pageContext.request.contextPath}/NoticedeleteController?notID="
+				+ notID;
+	}
 </script>
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -24,9 +24,11 @@ function del(notID){
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/toastr/toastr.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/dist/css/adminlte.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
@@ -34,9 +36,9 @@ function del(notID){
 </head>
 <body>
 
-<c:set var="str">
-<c:if test="${sessionScope.id !=n.notWriter }"></c:if>
-</c:set>
+	<c:set var="str">
+		<c:if test="${sessionScope.id !=n.notWriter }"></c:if>
+	</c:set>
 
 	<div class="wrapper">
 		<!-- Header -->
@@ -44,34 +46,42 @@ function del(notID){
 
 		<div class="content-wrapper">
 			<section class="content">
-			<div class="container">
-			<form action = "${pageContext.request.contextPath }/NoticeeditController"method="post">
-			<div class = "row">
-			
-			
-			<h3>공지사항 상세보기</h3>
-			<table class = "table table-default" style="text-align:center; border: 1px solid #dddddd">
-					<tr>
-					<th style=" text-align:center;">작성날짜</th>
-					<td><input type = "text" value="${n.notDate }"name="notDate" class="form-control" maxlength="50" readonly></td>
-					</tr>
-					<tr>
-					<th style=" text-align:center;">번호</th>
-					<td><input type = "text" value="${n.notID }" name="notID" class="form-control" maxlength="50" readonly></td>
-					</tr>
-					<tr>
-					<th style="text-align:center;">제목</th>
-					<td><input type = "text" value="${n.notTitle }"name="notTitle" class="form-control" maxlength="50" readonly></td>
-					</tr>
-					<tr>
-					<th style="text-align:center;">작성자</th>
-					<td><input type = "text" value="${n.notWriter }"name="notWriter" class="form-control" maxlength="50" readonly></td>
-					</tr>
-					<tr>
-					<th style="text-align:center;">내용</th>
-					<td><textarea name="notContent" rows="15" cols="45" class="form-control" maxlength="50" readonly>${n.notContent }</textarea></td>
-					</tr>
-				<c:if test="${sessionScope.id == n.notWriter and sessionScope.id != null}">
+				<div class="container">
+					<form
+						action="${pageContext.request.contextPath }/NoticeeditController"
+						method="post">
+						<div class="row">
+
+
+							<h3>공지사항 상세보기</h3>
+							<table class="table table-default"
+								style="text-align: center; border: 1px solid #dddddd">
+								<tr>
+									<th style="text-align: center;">작성날짜</th>
+									<td><input type="text" value="${n.notDate }"
+										name="notDate" class="form-control" maxlength="50" readonly></td>
+								</tr>
+								<tr>
+									<th style="text-align: center;">번호</th>
+									<td><input type="text" value="${n.notID }" name="notID"
+										class="form-control" maxlength="50" readonly></td>
+								</tr>
+								<tr>
+									<th style="text-align: center;">제목</th>
+									<td><input type="text" value="${n.notTitle }"
+										name="notTitle" class="form-control" maxlength="50" readonly></td>
+								</tr>
+								<tr>
+									<th style="text-align: center;">작성자</th>
+									<td><input type="text" value="${n.notWriter }"
+										name="notWriter" class="form-control" maxlength="50" readonly></td>
+								</tr>
+								<tr>
+									<th style="text-align: center;">내용</th>
+									<td><textarea name="notContent" rows="15" cols="45"
+											class="form-control" maxlength="50" readonly>${n.notContent }</textarea></td>
+								</tr>
+								<!--<c:if test="${sessionScope.id == n.notWriter and sessionScope.id != null}">
 					<tr>
 					<td colspan="2">
 					<input type = "submit" value="수정" class="btn btn-primary pull-right">
@@ -85,12 +95,12 @@ function del(notID){
 						document.getElementsByName("notContent")[0].readOnly = false;
 					}
 					</script>
-				</c:if>
-					
-			</table>
-			</div>
-			</form>
-			</div>
+				</c:if>-->
+
+							</table>
+						</div>
+					</form>
+				</div>
 			</section>
 		</div>
 
@@ -103,8 +113,10 @@ function del(notID){
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE -->
-	<script src="${pageContext.request.contextPath}/resources/dist/js/adminlte.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/dist/js/adminlte.js"></script>
 </body>
 </html>
