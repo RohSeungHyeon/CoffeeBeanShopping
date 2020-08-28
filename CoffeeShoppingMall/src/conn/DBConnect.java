@@ -8,7 +8,7 @@ public class DBConnect {
 	private Connection conn = null;
 	String dri = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "c##ora_user";
+	String id = "c##ora_user_2";
 	String pw = "88888888";
 	private DBConnect() {
 	}
