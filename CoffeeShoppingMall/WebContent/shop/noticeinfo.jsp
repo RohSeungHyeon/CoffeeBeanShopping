@@ -49,7 +49,7 @@ function del(notID){
 			<div class = "row">
 			
 			
-			<h3>공지사항상세보기</h3>
+			<h3>공지사항 상세보기</h3>
 			<table class = "table table-default" style="text-align:center; border: 1px solid #dddddd">
 					<tr>
 					<th style=" text-align:center;">작성날짜</th>

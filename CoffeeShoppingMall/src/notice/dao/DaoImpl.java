@@ -86,7 +86,7 @@ public class DaoImpl implements Dao {
 	}
 	
 	@Override
-	public List selectAll() {
+	public List<Notice> selectAll() {
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		ResultSet rs = null;

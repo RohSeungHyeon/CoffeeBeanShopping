@@ -8,7 +8,7 @@ import model.Notice;
 public interface Dao {
 	void insert(Notice n);
 	Notice select(int num);
-	List selectAll();
+	List<Notice> selectAll();
 	void update(Notice n);
 	void delete(int num);
 }

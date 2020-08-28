@@ -2,13 +2,15 @@ package model;
 
 import java.sql.Date;
 
-public class Notice {
+import org.json.simple.JSONAware;
+
+public class Notice implements JSONAware {
 	private int notID;
 	private String notTitle;
 	private String notWriter;
 	private Date notDate;
 	private String notContent;
-	
+
 	public Notice() {
 		super();
 	}
@@ -21,7 +23,6 @@ public class Notice {
 		this.notDate = notDate;
 		this.notContent = notContent;
 	}
-
 
 	public int getNotID() {
 		return notID;
@@ -63,13 +64,16 @@ public class Notice {
 		this.notContent = notContent;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Notice [notID=" + notID + ", notTitle=" + notTitle + ", notWriter=" + notWriter + ", notDate=" + notDate
 				+ ", notContent=" + notContent + "]";
 	}
 
-	
-	
+	@Override
+	public String toJSONString() {
+		return "{\"notID\" : \"" + notID + "\", \"notTitle\" : \"" + notTitle + "\", \"notWriter\" : \"" + notWriter
+				+ "\", \"notDate\" : \"" + notDate + "\", \"notContent\" : \"" + notContent + "\"}";
+	}
+
 }

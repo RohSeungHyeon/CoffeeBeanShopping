@@ -7,7 +7,7 @@ import model.Notice;
 public interface NoticeService {
 	void writeNotice(Notice n);
 	Notice getNotice(int num);
-	List getAll();
+	List<Notice> getAll();
 	void editNotice(Notice n);
 	void delNotice(int num);
 }

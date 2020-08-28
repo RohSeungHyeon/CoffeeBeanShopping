@@ -36,10 +36,7 @@ public class ViewCartController extends HttpServlet {
 		
 		session.setAttribute("products", p);
 		
-		for(Product a : p) {
-			System.out.println(a.toString());
-		}
-		
+
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/cart_detail.jsp");
 		dis.forward(request, response);

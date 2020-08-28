@@ -131,5 +131,8 @@
 	<script
 		src="${pageContext.request.contextPath}/scripts/orderControl.js">
 	</script>
+	<script
+		src="${pageContext.request.contextPath}/scripts/noticeControl.js">
+	</script>
 </body>
 </html>

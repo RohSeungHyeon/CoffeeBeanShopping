@@ -1,7 +1,7 @@
 package notice.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +41,7 @@ public class NoticelistController extends HttpServlet {
 		
 		NoticeService notservice = new NoticeServiceImpl();
 		
-		ArrayList<Notice> notlist = (ArrayList<Notice>)notservice.getAll();
+		List<Notice> notlist = notservice.getAll();
 		request.setAttribute("notlist", notlist);
 		
 		RequestDispatcher dispathcer = request.getRequestDispatcher("/shop/noticelist.jsp");

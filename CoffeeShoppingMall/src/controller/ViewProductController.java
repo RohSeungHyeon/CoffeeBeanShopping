@@ -27,11 +27,11 @@ public class ViewProductController extends HttpServlet {
 		if(str.equals("all")) {
 			request.setAttribute("products", service.getAllProduct());	
 		}else if(str.equals("asia")){
-			request.setAttribute("products", service.getProduct("¾Æ½Ã¾Æ/ÅÂÆò¾ç"));
+			request.setAttribute("products", service.getProduct("ì•„ì‹œì•„/íƒœí‰ì–‘"));
 		}else if(str.equals("amer")){
-			request.setAttribute("products", service.getProduct("Áß³²¹Ì"));			
+			request.setAttribute("products", service.getProduct("ì¤‘ë‚¨ë¯¸"));			
 		}else if(str.equals("afri")){
-			request.setAttribute("products", service.getProduct("¾ÆÇÁ¸®Ä«"));
+			request.setAttribute("products", service.getProduct("ì•„í”„ë¦¬ì¹´"));
 			
 		}
 		

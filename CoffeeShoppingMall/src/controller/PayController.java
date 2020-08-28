@@ -35,10 +35,7 @@ public class PayController extends HttpServlet {
 		ArrayList<Product> p = ps.getCart(id);
 		
 		session.setAttribute("products", p);
-		
-		for(Product a : p) {
-			System.out.println(a.toString());
-		}
+	
 
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_detail.jsp");
