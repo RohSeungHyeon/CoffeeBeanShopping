@@ -91,6 +91,13 @@
 	        if(dispatcher != null)
 	        	dispatcher.forward(request, response);
 	        
+	      } 
+	      else {
+	    	  session.invalidate();
+	    	  out.print("<script type='text/javascript'>");
+	    	  out.print("alert('로그인 중 오류 발생. 다시 시도해주세요')");
+	    	  out.print("location.href='login.jsp'");
+			  out.print("</script>");    	 
 	      }
 	    } catch (Exception e) {
 	      e.printStackTrace();

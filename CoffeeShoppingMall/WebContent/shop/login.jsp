@@ -3,7 +3,7 @@
 <%@ page import = "java.math.BigInteger" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -65,51 +65,50 @@
 	<div class="login-box">
 		<div class="login-logo">
 			<a href="${pageContext.request.contextPath}/shop/main.jsp"><b>Green
-					Coffee</a>
+					Coffee</b></a>
 		</div>
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
 				<p class="login-box-msg">로그인 해주세요!</p>
 
-				<form action="#" method="post">
-					<div class="input-group mb-3">
-						<input type="id" class="form-control" placeholder="아이디">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-user"></span>
-							</div>
+				<div class="input-group mb-3">
+					<input type="text" name="email" id="email" class="form-control" placeholder="이메일" autocomplete="off">
+					<div class="input-group-append">
+						<div class="input-group-text">
+							<span class="fas fa-user"></span>
 						</div>
 					</div>
-					<div class="input-group mb-3">
-						<input type="password" class="form-control" placeholder="비밀번호">
-						<div class="input-group-append">
-							<div class="input-group-text">
-								<span class="fas fa-lock"></span>
-							</div>
+				</div>
+				<div class="input-group mb-3">
+					<input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호">
+					<div class="input-group-append">
+						<div class="input-group-text">
+							<span class="fas fa-lock"></span>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<input type="checkbox" id="remember"> <label
-									for="remember"> 아이디 기억하기 </label>
-							</div>
+				</div>
+				<div class="row">
+					<div class="col-8">
+						<div class="icheck-primary">
+							<input type="checkbox" id="remember"> <label for="remember"> 아이디 기억하기 </label>
 						</div>
-						<!-- /.col -->
-						<div class="col-4">
-							<button type="submit" class="btn btn-primary btn-block">로그인</button>
-						</div>
-						<!-- /.col -->
 					</div>
-				</form>
+					<!-- /.col -->
+					<div class="col-4">
+						<button type="button" class="btn btn-primary btn-block" onclick="checkIdAndPwd()">로그인</button>
+					</div>
+					<!-- /.col -->
+				</div>
+				
+				<div class="row">
+					<span class="" id="checkresult"></span>
+				</div>
 
 				<div class="social-auth-links text-center mb-3">
 					<p>- OR -</p>
-					<a href="<%=apiURL_Kakao %>" class="btn btn-block"> <img
-						src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />
-					</a> <a href="<%=apiURL_Naver %>" class="btn btn-block"> <img
-						src="${pageContext.request.contextPath}/resources/img/login/naver_login_custom.PNG" width="300px" />
+					<a href="<%=apiURL_Kakao%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />
+					</a> <a href="<%=apiURL_Naver%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/naver_login_custom.PNG" width="300px" />
 					</a>
 				</div>
 				<!-- /.social-auth-links -->
@@ -118,7 +117,7 @@
 					<a href="#">비밀번호 찾기</a>
 				</p>
 				<p class="mb-0">
-					<a href="#" class="text-center">회원가입</a>
+					<a href="join.jsp" class="text-center">회원가입</a>
 				</p>
 			</div>
 			<!-- /.login-card-body -->
@@ -134,5 +133,9 @@
 	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE -->
 	<script src="../resources/dist/js/adminlte.js"></script>
+	<!-- User defined script -->
+	<script src="../scripts/requestHttp.js"></script>
+	<script src="../scripts/checkIdAndPwd.js"></script>
+		
 </body>
 </html>

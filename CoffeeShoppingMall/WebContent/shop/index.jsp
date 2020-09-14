@@ -8,8 +8,15 @@
 </head>
 <body>
 <h1>메인 페이지</h1>
-<a href="${pageContext.request.contextPath}/LoginController">로그인</a><br>
-<a href="a">회원가입</a><br>
+<a href="${pageContext.request.contextPath}/shop/login.jsp">로그인</a><br>
+<a href="${pageContext.request.contextPath}/shop/join.jsp">회원가입</a><br>
+<%
+	if (!session.isNew()) {
+%>
+	<a href="${pageContext.request.contextPath}/shop/logout.jsp">로그아웃</a>
+<%
+	}
+%>
 <a href="a">비밀번호 id 찾기</a><br>
 <a href="a">마이페이지</a><br>
 <a href="a">공지사항</a><br>
