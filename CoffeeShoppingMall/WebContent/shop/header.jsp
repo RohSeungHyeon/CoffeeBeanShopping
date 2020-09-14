@@ -58,8 +58,8 @@
 					<c:choose>
 						<c:when test="${empty sessionScope.userprofile}">
 							<div class="info">
-								<a href="${pageContext.request.contextPath}/shop/login.jsp"
-									class="d-block mt-2">로그인</a> <a href="${pageContext.request.contextPath}/shop/join.jsp" class="d-block mt-2">회원가입</a>
+								<a href="${pageContext.request.contextPath}/member/login.jsp"
+									class="d-block mt-2">로그인</a> <a href="${pageContext.request.contextPath}/member/join.jsp" class="d-block mt-2">회원가입</a>
 								<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
 							</div>
 						</c:when>

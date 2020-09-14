@@ -73,7 +73,7 @@
 				<p class="login-box-msg">로그인 해주세요!</p>
 
 				<div class="input-group mb-3">
-					<input type="text" name="email" id="email" class="form-control" placeholder="이메일" autocomplete="off">
+					<input type="text" name="email" id="email" class="form-control" placeholder="id@email.com" autocomplete="off">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-user"></span>

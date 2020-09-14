@@ -30,7 +30,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Header -->
-		<%@ include file="header.jsp"%>
+		<%@ include file="../shop/header.jsp"%>
 
 		<div class="content-wrapper">
 			<section class="content">
@@ -304,7 +304,7 @@
 		</div>
 
 		<!-- Main Footer -->
-		<%@ include file="footer.jsp"%>
+		<%@ include file="../shop/footer.jsp"%>
 	</div>
 
 

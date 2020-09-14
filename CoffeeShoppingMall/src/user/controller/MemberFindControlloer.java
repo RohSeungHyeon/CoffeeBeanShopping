@@ -66,7 +66,7 @@ public class MemberFindControlloer extends HttpServlet {
 		} else {
 			out.print("<script type='text/javascript'>");
 			out.print("alert('서비스 이용 시 추가 정보를 기입해주셔야 합니다');");
-			out.print("location.href='register.jsp';");
+			out.print("location.href='../member/register.jsp';");
 			out.print("</script>");
 		}
 		
