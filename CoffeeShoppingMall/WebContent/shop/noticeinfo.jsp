@@ -79,7 +79,7 @@
 								<tr>
 									<th style="text-align: center;">내용</th>
 									<td><textarea name="notContent" rows="15" cols="45"
-											class="form-control" maxlength="50" readonly>${n.notContent }</textarea></td>
+											class="form-control" maxlength="50" readonly>${requestScope.content }</textarea></td>
 								</tr>
 								<!--<c:if test="${sessionScope.id == n.notWriter and sessionScope.id != null}">
 					<tr>

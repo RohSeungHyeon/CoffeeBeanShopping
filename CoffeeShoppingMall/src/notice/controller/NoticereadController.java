@@ -42,8 +42,11 @@ public class NoticereadController extends HttpServlet {
 		int num = Integer.parseInt(request.getParameter("notID"));
 		
 		Notice n = notservice.getNotice(num);
+		String content = n.getNotContent();
+		content = content.replaceAll("<br/>", "\n");
 		
 		request.setAttribute("n", n);
+		request.setAttribute("content", content);
 		
 //		response.sendRedirect(request.getContextPath() + "/shop/noticeinfo.jsp");
 		

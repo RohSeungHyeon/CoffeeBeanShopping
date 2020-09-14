@@ -15,6 +15,8 @@ import notice.service.NoticeService;
 import notice.service.NoticeServiceImpl;
 import product.service.proService;
 import product.service.proServiceImpl;
+import qna.service.QnaService;
+import qna.service.QnaServiceImpl;
 
 /**
  * Servlet implementation class MainController
@@ -27,11 +29,13 @@ public class MainController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		proService service = new proServiceImpl();
 		NoticeService notService = new NoticeServiceImpl();
+		QnaService qnaService = new QnaServiceImpl();
 
 		ArrayList<Product> products = service.getRecoProduct();
 
 		request.setAttribute("products", products);
 		request.setAttribute("notices", notService.getAll());
+		request.setAttribute("qnas", qnaService.getAll());
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/main.jsp");
 		if (dispatcher != null) {

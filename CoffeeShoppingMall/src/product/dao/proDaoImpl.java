@@ -53,7 +53,7 @@ public class proDaoImpl implements proDao {
 		PreparedStatement pstmt = null;
 		boolean ok = false;
 		if (!cart_check(m_id, pro_id)) {
-			System.out.println("Áßº¹Á¸Àç");
+			System.out.println("ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½");
 			return false;
 		}
 		try {
@@ -76,7 +76,7 @@ public class proDaoImpl implements proDao {
 		return ok;
 	}
 
-	// Àå¹Ù±¸´Ï Áßº¹Ã¼Å©
+	// ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ßºï¿½Ã¼Å©
 	public boolean cart_check(String m_id, int pro_id) {
 		Connection conn = null;
 		String sql = "select * from cart where id = ? and pro_id=?";
@@ -366,7 +366,7 @@ public class proDaoImpl implements proDao {
 	@Override
 	public void addOrder_Status(Date d, String id) {
 		Connection conn = null;
-		String sql = "insert into order_status values(?,?,'°áÁ¦¿Ï·á')";
+		String sql = "insert into order_status values(?,?,'ê²°ì œì™„ë£Œ')";
 		PreparedStatement pstmt = null;
 		
 		try {
