@@ -48,7 +48,11 @@ public class QnareadController extends HttpServlet {
 		
 		int qnaID = Integer.parseInt(request.getParameter("qnaID"));
 		Qna q = qnaservice.getQna(qnaID);
+		String content = q.getQnaContent();
+		content = content.replaceAll("<br/>", "\n");
 		request.setAttribute("q", q);
+		request.setAttribute("content", content);
+		
 		
 //		System.out.println("qnaID: " + qnaID);
 		ArrayList<Comment> comlist = comservice.getComList(qnaID);

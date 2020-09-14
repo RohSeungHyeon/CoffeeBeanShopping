@@ -22,7 +22,6 @@ public class AdminWriteNoticeConfirmController extends HttpServlet {
 		NoticeService service = new NoticeServiceImpl();
 		String content = request.getParameter("notContent");
 		content = content.replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
-		System.out.println(content);
 		service.writeNotice(new Notice(0, request.getParameter("notTitle"), "임의의 작성자", null, content));
 
 		request.setAttribute("notices", service.getAll());

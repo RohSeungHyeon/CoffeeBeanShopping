@@ -2,13 +2,15 @@ package model;
 
 import java.sql.Date;
 
-public class Qna {
+import org.json.simple.JSONAware;
+
+public class Qna implements JSONAware {
 	private int qnaID;
 	private String qnaTitle;
 	private String qnaWriter;
 	private Date qnaDate;
 	private String qnaContent;
-	
+
 	public Qna() {
 		super();
 	}
@@ -67,6 +69,11 @@ public class Qna {
 		return "Qna [qnaID=" + qnaID + ", qnaTitle=" + qnaTitle + ", qnaWriter=" + qnaWriter + ", qnaDate=" + qnaDate
 				+ ", qnaContent=" + qnaContent + "]";
 	}
-	
-	
+
+	@Override
+	public String toJSONString() {
+		return "{\"qnaID\" : \"" + qnaID + "\", \"qnaTitle\" : \"" + qnaTitle + "\", \"qnaWriter\" : \"" + qnaWriter
+				+ "\", \"qnaDate\" : \"" + qnaDate + "\", \"qnaContent\" : \"" + qnaContent + "\"}";
+	}
+
 }

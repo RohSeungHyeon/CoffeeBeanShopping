@@ -86,8 +86,9 @@
 									role="tabpanel" aria-labelledby="custom-tabs-one-member-tab">
 									<%@include file="memberControl.jsp"%>
 								</div>
-								<div class="tab-pane fade table-responsive p-0" id="custom-tabs-one-order"
-									role="tabpanel" aria-labelledby="custom-tabs-one-order-tab">
+								<div class="tab-pane fade table-responsive p-0"
+									id="custom-tabs-one-order" role="tabpanel"
+									aria-labelledby="custom-tabs-one-order-tab">
 									<%@include file="orderControl.jsp"%></div>
 								<div class="tab-pane fade" id="custom-tabs-one-qna"
 									role="tabpanel" aria-labelledby="custom-tabs-one-qna-tab">
@@ -127,12 +128,18 @@
 	<!-- Developer -->
 	<script
 		src="${pageContext.request.contextPath}/scripts/productControl.js">
+		
 	</script>
 	<script
 		src="${pageContext.request.contextPath}/scripts/orderControl.js">
+		
 	</script>
 	<script
 		src="${pageContext.request.contextPath}/scripts/noticeControl.js">
+		
+	</script>
+	<script src="${pageContext.request.contextPath}/scripts/qnaControl.js">
+		
 	</script>
 </body>
 </html>

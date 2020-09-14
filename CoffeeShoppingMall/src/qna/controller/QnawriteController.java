@@ -42,6 +42,7 @@ public class QnawriteController extends HttpServlet {
 		String qnawriter = request.getParameter("qnaWriter");
 		String qnatitle = request.getParameter("qnaTitle");
 		String qnacontent = request.getParameter("qnaContent");
+		qnacontent = qnacontent.replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
 		
 		Qna q = new Qna();
 		q.setQnaWriter(qnawriter);
