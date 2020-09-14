@@ -34,10 +34,10 @@
 		<div class="content-wrapper">
 			<section class="content">
 			
-	<form method="post" action="${pageContext.request.contextPath}/NotwriteController">
+	<form method="post" action="${pageContext.request.contextPath}/QnawriteController">
 		<div class="container">
 		<div class="row">
-			<h3>공지사항작성</h3>
+			<h3>Q&A작성</h3>
 				<table class="table table-default"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -48,13 +48,13 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>작성자<input type="text" class="form-control" placeholder="작성자" name="notWriter" maxlength="50" value="${sessionScope.id }" readonly style="background-color: #eeeeee; text-align: center; "/></td>
+							<td>작성자<input type="text" class="form-control" placeholder="작성자" name="qnaWriter" maxlength="50" value="${sessionScope.id }" readonly style="background-color: #eeeeee; text-align: center; "/></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="notTitle" maxlength="50"/></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="qnaTitle" maxlength="50"/></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="notContent" maxlength="2048" style="height: 350px;"></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="qnaContent" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>	

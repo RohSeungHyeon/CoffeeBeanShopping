@@ -1,6 +1,8 @@
-package notice.controller;
+package qna.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,22 +10,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.Notice;
-import notice.service.NoticeService;
-import notice.service.NoticeServiceImpl;
+import comment.service.CommentService;
+import comment.service.CommentServiceImpl;
+import model.Comment;
+import model.Qna;
+import qna.service.QnaService;
+import qna.service.QnaServiceImpl;
 
 /**
- * Servlet implementation class NotwriteController
+ * Servlet implementation class QnareadController
  */
-@WebServlet("/NotwriteController")
-public class NotwriteController extends HttpServlet {
+@WebServlet("/QnareadController")
+public class QnareadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NotwriteController() {
+    public QnareadController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,26 +43,31 @@ public class NotwriteController extends HttpServlet {
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		NoticeService notservice = new NoticeServiceImpl();
+		QnaService qnaservice = new QnaServiceImpl();
+		CommentService comservice = new CommentServiceImpl();
 		
-		String notwriter = request.getParameter("notWriter");
-		String nottitle = request.getParameter("notTitle");
-		String notcontent = request.getParameter("notContent");
+		int qnaID = Integer.parseInt(request.getParameter("qnaID"));
+		Qna q = qnaservice.getQna(qnaID);
+		request.setAttribute("q", q);
 		
-		Notice n = new Notice();
-		n.setNotWriter(notwriter);
-		n.setNotTitle(nottitle);
-		n.setNotContent(notcontent);
+//		System.out.println("qnaID: " + qnaID);
+		ArrayList<Comment> comlist = comservice.getComList(qnaID);
+//		for (Comment c : comlist) {
+//			System.out.println(c.getComID());
+//		}
+		request.setAttribute("comlist", comlist);
 		
-		notservice.writeNotice(n);
+		HttpSession session = request.getSession();
+		Optional<Boolean> isLogin = Optional.ofNullable((Boolean) session.getAttribute("flag"));
+		if (isLogin.isPresent()) {
+			session.setAttribute("q", q);
+		}
 		
-//		response.sendRedirect(request.getContextPath() + "/shop/notice.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/notice.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/qnainfo.jsp");
 		if(dispatcher !=null) {
 			dispatcher.forward(request, response);
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

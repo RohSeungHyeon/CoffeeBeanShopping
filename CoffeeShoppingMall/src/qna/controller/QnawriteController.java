@@ -1,4 +1,4 @@
-package notice.controller;
+package qna.controller;
 
 import java.io.IOException;
 
@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Notice;
-import notice.service.NoticeService;
-import notice.service.NoticeServiceImpl;
+import model.Qna;
+import qna.service.QnaService;
+import qna.service.QnaServiceImpl;
 
 /**
- * Servlet implementation class NotwriteController
+ * Servlet implementation class QnawriteController
  */
-@WebServlet("/NotwriteController")
-public class NotwriteController extends HttpServlet {
+@WebServlet("/QnawriteController")
+public class QnawriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NotwriteController() {
+    public QnawriteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,21 +37,20 @@ public class NotwriteController extends HttpServlet {
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		NoticeService notservice = new NoticeServiceImpl();
+		QnaService qnaservice = new QnaServiceImpl();
 		
-		String notwriter = request.getParameter("notWriter");
-		String nottitle = request.getParameter("notTitle");
-		String notcontent = request.getParameter("notContent");
+		String qnawriter = request.getParameter("qnaWriter");
+		String qnatitle = request.getParameter("qnaTitle");
+		String qnacontent = request.getParameter("qnaContent");
 		
-		Notice n = new Notice();
-		n.setNotWriter(notwriter);
-		n.setNotTitle(nottitle);
-		n.setNotContent(notcontent);
+		Qna q = new Qna();
+		q.setQnaWriter(qnawriter);
+		q.setQnaTitle(qnatitle);
+		q.setQnaContent(qnacontent);
 		
-		notservice.writeNotice(n);
+		qnaservice.writeQna(q);
 		
-//		response.sendRedirect(request.getContextPath() + "/shop/notice.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/notice.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/shop/qna.jsp");
 		if(dispatcher !=null) {
 			dispatcher.forward(request, response);
 		}
