@@ -16,7 +16,7 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
+	href="${pageContext.request.contextPath}/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->
@@ -33,41 +33,27 @@
 
 		<div class="content-wrapper">
 			<section class="content">
-			
-	<form method="post" action="${pageContext.request.contextPath}/NotwriteController">
-		<div class="container">
+			<%
+		String userID = null;
+		if(session.getAttribute("userID") != null)
+		{
+			userID = (String) session.getAttribute("userID");
+		}
+			//로그인이 된 회원은 로그인의 정보를 담을수 있도록 설정  
+	%>
+	
+	<div class="container">
 		<div class="row">
-			<h3>공지사항작성</h3>
-				<table class="table table-default"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<tr>
-							<th colspan="2"
-								style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>작성자<input type="text" class="form-control" placeholder="작성자" name="notWriter" maxlength="50" value="${sessionScope.id }" readonly style="background-color: #eeeeee; text-align: center; "/></td>
-						</tr>
-						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="notTitle" maxlength="50"/></td>
-						</tr>
-						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="notContent" maxlength="2048" style="height: 350px;"></textarea></td>
-						</tr>
-					</tbody>
-				</table>	
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기" />
+			<c:import url = "/QnalistController"></c:import>
+					<a href="${pageContext.request.contextPath}/shop/qnawrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
-	</div>
-	</form></section>
+	</div></section>
 		</div>
 
 		<!-- Main Footer -->
 		<%@ include file="footer.jsp"%>
 	</div>
-
+	
 
 	<!-- JQuery -->
 	<script

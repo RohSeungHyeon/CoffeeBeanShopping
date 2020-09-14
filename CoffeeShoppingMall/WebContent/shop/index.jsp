@@ -38,7 +38,7 @@
 		로그인 실패
 		<a href="${pageContext.request.contextPath }/member/loginForm.jsp">로그인</a>
 	</c:if>		
-<form >
+	<form >
 <input type="text">
 <input type="button" value="검색">
 </form>

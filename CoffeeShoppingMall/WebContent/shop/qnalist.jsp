@@ -7,11 +7,11 @@
 <meta charset="UTF-8">
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>메인 페이지</title>
+<title>qna 페이지</title>
 <!-- Font Awesome -->
 </head>
 <body>
-<h2 align="center">공지사항</h2>
+<h2 align="center">Q&A</h2>
 <table class="table table-hover" style="text-align:center; border: 1px solid #dddddd">
 			<thead class="thead-dark">
 				<tr>
@@ -22,12 +22,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var = "n" items="${notlist }">
-				<tr class = "table-default" onclick="location.href='${pageContext.request.contextPath }/NoticereadController?notID=${n.notID }'">
-					<td>${n.notID }</td>
-					<td>${n.notTitle }</td>
-					<td>${n.notWriter }</td>
-					<td>${n.notDate }</td>
+				<c:forEach var = "q" items="${qnalist }">
+				<tr class = "table-default" onclick="location.href='${pageContext.request.contextPath }/QnareadController?qnaID=${q.qnaID }'">
+					<td>${q.qnaID }</td>
+					<td>${q.qnaTitle }</td>
+					<td>${q.qnaWriter }</td>
+					<td>${q.qnaDate }</td>
 				</tr>
 				</c:forEach>
 			</tbody>
