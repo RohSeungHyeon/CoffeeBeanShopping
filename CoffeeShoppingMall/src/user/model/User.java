@@ -1,46 +1,62 @@
-package model;
+package user.model;
 
 import java.sql.*;
 
-import model.enums.Genders;
-import model.enums.*;
+import user.model.enums.*;
 
 public abstract class User {
+
+	// OAuth를 위한 서비스 이용
+	// OAuth 인증 없이 자체 서비스 이용 시 두 필드 값 "없음"으로 db에 저장
+	private String oauth_rserver;
+	private String oauth_user_id;
 	
-	// �븘�닔 湲곗엯 �젙蹂�
-	private String id;
+	// 서비스 이용을 위한 필수 기입 정보
+	private String email;
 	private String password;
 	private String userName;
 	private String userNickName;
 	private String address;
-	private String email;
 	private String phone;
 	
-	// �꽑�깮 湲곗엯 �젙蹂�
-	private Genders gender;
-	private Date birth;
-	
-	
+	// 선택 기입 정보
+	// getter와 setter의 사용 유의
+	private Genders gender = null;
+	private Date birth = null;
 	
 	public User() {} 
-	
-	public User(String id, String password, String userName, String userNickName, 
-			String address, String email, String phone) {
-		this.id = id;
+		
+	public User(String oauth_rserver, String oauth_user_id, String email, String password, String userName,
+			String userNickName, String address, String phone, Genders gender, Date birth) {
+		super();
+		this.oauth_rserver = oauth_rserver;
+		this.oauth_user_id = oauth_user_id;
+		this.email = email;
 		this.password = password;
 		this.userName = userName;
 		this.userNickName = userNickName;
 		this.address = address;
-		this.email = email;
 		this.phone = phone;
+		this.gender = gender;
+		this.birth = birth;
 	}
 
-	public String getId() {
-		return id;
+
+
+	public String getOauth_rserver() {
+		return oauth_rserver;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOauth_rserver(String oauth_rserver) {
+		this.oauth_rserver = oauth_rserver;
+	}
+
+	public String getOauth_user_id() {
+		return oauth_user_id;
+	}
+
+	public void setOauth_user_id(String oauth_user_id) {
+		this.oauth_user_id = oauth_user_id;
 	}
 
 	public String getPassword() {
@@ -107,6 +123,8 @@ public abstract class User {
 		this.birth = birth;
 	}
 
+
+	
 	
 
 }

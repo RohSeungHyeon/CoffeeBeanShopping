@@ -1,6 +1,6 @@
 package member.service;
 
-import model.User;
+import user.model.User;
 
 public interface Service {
 	User getMember(String id);

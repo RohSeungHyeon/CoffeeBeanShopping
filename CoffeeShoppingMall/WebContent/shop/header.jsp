@@ -28,15 +28,18 @@
 			<!-- Brand Logo -->
 			<a href="${pageContext.request.contextPath}/MainController"
 				class="brand-link"> <img
-				src="${pageContext.request.contextPath }/resources/img/main/GreenCoffeeLogo.png" alt="Green Coffee"
-				class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">Green Coffee</span>
+				src="${pageContext.request.contextPath }/resources/img/main/GreenCoffeeLogo.png"
+				alt="Green Coffee" class="brand-image img-circle elevation-3"
+				style="opacity: .8"> <span
+				class="brand-text font-weight-light">Green Coffee</span>
 			</a>
 
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Search -->
-				<form action ="${pageContext.request.contextPath }/ViewSearchProductController"class="form-inline mt-3" method="GET">
+				<form
+					action="${pageContext.request.contextPath }/ViewSearchProductController"
+					class="form-inline mt-3" method="GET">
 					<select name="category" class="form-control">
 						<option value="total">통합검색</option>
 						<option value="name">상품명</option>
@@ -54,15 +57,30 @@
 				</form>
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="info">
-						<a href="${pageContext.request.contextPath}/shop/login.jsp"
-							class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
-						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
-						<a href="${pageContext.request.contextPath}/ViewCartController">장바구니</a>
-						<a href="${pageContext.request.contextPath}/goAdmin"
-							class="d-block mt-2">관리자페이지</a>
+					<c:choose>
+						<c:when test="${empty sessionScope.userprofile}">
+							<div class="info">
+								<a href="${pageContext.request.contextPath}/member/login.jsp"
+									class="d-block mt-2">로그인</a> <a
+									href="${pageContext.request.contextPath}/member/join.jsp"
+									class="d-block mt-2">회원가입</a> <a href="#" class="d-block mt-2">아이디/비밀번호
+									찾기</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="info">
+								<span class="d-block mt-2" id="user_id">${userprofile.name}
+									님</span> <a href="#" class="d-block mt-2">내 정보</a> <a
+									href="${pageContext.request.contextPath}/ViewCartController"
+									class="d-block mt-2">장바구니</a> <a href="#" class="d-block mt-2">주문내역</a>
+								<a href="${pageContext.request.contextPath}/logout.do"
+									class="d-block mt-2">로그아웃</a> <a
+									href="${pageContext.request.contextPath}/goAdmin"
+									class="d-block mt-2">관리자페이지</a>
 
-					</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<!-- Sidebar Menu -->
@@ -71,11 +89,11 @@
 						data-widget="treeview" role="menu">
 						<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               			
-               			<a href="${pageContext.request.contextPath }/ViewProductController?query=all">
-							모든 상품 보기
-						</a>
-						
+
+						<a
+							href="${pageContext.request.contextPath }/ViewProductController?query=all">
+							모든 상품 보기 </a>
+
 						<li class="nav-item has-treeview"><a href="#"
 							class="nav-link">
 								<p>
@@ -83,16 +101,19 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=asia" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=asia"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>아시아/태평양</p>
 								</a></li>
-								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=amer" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=amer"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>중남미</p>
 								</a></li>
-								<li class="nav-item"><a href="${pageContext.request.contextPath }/ViewProductController?query=afri" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=afri"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>아프리카</p>
 								</a></li>
 							</ul></li>

@@ -2,7 +2,7 @@ package member.service;
 
 import member.dao.Dao;
 import member.dao.DaoImpl;
-import model.User;
+import user.model.User;
 
 public class ServiceImpl implements Service{
 	private Dao dao;

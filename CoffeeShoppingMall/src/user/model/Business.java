@@ -1,8 +1,8 @@
-package model;
+package user.model;
 
 public class Business extends User{
 	
-	// �궗�뾽�옄 異붽� �젙蹂�
+	// 사업자 추가 정보
 	private String companyName = "";
 	private String companyAddress = "";
 	private String companyPhone = "";
@@ -11,10 +11,16 @@ public class Business extends User{
 	public Business() {
 		super();
 	}
-	public Business(String id, String password, String userName, String userNickName, String address, String email, String phone) {
-		super(id, password, userName, userNickName, address, email, phone);
+		
+	public Business(String companyName, String companyAddress, String companyPhone, String rank) {
+		super();
+		this.companyName = companyName;
+		this.companyAddress = companyAddress;
+		this.companyPhone = companyPhone;
+		this.rank = rank;
 	}
-	
+
+
 	public String getCompanyName() {
 		return companyName;
 	}

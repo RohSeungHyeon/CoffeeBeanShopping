@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.User;
 import product.service.proService;
 import product.service.proServiceImpl;
+import user.model.User;
 
 /**
  * Servlet implementation class PaySuccessController
@@ -37,21 +36,21 @@ public class PaySuccessController extends HttpServlet {
 		
 		User m = (User)session.getAttribute("m");
 		
-		//ÁÖ¹® ³¯Â¥
+		//ï¿½Ö¹ï¿½ ï¿½ï¿½Â¥
 		Date d = new java.sql.Date(System.currentTimeMillis());
 		
-		// ¿À´õ¸®½ºÆ® µ¥ÀÌÅÍ »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for(int i=0;i<order.length;i++) {
 			String pro_id = order[i].split(",")[0];
 			String count= order[i].split(",")[1];
 			ps.addOrder((String)session.getAttribute("addr"), 
-					 d, Integer.parseInt(count),m.getId(),
+					 d, Integer.parseInt(count),m.getEmail(),
 					Integer.parseInt(pro_id));
 		}
-		// Ä«Æ® ¸ñ·Ï »èÁ¦
-		ps.clearCart(m.getId());
-		// ¿À´õ½ºÅ×ÀÌÅÍ½º »ý¼º
-		ps.addOrderStatus(d, m.getId());
+		// Ä«Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		ps.clearCart(m.getEmail());
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		ps.addOrderStatus(d, m.getEmail());
 		
 		RequestDispatcher dis = request.getRequestDispatcher("/shop/pay_success.jsp");
 		dis.forward(request, response);
