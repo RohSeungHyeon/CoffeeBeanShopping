@@ -10,33 +10,16 @@ import javax.servlet.http.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
-/**
- * Servlet implementation class RequestProfileController
- */
 @WebServlet(name="NaverRequestProfileController", urlPatterns = "/oauth/requestprofile_naver")
 public class NaverRequestProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NaverRequestProfileController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
 		doPost(request, response);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -48,6 +31,13 @@ public class NaverRequestProfileController extends HttpServlet {
 		PrintWriter out= response.getWriter();
 		
 		HttpSession session = request.getSession();
+		
+		if(session.isNew()) {
+			out.print("<script type='text/javascript'>");
+			out.print("alert('잘못된 접근입니다')");
+			out.print("location.href='login.jsp'");
+			out.print("</script>");
+		}
 		
 		String token_type = (String)session.getAttribute("token_type");
 		String access_token = (String)session.getAttribute("access_token");
@@ -114,7 +104,7 @@ public class NaverRequestProfileController extends HttpServlet {
 			return;
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/find");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/find_memberinfo.do");
 
 		if (dispatcher != null)
 			dispatcher.forward(request, response);

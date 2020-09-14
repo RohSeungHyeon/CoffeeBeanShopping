@@ -6,35 +6,39 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-/**
- * Servlet implementation class LogoutServlet
- */
-@WebServlet(name="LogoutController", urlPatterns = "/Logout")
+
+@WebServlet(name="LogoutController", urlPatterns = "/logout.do")
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LogoutController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("userProfile") == null) {
+			
+			response.setContentType("text/html;charset=UTF-8");
+			out.print("<html><head>");
+			out.print("<script type='text/javascript'>alert('잘못된 접근입니다');location.href='"
+					+getServletContext().getContextPath()+"/shop/main.jsp';");
+			out.print("</script></head><body></body></html>");
+		} else {
+			session.invalidate();
+			out.print("<html><head>");
+			out.print("<script type='text/javascript'>location.href='"
+					+getServletContext().getContextPath()+"/shop/main.jsp';");
+			out.print("</script></head><body></body></html>");
+		}
 	}
 
 }

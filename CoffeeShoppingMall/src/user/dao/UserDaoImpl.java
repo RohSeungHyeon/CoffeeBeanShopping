@@ -15,6 +15,7 @@ public class UserDaoImpl implements UserDao {
 		db = DBConnect.getInstance();
 	}
 	
+	// 사용자 정보 선택
 	@Override
 	public User select(String emailTxt) {
 
@@ -150,6 +151,7 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 	
+	// 사용자 Email 선택
 	@Override
 	public String selectEmail(String emailTxt) {
 		conn = db.getConnection();
@@ -189,6 +191,41 @@ public class UserDaoImpl implements UserDao {
 		return email;
 	}
 	
+	// 사용자 패스워드 선택
+	@Override
+	public String selectPwd(String email) {
+		String pwd = null;
+		
+		PreparedStatement pstmt = null;
+		Connection conn = db.getConnection();
+		try {
+			String sql = "SELECT password FROM MEMBER WHERE EMAIL=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			ResultSet rSet = pstmt.executeQuery();
+			
+			if(rSet.next()) {
+				pwd = rSet.getString("password");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		
+		return pwd;
+	}
+	
+	// 사용자 유형 선택
 	@Override
 	public String selectUserType(String email) {
 		conn = db.getConnection();
@@ -228,6 +265,7 @@ public class UserDaoImpl implements UserDao {
 		return userType;
 	}
 	
+	// 사용자 가입 일자 선택
 	@Override
 	public String selectJoinDate(String email) {
 		conn = db.getConnection();
@@ -265,6 +303,7 @@ public class UserDaoImpl implements UserDao {
 		return joinDate;
 	}
 	
+	// 사용자 정보 추가
 	@Override
 	public int insert(User user) {
 		
@@ -388,6 +427,7 @@ public class UserDaoImpl implements UserDao {
 		return userInfoResult & result_pstmt3;
  	}
 	
+	// 사용자 정보 삭제
 	@Override
 	public int delete(User user) {
 		
@@ -415,6 +455,7 @@ public class UserDaoImpl implements UserDao {
 		return 0;
 	}
 	
+	// 사용자 정보 수전
 	@Override
 	public int update(User user) {
 		

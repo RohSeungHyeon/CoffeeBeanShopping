@@ -73,25 +73,26 @@ public class JoinController extends HttpServlet {
 		String birthMM = null;
 		String birthDD = null;
 		
+		
+		@SuppressWarnings("unused")
 		String companyName = null;
+		@SuppressWarnings("unused")
 		String companyAddress = null;
+		@SuppressWarnings("unused")
 		String companyPhone = null;
+		@SuppressWarnings("unused")
 		String rank = null;
 		
-		if(request.getRequestURI() == "/shop/join.jsp") {
-			if(session != null) {
-				JSONObject profile = (JSONObject)session.getAttribute("userprofile");
-				oauth_rserver = (String)profile.get("infoFrom");
-				oauth_user_id = (String)profile.get("id");
-			} else {
-				oauth_rserver = "불명";
-				oauth_user_id = "불명";
-			}
+		// OAuth를 이용한 회원 가입 처리를 위한 코드
+		if (session != null) {
+			JSONObject profile = (JSONObject) session.getAttribute("userprofile");
+			oauth_rserver = (String) profile.get("infoFrom");
+			oauth_user_id = (String) profile.get("id");
 		} else {
 			oauth_rserver = "없음";
 			oauth_user_id = "없음";
 		}
-		
+
 		email = request.getParameter("essential.emailId") + "@" + request.getParameter("essential.emailDomain");
 		password = request.getParameter("essential.pwd");
 		userName = request.getParameter("essential.name");
@@ -150,10 +151,21 @@ public class JoinController extends HttpServlet {
 			business.setRank("랭크");
 		}
 		
-		if(service.createUser(user) == 1)
-			out.println("<html><body>성공</body></html>");
+		if(service.createUser(user) == 1) {
+			/*
+			 * out.println("<html><body>성공</body></html>"); if(session != null)
+			 * session.invalidate();
+			 */
+			
+			out.print("<script type='text/javascript'>");
+			out.print("alert('등록되었습니다');");
+			out.print("location.href='shop/main.jsp';");
+			out.print("</script>");
+			
+		}
 		else {
 			out.println("<html><body>실패</body></html>");
+			if(session != null) session.invalidate();
 		}
 		
 		

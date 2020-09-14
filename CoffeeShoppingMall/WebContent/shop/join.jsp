@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	// 세션 설정 하지 않음
+	session.invalidate();
+	
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,6 +18,7 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
 	</head>
 	<body>
+		<h2>회원 가입</h2>
 		<div id="join">
 			<form method="post" action="${pageContext.servletContext.contextPath}/join" name="joinForm" onsubmit="return checkForm()">
 				<div id="join_essential">
@@ -21,8 +29,8 @@
 							<tr>
 								<th class="header"> 이메일 </th>
 								<td class="content"> 
-									 <input type="text" name="essential.emailId" id="essential.emailId" />&nbsp;@&nbsp;
-									 <input type="text" name="essential.emailDomain" id="essential.emailDomain" />
+									 <input type="text" name="essential.emailId" id="essential.emailId" placeholder="Email Id" autocomplete = "off"/>&nbsp;@&nbsp;
+									 <input type="text" name="essential.emailDomain" id="essential.emailDomain" placeholder="Email Domain" autocomplete = "off"/>
 									 <select name="select_domain" id="select_domain" onchange="changeDomain()">
 									 	<option value="manual">직접 입력</option>
 									 	<option value="naver.com">naver.com</option>
@@ -53,24 +61,24 @@
 							</tr>
 							<tr>
 								<th class="header"> 이름 </th>
-								<td class="content"> <input type="text" name="essential.name" id="essential.name" value="${sessionScope.userprofile.name}"/> </td>
+								<td class="content"> <input type="text" name="essential.name" id="essential.name" placeholder="이름" autocomplete = "off"/> </td>
 							</tr>
 							<tr>
 								<th class="header"> 닉네임 </th>
-								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" value="${sessionScope.userprofile.nickname}" /> </td>
+								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" placeholder="별명" autocomplete = "off" /> </td>
 							</tr>
 							<tr>
 								<th class="header"> 주소 </th>
-								<td class="content"> <input type="text" name="essential.address" id="essential.address" /> </td>
+								<td class="content"> <input type="text" name="essential.address" id="essential.address" placeholder="주소" autocomplete = "off" /> </td>
 							</tr>
 							<tr>
 								<th class="header">연락처</th>
 								<td class="content"> 
-									<input type="text" name="essential.phone_head" id="essential.phone_head" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
+									<input type="text" name="essential.phone_head" id="essential.phone_head" autocomplete = "off" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
 									-
-									<input type="text" name="essential.phone_front" id="essential.phone_front" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
+									<input type="text" name="essential.phone_front" id="essential.phone_front" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
 									-
-									<input type="text" name="essential.phone_back" id="essential.phone_back" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
+									<input type="text" name="essential.phone_back" id="essential.phone_back" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
 								</td>
 							</tr>
 							
@@ -246,26 +254,26 @@
 					</table>
 				</div>
 				
-				<div id="join_bussiness">
+				<div id="join_bussiness" style="display: none;">
 					<table class="table">
 						<caption style="text-align: left;">사업자 추가 정보</caption>
 						<thead></thead>
 						<tbody>
 							<tr>
 								<th class="header">상호명</th>
-								<td class="content"><input type="text" name="optional.buyer.name" id="optional.buyer.name"/> </td>
+								<td class="content"><input type="text" name="optional.buyer.name" id="optional.buyer.name" autocomplete = "off"/> </td>
 							</tr>
 							<tr>
 								<th class="header">사업지 주소</th>
-								<td class="content"><input type="text" name="optional.buyer.address" id="optional.buyer.address" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.address" id="optional.buyer.address" autocomplete = "off" /> </td>
 							</tr>
 							<tr>
 								<th class="header">사업지 연락처</th>
-								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" autocomplete = "off"/> </td>
 							</tr>
 							<tr>
 								<th class="header">직급</th>
-								<td class="content"><input type="text" name="optional.buyer.rank" id="optional.buyer.rank" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.rank" id="optional.buyer.rank" autocomplete = "off"/> </td>
 							</tr>
 							
 						</tbody>
@@ -273,7 +281,9 @@
 				</div>
 				
 				<input type="submit" value="등록" />
+				<input type="button" value="취소" onclick="location.href='main.jsp'" />
 			</form>
+			
 		</div>
 
 	</body>

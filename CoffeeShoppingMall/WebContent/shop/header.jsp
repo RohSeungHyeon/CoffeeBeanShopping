@@ -55,11 +55,20 @@
 				</form>
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="info">
-						<a href="${pageContext.request.contextPath}/shop/login.jsp"
-							class="d-block mt-2">로그인</a> <a href="#" class="d-block mt-2">회원가입</a>
-						<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
-					</div>
+					<c:choose>
+						<c:when test="${empty sessionScope.userProfile}">
+							<div class="info">
+								<a href="${pageContext.request.contextPath}/shop/login.jsp"
+									class="d-block mt-2">로그인</a> <a href="${pageContext.request.contextPath}/shop/join.jsp" class="d-block mt-2">회원가입</a>
+								<a href="#" class="d-block mt-2">아이디/비밀번호 찾기</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="info">
+								<a href="${pageContext.request.contextPath}/logout.do" class="d-block mt-2">로그아웃</a> 
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<!-- Sidebar Menu -->

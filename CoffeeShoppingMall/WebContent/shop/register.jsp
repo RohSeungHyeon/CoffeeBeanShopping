@@ -5,8 +5,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
+	if(session.isNew()) {
+		response.sendRedirect("login.jsp");
+		return;
+	}
+
 	JSONObject userProfile = (JSONObject) session.getAttribute("userprofile");
-	String id = (String)userProfile.get("id");
+	String infoFrom = (String)userProfile.get("infoFrom");
 	String email = (String) userProfile.get("email");
 	String[] idAndDomain = email.split("@");
 	String name = (String)userProfile.get("name");
@@ -14,17 +19,35 @@
 	String birthday = (String)userProfile.get("birthday");
 	String gender = (String)userProfile.get("gender");
 	
+	if(infoFrom.equals("naver")) {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(birthday.charAt(0));
+		buffer.append(birthday.charAt(1));
+		buffer.append(birthday.charAt(3));
+		buffer.append(birthday.charAt(4));
+		
+		birthday = buffer.toString();
+	}
+	
+	pageContext.setAttribute("birthday", birthday);
+	pageContext.setAttribute("gender", gender);
+
 %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>회원 가입</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/join.css"/>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="utf-8 "defer="defer"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/requestHttp.js" charset="utf-8" defer="defer"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="utf-8" defer="defer"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/register.js" charset="utf-8" defer="defer"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+		
 	</head>
 	<body>
+		<h2>회원 가입</h2>
 		<div id="join">
 			<form method="post" action="${pageContext.servletContext.contextPath}/join" name="joinForm" onsubmit="return checkForm()">
 				<div id="join_essential">
@@ -107,6 +130,10 @@
 										<option value="M">남성</option>
 										<option value="F">여성</option>
 									</select>
+									<script type='text/javascript'>
+										var select = document.getElementById('optional.gender');
+										select.options[${pageScope.gender == 'M' ? 1 : 2}].selected = true;
+									</script>
 								</td>
 							</tr>
 							
@@ -114,7 +141,7 @@
 							<th class="header">생년월일</th>
 							<td class="content">
 							 
-							<select name="optional.birth_yy" id="optional.birth_yy" style="width: 80px">
+							<select name="optional.birth_yy" id="optional.birth_yy$" style="width: 80px">
 									<option value=""></option>
 									<option value="2006">2006</option>
 									<option value="2005">2005</option>
@@ -207,31 +234,42 @@
 								년 
 							<select name="optional.birth_mm" id="optional.birth_mm" style="width: 60px">
 									<option value=""></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
 									<option value="10">10</option>
 									<option value="11">11</option>
 									<option value="12">12</option>
 							</select>
-								월 
+								월
+							<script type="text/javascript">
+								var select_month = document.getElementById('optional.birth_mm');
+									
+								var month = '${pageScope.birthday}'.substring(0,2);
+								
+								for(i = 0; i < select_month.options.length; i++) {
+									if(select_month.options[i].value == month)
+										select_month.options[i].selected = true;
+								}
+								
+							</script>
 							<select name="optional.birth_dd" id="optional.birth_dd" style="width: 60px">
 									<option value=""></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
+									<option value="01">1</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option>
 									<option value="10">10</option>
 									<option value="11">11</option>
 									<option value="12">12</option>
@@ -256,13 +294,26 @@
 									<option value="31">31</option>
 							</select>
 								일
+							<script type="text/javascript">
+								var select_day = document.getElementById('optional.birth_dd');
+									
+								var day = '${pageScope.birthday}'.substring(2);
+								
+								for(i = 0; i < select_day.options.length; i++) {
+									if(select_day.options[i].value == day){
+										select_day.options[i].selected = true;
+									}
+								}
+								
+							</script>	
 							</td>
 						</tr>
+						
 					</tbody>
 					</table>
 				</div>
 				
-				<div id="join_bussiness">
+				<div id="join_bussiness" style="display: none;">
 					<table class="table">
 						<caption style="text-align: left;">사업자 추가 정보</caption>
 						<thead></thead>
@@ -289,6 +340,10 @@
 				</div>
 				
 				<input type="submit" value="등록" />
+				<!--   취소 시 OAuth를 이용해 세션 객체에 할당한 정보 소거 -->
+				<input type="button" id="btn_cancel" value="취소" onclick="cancelRegister()">
+				
+				
 			</form>
 		</div>
 

@@ -117,7 +117,7 @@ public class KakaoRequestProfileController extends HttpServlet {
 			return;
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/find");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/find_memberinfo.do");
 
 		if (dispatcher != null)
 			dispatcher.forward(request, response);
