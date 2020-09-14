@@ -84,7 +84,7 @@ public class JoinController extends HttpServlet {
 		String rank = null;
 		
 		// OAuth를 이용한 회원 가입 처리를 위한 코드
-		if (session != null) {
+		if (session.getAttribute("userprofile") != null) {
 			JSONObject profile = (JSONObject) session.getAttribute("userprofile");
 			oauth_rserver = (String) profile.get("infoFrom");
 			oauth_user_id = (String) profile.get("id");

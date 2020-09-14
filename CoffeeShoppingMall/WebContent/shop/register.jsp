@@ -340,7 +340,7 @@
 				</div>
 				
 				<input type="submit" value="등록" />
-				<!--   취소 시 OAuth를 이용해 세션 객체에 할당한 정보 소거 -->
+				<!--  등록 취소 시 OAuth를 이용해 세션 객체에 할당한 정보 소거 -->
 				<input type="button" id="btn_cancel" value="취소" onclick="cancelRegister()">
 				
 				

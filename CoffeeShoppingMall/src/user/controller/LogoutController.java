@@ -25,7 +25,7 @@ public class LogoutController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("userProfile") == null) {
+		if(session.getAttribute("userprofile") == null) {
 			
 			response.setContentType("text/html;charset=UTF-8");
 			out.print("<html><head>");

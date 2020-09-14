@@ -34,7 +34,7 @@
 			</a>
 
 			<!-- Sidebar -->
-			<div class="sidebar">
+			x<div class="sidebar">
 				<!-- Search -->
 				<form class="form-inline mt-3">
 					<select name="category" class="form-control">
@@ -56,7 +56,7 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<c:choose>
-						<c:when test="${empty sessionScope.userProfile}">
+						<c:when test="${empty sessionScope.userprofile}">
 							<div class="info">
 								<a href="${pageContext.request.contextPath}/shop/login.jsp"
 									class="d-block mt-2">로그인</a> <a href="${pageContext.request.contextPath}/shop/join.jsp" class="d-block mt-2">회원가입</a>
@@ -65,6 +65,10 @@
 						</c:when>
 						<c:otherwise>
 							<div class="info">
+								<span class="d-block mt-2" id="user_id">${userprofile.name} 님</span>
+								<a href="#" class="d-block mt-2">내 정보</a>
+								<a href="#" class="d-block mt-2">장바구니</a>
+								<a href="#" class="d-block mt-2">주문내역</a>
 								<a href="${pageContext.request.contextPath}/logout.do" class="d-block mt-2">로그아웃</a> 
 							</div>
 						</c:otherwise>

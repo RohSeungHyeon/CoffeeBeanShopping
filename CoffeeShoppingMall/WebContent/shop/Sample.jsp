@@ -33,7 +33,7 @@
 
 		<div class="content-wrapper">
 			<section class="content">
-				샘플 페이지
+				
 			</section>
 		</div>
 
