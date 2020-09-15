@@ -285,7 +285,13 @@
 							</tr>
 							<tr>
 								<th class="header">사업지 연락처</th>
-								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" autocomplete = "off"/> </td>
+								<td class="content"> 
+									<input type="text" name="optional.phone_head" id="optional.phone_head" autocomplete = "off" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
+									-
+									<input type="text" name="optional.phone_front" id="optional.phone_front" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
+									-
+									<input type="text" name="optional.phone_back" id="optional.phone_back" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
+								</td>
 							</tr>
 							<tr>
 								<th class="header">직급</th>

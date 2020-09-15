@@ -1,7 +1,7 @@
 package user.model.enums;
 
 public enum Genders {
-	
+
 	F("F"), M("M"), N("");
 	
 	@SuppressWarnings("unused")

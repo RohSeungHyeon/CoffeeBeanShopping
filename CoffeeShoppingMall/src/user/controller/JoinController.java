@@ -127,7 +127,10 @@ public class JoinController extends HttpServlet {
 		if(userType.equals("사업자")) {
 			companyName = request.getParameter("optional.buyer.name");
 			companyAddress = request.getParameter("optional.buyer.address");
-			companyPhone = request.getParameter("optional.buyer.phone");
+			phone_head = request.getParameter("optional.phone_head");
+			phone_front = request.getParameter("optional.phone_front");
+			phone_back = request.getParameter("optional.phone_back");
+			companyPhone = phone_head + "-" + phone_front + "-" + phone_back;
 			rank = request.getParameter("optional.buyer.rank");
 			
 			user = new Business();

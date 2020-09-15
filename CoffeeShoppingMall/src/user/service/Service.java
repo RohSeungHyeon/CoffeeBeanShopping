@@ -16,13 +16,16 @@ public interface Service {
 	public Business getBuyerInfo(String email);
 	
 	// 사용자 정보 수정
-	public boolean modifyUserInfo(User user);
+	public boolean modifyUserInfo(User user, String userType);
 	
 	// 사용자 등록 여부 조회
 	public boolean isRegisterdUser(String email);
 	
 	// 사용자 이메일 조회
 	public String getUserEmail(String email);
+	
+	// 사용자 이메일 조회
+	public String findUserAccount(String userName, String phone);
 	
 	// 사용자 패스워드 조회
 	public String getUserPwd(String email);

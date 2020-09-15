@@ -95,7 +95,9 @@ function checkOpenAndHide() {
 
 	var buyerNameTxt = document.getElementById("optional.buyer.name");
 	var buyerAddressTxt = document.getElementById("optional.buyer.address");
-	var buyerPhoneTxt = document.getElementById("optional.buyer.phone");
+	var buyer_phone_head = document.getElementById("optional.phone_head");
+	var buyer_phone_front = document.getElementById("optional.phone_front");
+	var buyer_phone_back = document.getElementById("optional.phone_back");
 	var buyerRankTxt = document.getElementById("optional.buyer.rank");
 
 	if(document.getElementsByName("essential.userType")[0].checked) {
@@ -103,8 +105,10 @@ function checkOpenAndHide() {
 		
 		buyerNameTxt.value = "";
 		buyerAddressTxt.value = "";
-		buyerPhoneTxt.value = "";
 		buyerRankTxt.value = "";
+		buyer_phone_head.value = "";
+		buyer_phone_front.value = "";
+		buyer_phone_back.value = "";
 
 	}
 	else if(document.getElementsByName("essential.userType")[1].checked) {
@@ -203,7 +207,10 @@ function checkForm() {
 
 		const buyer_name = document.getElementById("optional.buyer.name");
 		const buyer_address = document.getElementById("optional.buyer.address");
-		const buyer_phone = document.getElementById("optional.buyer.phone");
+		const buyer_phone_head = document.getElementById("optional.phone_head");
+		const buyer_phone_front = document.getElementById("optional.phone_front");
+		const buyer_phone_back = document.getElementById("optional.phone_back");
+
 		const rank = document.getElementById("optional.buyer.rank");
 
 		if(buyer_name.value == "") {
@@ -218,9 +225,9 @@ function checkForm() {
 			return false;
 		}
 
-		else if (buyer_phone.value == "") {
+		else if (buyer_phone_head.value == "" || buyer_phone_front.value == "" || buyer_phone_back.value == "") {
 			alert("사업지 연락처를 입력해주세요");
-			buyer_phone.focus();
+			buyer_phone_head.focus();
 			return false;
 		}
 
@@ -228,11 +235,13 @@ function checkForm() {
 			alert("회원님의 직급을 입력해주세요");
 			rank.focus();
 			return false;
-		}
+		} 
 
 		else {
-			
+
 		}
+
+		
 	}
 
 	return true;

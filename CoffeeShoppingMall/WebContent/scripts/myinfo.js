@@ -71,14 +71,60 @@ function checkForm() {
 	const optional_birth_mm = document.getElementById("optional.birth_mm");
 	const optional_birth_dd = document.getElementById("optional.birth_dd");
 
-	if(document.getElementById(optional.buyer.name) != undefined) 
-		const optional_buyer_name = document.getElementById(optional.buyer.name);
+	
+	const userType = document.getElementsByName("essential.userType");
+	if(userType[1].checked == true) {
+		var optional_buyer_name = document.getElementById("optional.buyer.name");
+		var optional_buyer_address = document.getElementById("optional.buyer.address");
+		var buyer_phone_head = document.getElementById("optional.phone_head");
+		var buyer_phone_front = document.getElementById("optional.phone_front");
+		var buyer_phone_back = document.getElementById("optional.phone_back");
+		var optional_buyer_rank = document.getElementById("optional.buyer.rank");
+	}
+	
+	// validation
+	if(essential_pwd.value != "" && checkPwdResult == false ) {
+		alert('변경할 비밀번호를 확인해주세요');
+		essential_pwd.focus();
+		return false;
+	} else if(essential_nickname.value == "") {
+		alert('닉네임을 확인해주세요');
+		essential_nickname.focus();
+		return false;
+	} else if(essential_address.value == "") {
+		alert('주소를 확인해주세요');
+		essential_address.focus();
+		return false;
+	} else if(essential_phone_head.value == "" || essential_phone_front.value == "" || essential_phone_back.value == "") {
+		alert('연락처를 확인해주세요');
+		essential_phone_front.focus();
+		return false;
+	} else if(userType[1].checked == true) {
 
-	if(document.getElementById(optional.buyer.address) != undefined) 
-		const optional_buyer_address = document.getElementById(optional.buyer.address);
+		if(optional_buyer_name.value == "") {
+			alert('사업지명을 입력해주세요');
+			optional_buyer_name.focus();
+			return false;
+		}
 
-	if(document.getElementById(optional.buyer.name) != undefined) 
-		const optional_buyer_name = document.getElementById(optional.buyer.name);
+		else if(optional_buyer_address.value == "") {
+			alert('사업지 주소를 입력해주세요');
+			optional_buyer_address.focus();
+			return false;
+		}
 
+		else if(buyer_phone_head.value == "" || buyer_phone_front.value == "" || buyer_phone_back.value == "") {
+			alert('사업지 연락처를 입력해주세요');
+			buyer_phone_head.focus();
+			return false;
+		}
+		
+		else if(optional_buyer_rank.value == "") {
+			alert('직급을 입력해주세요');
+			optional_buyer_rank.focus();
+			return false;
+		}
+	}
 
+	return true;
 }

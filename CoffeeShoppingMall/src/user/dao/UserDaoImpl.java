@@ -252,6 +252,44 @@ public class UserDaoImpl implements UserDao {
 		return email;
 	}
 	
+	// 사용자 Email 선택
+	@Override
+	public String selectEmail(String userName, String phone) {
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String email = null;
+		
+		try {
+			String sql = "SELECT email FROM member WHERE name=? AND phone=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, phone);
+			
+			ResultSet resultSet = pstmt.executeQuery();
+			
+			while(resultSet.next()) {
+				email = resultSet.getString("email");
+			}
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+		
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return email;
+	}
+	
 	// 사용자 패스워드 선택
 	@Override
 	public String selectPwd(String email) {
@@ -516,35 +554,123 @@ public class UserDaoImpl implements UserDao {
 		return 0;
 	}
 	
-	// 사용자 정보 수전
+	// 사용자 정보 수정 => 삭제 예정
 	@Override
-	public int update(User user) {
-		
-//		conn = db.getConnection();
-//		PreparedStatement pstmt;
-//		
-//		try {
-//			
-//			
-//			
-//		} catch(SQLException e) {
-//			e.printStackTrace();
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				pstmt.close();
-//				conn.close();
-//		
-//			} catch (SQLException e2) {
-//				e2.printStackTrace();
-//			}
-//		}
+	public int update(User user, String userType) {
 		
 		return 0;
 	}
 	
+	// 사용자 패스워드 수정
+	@Override
+	public int updateUserPwd(String email, String pwd) {
+		
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "UPDATE member SET password=? WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, email);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
 	
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
+	// 사용자 닉네임 / 주소 / 전화번호 / 성별 / 생일 수정
+	public int updateUserInfo(String email, String nickname, String address, String phone, Genders gender, Date date) {
+		
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "UPDATE member "
+					+ "SET nickname=?, address=?, phone=?, gender=?, birth=? "
+					+ "WHERE email=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, nickname);
+			pstmt.setString(2, address);
+			pstmt.setString(3, phone);
+			pstmt.setString(4, gender.toString());
+			pstmt.setDate(5, date);
+			pstmt.setString(6, email);
+			
+			result = pstmt.executeUpdate();
+					
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+		
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	// 사업자 유형 사용자의 정보 수정
+	public int updateBuyerInfo(String email, String companyName, String companyAddr, String companyPhone, String rank) {
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			String sql = "update (SELECT email, company_name, company_addr, company_phone, rank " +
+					"FROM buyer_info LEFT JOIN member on buyer_info.id = member.id) " +
+					"set company_name=?, company_addr=?, company_phone=?, rank=? " +
+					"where email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, companyName);
+			pstmt.setString(2, companyAddr);
+			pstmt.setString(3, companyPhone);
+			pstmt.setString(4, rank);
+			pstmt.setString(5, email);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+		
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
 	
 }

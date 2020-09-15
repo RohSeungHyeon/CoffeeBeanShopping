@@ -66,6 +66,7 @@ public class LoginController extends HttpServlet {
 				JSONObject userProfile = new JSONObject();
 				User user = service.getUserInfo(emailTxt);
 				
+				userProfile.put("nickname", user.getUserNickName());
 				userProfile.put("name", user.getUserName());
 				userProfile.put("email", user.getEmail());
 				userProfile.put("userType", service.getUserType(emailTxt));
@@ -73,7 +74,7 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("userprofile", userProfile);
 				
 				// 응답 메시지 출력
-				result.put("result", true);
+				result.put("result", true);	
 				result.put("message", "Is correct");
 			} else {
 				result.put("result", false);

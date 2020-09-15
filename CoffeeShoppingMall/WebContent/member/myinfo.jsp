@@ -54,7 +54,7 @@
 			<section class="content">
 				<h2>회원 가입</h2>
 				<div id="join">
-					<form method="post" action="../modify.do" name="modifyForm" onsubmit="return checkForm()">
+					<form method="post" action="../modify_userinfo.do" name="modifyForm" onsubmit="return checkForm()">
 						<div id="info_essential">
 							<table class="table">
 								<caption style="text-align: left;">필수 정보</caption>
@@ -130,24 +130,25 @@
 										<th class="header">성별</th>
 										<td class="content">
 											<select name="optional.gender" id="optional.gender">
-											<c:if test="${userInfo.gender.toString().equals('N')}">
-												<option value="N" selected></option>
-												<option value="M">남성</option>
-												<option value="F">여성</option>
-											</c:if>
-											
-											<c:if test="${userInfo.gender.toString().equals('M')}">
-												<option value="N"></option>
-												<option value="M" selected>남성</option>
-												<option value="F">여성</option>
-											</c:if>
-											
-											<c:if test="${userInfo.gender.toString().equals('F')}">
 												<option value="N"></option>
 												<option value="M">남성</option>
-												<option value="F" selected>여성</option>
-											</c:if>
+												<option value="F">여성</option>
 											</select>
+											<c:set var="gender" value="${userInfo.gender.toString()}" />
+											<script>
+												var select_gender = document.getElementById("optional.gender");
+												var gender = '${gender}';
+												var index;
+												
+												if(gender == 'M')
+													index = 1;
+												else if(gender == 'F')
+													index = 2;
+												else 
+													index = 0;
+												
+												select_gender.options[index].selected = true;
+											</script>
 										</td>
 									</tr>
 
@@ -335,7 +336,13 @@
 										</tr>
 										<tr>
 											<th class="header">사업지 연락처</th>
-											<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" value="${bussiness.companyPhone}" /></td>
+											<td class="content"> 
+												<input type="text" name="optional.phone_head" id="optional.phone_head" value="${bussiness.companyPhone.split('-')[0]}" autocomplete = "off" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
+												-
+												<input type="text" name="optional.phone_front" id="optional.phone_front" value="${bussiness.companyPhone.split('-')[1]}" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
+												-
+												<input type="text" name="optional.phone_back" id="optional.phone_back" value="${bussiness.companyPhone.split('-')[2]}" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
+											</td>
 										</tr>
 										<tr>
 											<th class="header">직급</th>
