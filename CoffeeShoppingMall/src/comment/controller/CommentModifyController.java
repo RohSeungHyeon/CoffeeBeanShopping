@@ -46,7 +46,7 @@ public class CommentModifyController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
-		if (isLogin) {
+		
 //			Service service = new ServiceImpl();
 			String id = (String) session.getAttribute("id");
 //			Member m = service.getMember(id);
@@ -55,21 +55,22 @@ public class CommentModifyController extends HttpServlet {
 			QnaService qnaservice = new QnaServiceImpl();
 			Qna q = (Qna) session.getAttribute("q");
 			
-			int qnaId = q.getQnaID();
+			String qnaId1 = request.getParameter("qnaID");
+			int qnaId = Integer.parseInt(qnaId1);
 			Comment com = comservice.getComment(comId, qnaId);
 			com.setComContent(comcontent);
 		
-			// ÀÌ°Ô »ç¿ëÀÚ °ÍÀÌ ¸Â´ÂÁö È®ÀÎ
+			// ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			if (com.getComWriter().equals(id) == false)
 				return;
 			
 			System.out.println("comId: " + comId);
 			
-			// °Ô½Ã¹° »èÁ¦
+			// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 			comservice.updateCom(com);
 //			response.sendRedirect(request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
 			//response.setHeader("Refresh", "0; URL=" + request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
-		}
+		
 	}
 
 	/**
