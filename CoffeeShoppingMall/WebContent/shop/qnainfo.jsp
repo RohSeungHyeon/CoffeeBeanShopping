@@ -92,6 +92,7 @@ function del(qnaID){
 					<div>
 						<h4>Comment</h4>
 						<textarea name="comContent" rows="4" cols="40" class="form-control" maxlength="50" placeholder="댓글입력해"></textarea>
+						<input type="hidden" name="qnaID" value="${q.qnaID }">
 						<input type = "submit" value="댓글달기" class="btn btn-primary pull-right" id="btnComment">
 					</div>
 				</form>

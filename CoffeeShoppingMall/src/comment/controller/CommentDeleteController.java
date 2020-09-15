@@ -40,11 +40,10 @@ public class CommentDeleteController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		CommentService comservice= new CommentServiceImpl();
-		int comId = Integer.parseInt(request.getParameter("comID"));
 		
 		HttpSession session = request.getSession();
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
-		if (isLogin) {
+	
 //			Service service = new ServiceImpl();
 			String id = (String) session.getAttribute("id");
 //			Member m = service.getMember(id);
@@ -52,18 +51,19 @@ public class CommentDeleteController extends HttpServlet {
 			QnaService qnaservice = new QnaServiceImpl();
 			Qna q = (Qna) session.getAttribute("q");
 			
-			int qnaId = q.getQnaID();
+			int comId = Integer.parseInt(request.getParameter("comID"));
+			int qnaId = Integer.parseInt(request.getParameter("qnaID"));
 			Comment com = comservice.getComment(comId, qnaId);
 			
-			// ÀÌ°Ô »ç¿ëÀÚ °ÍÀÌ ¸Â´ÂÁö È®ÀÎ
+			// ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			if (com.getComWriter().equals(id) == false)
 				return;
 			
-			// °Ô½Ã¹° »èÁ¦
+			// ï¿½Ô½Ã¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 			comservice.deleteCom(com);
 			
 //			response.setHeader("Refresh", "0; URL=" + request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
-		}
+		
 	}
 
 	/**

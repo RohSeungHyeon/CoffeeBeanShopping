@@ -48,16 +48,19 @@ public class CommentWriteController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
-		if (isLogin) {
+		
 //			Service service = new ServiceImpl();
 			String id = (String) session.getAttribute("id");
 			String comcontent = request.getParameter("comContent");
-			Qna q = (Qna) session.getAttribute("q");//요건 어디서 가져오는가?
+			Qna q = (Qna) session.getAttribute("q");
 //			Member m = service.getMember(id);
 						
 			QnaService qnaservice = new QnaServiceImpl();
 			
-			int qnaId = q.getQnaID();
+			//int qnaId = (int) request.getAttribute("qnaID");
+			String qnaId1 = request.getParameter("qnaID");
+			int qnaId = Integer.parseInt(qnaId1);
+		
 			Comment com = new Comment();
 			
 			com.setComContent(comcontent);
@@ -66,7 +69,7 @@ public class CommentWriteController extends HttpServlet {
 			
 			comservice.addCom(com);
 			response.setHeader("Refresh", "0; URL=" + request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
-		}
+		
  	}
 
 	/**
