@@ -54,6 +54,12 @@ public class proServiceImpl implements proService{
 	public ArrayList<Product> getProduct(String region) {
 		return dao.selectPro(region);
 	}
+	
+	
+	@Override
+	public ArrayList<Product> getProductByCountry(String country) {
+		return dao.selectPro_Country(country);
+	}
 	@Override
 	public ArrayList<Product> getRecoProduct() {
 		return dao.getRecoProduct();

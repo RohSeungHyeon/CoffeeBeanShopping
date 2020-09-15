@@ -19,5 +19,6 @@ public interface proService {
 	void delProduct(int id);
 	ArrayList<Product> getAllProduct();
 	ArrayList<Product> getProduct(String region);
+	ArrayList<Product> getProductByCountry(String country);
 	ArrayList<Product> getRecoProduct();
 }

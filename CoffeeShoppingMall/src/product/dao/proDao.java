@@ -20,5 +20,6 @@ public interface proDao {
 	
 	void addProduct(String name, int price, String img, String region, String country, String description);
 	void delProduct(int id);
+	ArrayList<Product> selectPro_Country(String country);
 	
 }

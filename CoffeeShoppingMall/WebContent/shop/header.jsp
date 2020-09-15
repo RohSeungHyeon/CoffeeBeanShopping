@@ -91,7 +91,7 @@
                with font-awesome or any other icon font library -->
 
 						<a
-							href="${pageContext.request.contextPath }/ViewProductController?query=all">
+							href="${pageContext.request.contextPath}/ViewProductController?query=all">
 							모든 상품 보기 </a>
 
 						<li class="nav-item has-treeview"><a href="#"
@@ -124,44 +124,54 @@
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=brazil"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>브라질</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=vietnam"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>베트남</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=columbia"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>콜롬비아</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=indonesia"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>인도네시아</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=honduras"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>온두라스</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=ethiopia"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>에티오피아</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=india"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>인도</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=uganda"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>우간다</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=peru"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>페루</p>
 								</a></li>
-								<li class="nav-item"><a href="#" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="${pageContext.request.contextPath }/ViewProductController?query=mexico"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>멕시코</p>
 								</a></li>
 							</ul></li>
