@@ -66,7 +66,7 @@
 						<c:otherwise>
 							<div class="info">
 								<span class="d-block mt-2" id="user_id">${userprofile.name} 님</span>
-								<a href="#" class="d-block mt-2">내 정보</a>
+								<a href="../member/checkpwd.jsp" class="d-block mt-2">내 정보</a>
 								<a href="#" class="d-block mt-2">장바구니</a>
 								<a href="#" class="d-block mt-2">주문내역</a>
 								<a href="${pageContext.request.contextPath}/logout.do" class="d-block mt-2">로그아웃</a> 

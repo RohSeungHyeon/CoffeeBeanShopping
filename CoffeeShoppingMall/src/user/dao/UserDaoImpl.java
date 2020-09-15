@@ -17,140 +17,201 @@ public class UserDaoImpl implements UserDao {
 	
 	// 사용자 정보 선택
 	@Override
-	public User select(String emailTxt) {
+	public User select(String email) {
 
-		conn = db.getConnection();
-		PreparedStatement pstmt_member = null;
-		PreparedStatement pstmt_buyerInfo = null;
-		PreparedStatement pstmt_oauth = null;
+		/*
+		 * conn = db.getConnection(); PreparedStatement pstmt_member = null;
+		 * PreparedStatement pstmt_buyerInfo = null; PreparedStatement pstmt_oauth =
+		 * null;
+		 * 
+		 * User user = null; Business business = null;
+		 * 
+		 * String memberId = null; String email = null; String password = null; String
+		 * userType = null; String name = null; String nickName = null; String phone =
+		 * null; String address = null;
+		 * 
+		 * String gender = null; Date birth = null;
+		 * 
+		 * String rank = null; String company_name = null; String company_addr = null;
+		 * String company_phone = null;
+		 * 
+		 * String oauth_rserver = null; String oauth_user_id = null;
+		 * 
+		 * 
+		 * try { String sql_memberInfo =
+		 * "SELECT id, email, password, usertype, name, nickname, phone, address, gender, birth FROM member WHERE email=?"
+		 * ; String sql_buyerInfo =
+		 * "SELECT rank, company_name, company_addr, company_phone FROM buyer_info WHERE id=?"
+		 * ; String sql_oauth =
+		 * "SELECT oauth_rserver, oauth_user_id FROM member_oauth WHERE id=?";
+		 * 
+		 * 
+		 * // 사용자 정보 pstmt_member = conn.prepareStatement(sql_memberInfo);
+		 * pstmt_member.setString(1, emailTxt);
+		 * 
+		 * ResultSet rs_member = pstmt_member.executeQuery();
+		 * 
+		 * while(rs_member.next()) { memberId = rs_member.getString("id"); email =
+		 * rs_member.getString("email"); password = rs_member.getString("password");
+		 * userType = rs_member.getString("usertype"); name =
+		 * rs_member.getString("name"); nickName = rs_member.getString("nickname");
+		 * phone = rs_member.getString("phone"); address =
+		 * rs_member.getString("address"); gender = rs_member.getString("gender"); birth
+		 * = rs_member.getDate("birth"); }
+		 * 
+		 * if(userType == "개인") { user = new Indivisual(); } else { user = new
+		 * Business();
+		 * 
+		 * pstmt_buyerInfo = conn.prepareStatement(sql_buyerInfo);
+		 * pstmt_buyerInfo.setString(1, memberId);
+		 * 
+		 * ResultSet rs_buyer = pstmt_buyerInfo.executeQuery();
+		 * 
+		 * while(rs_buyer.next()) { rank = rs_buyer.getString("rank"); company_name =
+		 * rs_buyer.getString("company_name"); company_addr =
+		 * rs_buyer.getString("company_addr"); company_phone =
+		 * rs_buyer.getString("company_phone");
+		 * 
+		 * } }
+		 * 
+		 * user.setEmail(email); user.setPassword(password); user.setUserName(name);
+		 * user.setUserNickName(nickName); user.setPhone(phone);
+		 * user.setAddress(address);
+		 * 
+		 * if(gender != null) user.setGender(gender.equals("M") ? Genders.M :
+		 * Genders.F);
+		 * 
+		 * if(birth != null) user.setBirth(birth);
+		 * 
+		 * if(user instanceof Business) { business = (Business)user;
+		 * 
+		 * business.setRank(rank); business.setCompanyName(company_name);
+		 * business.setCompanyAddress(company_addr); business.setPhone(company_phone); }
+		 * 
+		 * 
+		 * // OAuth를 이용한 서비스 이용 시 가지고 올 정보 pstmt_oauth =
+		 * conn.prepareStatement(sql_oauth); pstmt_oauth.setString(1, memberId);
+		 * 
+		 * ResultSet rs_oauth = pstmt_oauth.executeQuery();
+		 * 
+		 * while(rs_oauth.next()) { oauth_rserver = rs_oauth.getString("oauth_rserver");
+		 * oauth_user_id = rs_oauth.getString("oauth_user_id"); }
+		 * 
+		 * if(oauth_rserver.equals("없음") && oauth_user_id.equals("없음")) {
+		 * user.setOauth_rserver(oauth_rserver); user.setOauth_user_id(oauth_user_id); }
+		 * 
+		 * 
+		 * } catch (SQLException e) { e.printStackTrace();
+		 * 
+		 * } catch (Exception e) { e.printStackTrace(); } finally { try {
+		 * pstmt_member.close(); pstmt_buyerInfo.close(); pstmt_oauth.close();
+		 * 
+		 * } catch (SQLException e2) { e2.printStackTrace(); } }
+		 * 
+		 * return user;
+		 */
 		
+		/* JOIN을 이용한 쿼리 재작성 */
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
 		User user = null;
-		Business business = null;
 		
-		String memberId = null;
-		String email = null;
-		String password = null;
-		String userType = null;
-		String name = null;
-		String nickName = null;
-		String phone = null;
-		String address = null;
-		
-		String gender = null;
-		Date birth = null;
-		
-		String rank = null;
-		String company_name = null;
-		String company_addr = null;
-		String company_phone = null;
-		
-		String oauth_rserver = null;
-		String oauth_user_id = null;
-
-
 		try {
-			String sql_memberInfo = "SELECT id, email, password, usertype, name, nickname, phone, address, gender, birth FROM member WHERE email=?";
-			String sql_buyerInfo = "SELECT rank, company_name, company_addr, company_phone FROM buyer_info WHERE id=?";
-			String sql_oauth = "SELECT oauth_rserver, oauth_user_id FROM member_oauth WHERE id=?";
+			String sql = "select A.id, A.email, A.password, A.usertype, A.name, A.nickname, A.phone, A.address, A.gender, A.birth, A.joindate, A.oauth_rserver, A.oauth_user_id, buyer_info.rank, buyer_info.company_name, buyer_info.company_addr, buyer_info.company_phone " + 
+					"from (select member.id, member.email, member.password, member.usertype, member.name, member.nickname, member.phone, member.address, member.gender, member.birth, member.joindate, member_oauth.oauth_rserver, member_oauth.oauth_user_id " + 
+					"from member, member_oauth where member.id = member_oauth.member_id) A left outer join buyer_info ON A.id = buyer_info.id where email=? order by A.id desc";
 			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
 			
-			// 사용자 정보
-			pstmt_member = conn.prepareStatement(sql_memberInfo);
-			pstmt_member.setString(1, emailTxt);
+			ResultSet resultSet = pstmt.executeQuery();
 			
-			ResultSet rs_member = pstmt_member.executeQuery();
-			
-			while(rs_member.next()) {
-				memberId = rs_member.getString("id");
-				email = rs_member.getString("email");
-				password = rs_member.getString("password");
-				userType = rs_member.getString("usertype");
-				name = rs_member.getString("name");
-				nickName = rs_member.getString("nickname");
-				phone = rs_member.getString("phone");
-				address = rs_member.getString("address");
-				gender = rs_member.getString("gender");
-				birth = rs_member.getDate("birth");
-			}
-			
-			if(userType == "개인") {
-				user = new Indivisual();
-			} else {
-				user = new Business();
+			while(resultSet.next()) {
+				if(resultSet.getString("usertype").equals("개인"))
+					user = new Indivisual();
+				else 
+					user = new Business();
 				
-				pstmt_buyerInfo = conn.prepareStatement(sql_buyerInfo);
-				pstmt_buyerInfo.setString(1, memberId);
+				user.setEmail(resultSet.getString("email"));
+				user.setPassword(resultSet.getString("password"));
+				user.setUserName(resultSet.getString("name"));
+				user.setUserNickName(resultSet.getString("nickname"));
+				user.setAddress(resultSet.getString("address"));
+				user.setPhone(resultSet.getString("phone"));
+				user.setGender((resultSet.getString("gender") == null) ? Genders.N : 
+						(resultSet.getString("gender").equals("M") ? Genders.M : Genders.F));
+				user.setBirth(resultSet.getDate("birth"));
+				user.setOauth_rserver(resultSet.getString("oauth_rserver"));
+				user.setOauth_user_id(resultSet.getString("oauth_user_id"));
 				
-				ResultSet rs_buyer = pstmt_buyerInfo.executeQuery();
-				
-				while(rs_buyer.next()) {
-					rank = rs_buyer.getString("rank");
-					company_name = rs_buyer.getString("company_name");
-					company_addr = rs_buyer.getString("company_addr");
-					company_phone = rs_buyer.getString("company_phone");
-	
+				if(user instanceof Business) {
+					Business business = (Business)user;
+					business.setCompanyName(resultSet.getString("company_name"));
+					business.setCompanyAddress(resultSet.getString("company_addr"));
+					business.setCompanyPhone(resultSet.getString("company_phone"));
+					business.setRank(resultSet.getString("rank"));
 				}
-			} 
-			
-			user.setEmail(email);
-			user.setPassword(password);
-			user.setUserName(name);
-			user.setUserNickName(nickName);
-			user.setPhone(phone);
-			user.setAddress(address);
-			
-			if(gender != null)
-				user.setGender(gender.equals("M") ? Genders.M : Genders.F);
-			
-			if(birth != null)
-				user.setBirth(birth);
-			
-			if(user instanceof Business) {
-				business = (Business)user;
 				
-				business.setRank(rank);
-				business.setCompanyName(company_name);
-				business.setCompanyAddress(company_addr);
-				business.setPhone(company_phone);
 			}
 			
-			
-			// OAuth를 이용한 서비스 이용 시 가지고 올 정보
-			pstmt_oauth = conn.prepareStatement(sql_oauth);
-			pstmt_oauth.setString(1, memberId);
-			
-			ResultSet rs_oauth = pstmt_oauth.executeQuery();
-			
-			while(rs_oauth.next()) {
-				oauth_rserver = rs_oauth.getString("oauth_rserver");
-				oauth_user_id = rs_oauth.getString("oauth_user_id");
-			}
-			
-			if(oauth_rserver.equals("없음") && oauth_user_id.equals("없음")) {
-				user.setOauth_rserver(oauth_rserver);
-				user.setOauth_user_id(oauth_user_id);
-			}
-			
-			
-		} catch (SQLException e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-
-		} catch (Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				pstmt_member.close();
-				pstmt_buyerInfo.close();
-				pstmt_oauth.close();
-
-			} catch (SQLException e2) {
-				e2.printStackTrace();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 		}
-
+		
 		return user;
 	}
 	
+	// 사업자 유형의 사용자의 사업지 정보 선택
+	@Override
+	public User selectBuyerInfo(String email) {
+		conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		User user = null;
+		
+		try {
+			String sql = "SELECT company_name, company_addr, company_phone, rank FROM "
+					+ "buyer_info NATURAL JOIN member "
+					+ "WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			ResultSet rSet = pstmt.executeQuery();
+			
+			while(rSet.next()) {
+				String company_name = rSet.getString("company_name");
+				String company_addr = rSet.getString("company_addr");
+				String company_phone = rSet.getString("company_phone");
+				String rank = rSet.getString("rank");
+				
+				user = new Business(company_name, company_addr, company_phone, rank);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return user;
+	}
+		
 	// 사용자 Email 선택
 	@Override
 	public String selectEmail(String emailTxt) {

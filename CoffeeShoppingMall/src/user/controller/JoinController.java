@@ -93,6 +93,9 @@ public class JoinController extends HttpServlet {
 			oauth_user_id = "없음";
 		}
 
+		// 요청 문자열 속 데이터 추출
+		
+		// 필수 사항 정보 => 이메일 / 패스워드 / 사용자명 / 사용자 유형 / 별명
 		email = request.getParameter("essential.emailId") + "@" + request.getParameter("essential.emailDomain");
 		password = request.getParameter("essential.pwd");
 		userName = request.getParameter("essential.name");
@@ -103,8 +106,11 @@ public class JoinController extends HttpServlet {
 		phone_front = request.getParameter("essential.phone_front");
 		phone_back = request.getParameter("essential.phone_back");
 		phone = phone_head + "-" + phone_front + "-" + phone_back;
+		
 		address = request.getParameter("essential.address");
 		
+		
+		// 선택 사항 정보 => 성별 / 생년월일
 		gender = request.getParameter("optional.gender").equals("N") ? null : 
 			(request.getParameter("optional.gender").equals("M") ? Genders.M : Genders.F);		
 	
@@ -112,8 +118,11 @@ public class JoinController extends HttpServlet {
 		birthMM = request.getParameter("optional.birth_mm");
 		birthDD = request.getParameter("optional.birth_dd");
 		
-		if(!(birthYYYY.equals("") && birthMM.equals("") && birthDD.equals(""))) 
+		if(!(birthYYYY.equals("") || birthMM.equals("") || birthDD.equals(""))) 
 			birth = Date.valueOf(birthYYYY+"-"+birthMM+"-"+birthDD);
+		
+		
+		// 선택 사항 정보 => 사업자 추가 정보 
 		
 		if(userType.equals("사업자")) {
 			companyName = request.getParameter("optional.buyer.name");
@@ -132,6 +141,8 @@ public class JoinController extends HttpServlet {
 			user = new Indivisual();
 		}
 	
+		// VO 객체에 값 설정
+		
 		user.setOauth_rserver(oauth_rserver);
 		user.setOauth_user_id(oauth_user_id);
 		
@@ -146,16 +157,13 @@ public class JoinController extends HttpServlet {
 		if(birth != null) user.setBirth(birth);
 		
 		if(business != null) {
-			business.setCompanyName("이름");
-			business.setCompanyAddress("주소");
-			business.setRank("랭크");
+			business.setCompanyName(companyName);
+			business.setCompanyAddress(companyAddress);
+			business.setCompanyPhone(companyPhone);
+			business.setRank(rank);
 		}
 		
 		if(service.createUser(user) == 1) {
-			/*
-			 * out.println("<html><body>성공</body></html>"); if(session != null)
-			 * session.invalidate();
-			 */
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('등록되었습니다');");

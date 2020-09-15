@@ -16,7 +16,7 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
 <link rel="stylesheet"
-	href="../resources/plugins/sweetalert2/sweetalert2.min.css">
+	href=".z./resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
 <link rel="stylesheet" href="../resources/plugins/toastr/toastr.min.css">
 <!-- Theme style -->

@@ -1,3 +1,10 @@
+/*
+	작성자 : 주정택
+	이메일 : j3470@hotmail.com
+	설명 : 로그인 페이지 페이지 관련 함수들
+*/
+
+// 로그인 창의 id/pwd 입력 확인 함
 function checkIdAndPwd() {
 			const emailTxt = document.getElementById("email");
 			const pwdTxt = document.getElementById("pwd");

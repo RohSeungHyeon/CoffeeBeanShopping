@@ -1,6 +1,5 @@
 package user.model.enums;
 
-
 public enum Genders {
 	
 	F("F"), M("M"), N("");
@@ -15,8 +14,16 @@ public enum Genders {
 		for(Genders gender : Genders.values()) {
 			if(gender.equals(genders))
 				return gender;
+			
 		}
 		
 		throw new RuntimeException();
 	}
+
+	@Override
+	public String toString() {
+		return this.genders;
+	}
+	
+	
 }

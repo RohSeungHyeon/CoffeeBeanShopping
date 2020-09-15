@@ -26,6 +26,12 @@ public class ServiceImpl implements Service{
 		return dao.select(email);
 	}
 	
+	// 사업자 유형의 사용자 추가 정보 획득
+	@Override
+	public Business getBuyerInfo(String email) {
+		return (Business)dao.selectBuyerInfo(email);
+	}
+	
 	// 사용자 정보 수정
 	@Override
 	public boolean modifyUserInfo(User user) {

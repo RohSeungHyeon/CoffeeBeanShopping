@@ -12,6 +12,9 @@ public interface Service {
 	// 사용자 정보 획득
 	public User getUserInfo(String email);
 	
+	// 사업자 유형의 사용자 추가 정보 획득
+	public Business getBuyerInfo(String email);
+	
 	// 사용자 정보 수정
 	public boolean modifyUserInfo(User user);
 	
