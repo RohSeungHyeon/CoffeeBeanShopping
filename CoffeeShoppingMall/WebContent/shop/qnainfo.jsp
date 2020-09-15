@@ -113,6 +113,7 @@ function del(qnaID){
 							<div>
 								<textarea name="comContent" rows="4" cols="40" class="form-control" maxlength="50">${comlist.comContent }</textarea>
 								<input type = "hidden" name="comID" value="${comlist.comID }">
+								<input type = "hidden" name="qnaID" value="${q.qnaID}"/>
 								<input type = "button" value="수정" onclick="modify(this);" class="btn btn-info pull-right">
 								<input type = "button" value="삭제" onclick="remove(this);" class="btn btn-success pull-right">
 							</div>
@@ -176,15 +177,22 @@ function del(qnaID){
 			btn = btn.parentNode;
 			let url = "${pageContext.request.contextPath}/CommentDeleteController";
 			let hidden = btn.querySelectorAll('input[type="hidden"]');
+			var data = "";
 			console.log(url);
 			for(let i = 0; i<hidden.length; ++i){
-				url = url+'?'+hidden[i].name + '=' +hidden[i].value;
+				if(i == hidden.length - 1){
+					data += hidden[i].name + "=" + hidden[i].value;
+				} else {
+					data += hidden[i].name + "=" + hidden[i].value + "&";
+				}
 			}
-			console.log(url)
+			data = data.trim();
+			console.log(data)
 		
 			$.ajax({
-				url: url,
-				type:'POST',
+				"url": url,
+				"data": data,
+				"type":"POST",
 			});
 			
 			window.location.reload();

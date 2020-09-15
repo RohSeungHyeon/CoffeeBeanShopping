@@ -21,55 +21,59 @@ import qna.service.QnaServiceImpl;
 @WebServlet("/CommentDeleteController")
 public class CommentDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CommentDeleteController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommentDeleteController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
-		
-		CommentService comservice= new CommentServiceImpl();
-		
+
+		CommentService comservice = new CommentServiceImpl();
+
 		HttpSession session = request.getSession();
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
-	
+
 //			Service service = new ServiceImpl();
-			String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 //			Member m = service.getMember(id);
-			
-			QnaService qnaservice = new QnaServiceImpl();
-			Qna q = (Qna) session.getAttribute("q");
-			
-			int comId = Integer.parseInt(request.getParameter("comID"));
-			int qnaId = Integer.parseInt(request.getParameter("qnaID"));
-			Comment com = comservice.getComment(comId, qnaId);
-			
-			// �̰� ����� ���� �´��� Ȯ��
-			if (com.getComWriter().equals(id) == false)
-				return;
-			
-			// �Խù� ����
-			comservice.deleteCom(com);
-			
+
+		QnaService qnaservice = new QnaServiceImpl();
+		Qna q = (Qna) session.getAttribute("q");
+
+		int comId = Integer.parseInt(request.getParameter("comID"));
+		int qnaId = Integer.parseInt(request.getParameter("qnaID"));
+		Comment com = comservice.getComment(comId, qnaId);
+
+		// �̰� ����� ���� �´��� Ȯ��
+		if (com.getComWriter().equals(id) == false)
+			return;
+
+		// �Խù� ����
+		comservice.deleteCom(com);
+
 //			response.setHeader("Refresh", "0; URL=" + request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
