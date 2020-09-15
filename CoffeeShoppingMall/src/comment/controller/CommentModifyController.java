@@ -64,8 +64,6 @@ public class CommentModifyController extends HttpServlet {
 			if (com.getComWriter().equals(id) == false)
 				return;
 			
-			System.out.println("comId: " + comId);
-			
 			// �Խù� ����
 			comservice.updateCom(com);
 //			response.sendRedirect(request.getContextPath() + "/QnareadController?qnaID=" + qnaId);

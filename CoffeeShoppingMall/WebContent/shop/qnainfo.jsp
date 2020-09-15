@@ -152,25 +152,26 @@ function del(qnaID){
 			let hidden   = btn.querySelectorAll('input[type="hidden"]');
 			
 			// ?comContent=날짜가+바뀔까123&comID=21
-			url = url + '?' + textarea.name + '=' + textarea.value;
+			//url = url + '?' + textarea.name + '=' + textarea.value;
+			var data = "";
+			data += textarea.name+"="+textarea.value+"&";
 			console.log(url);
-			for (let i=0; i<hidden.length; ++i) {
-				url = url + '&' + hidden[i].name + '=' + hidden[i].value;
+			for(let i = 0; i<hidden.length; ++i){
+				if(i == hidden.length - 1){
+					data += hidden[i].name + "=" + hidden[i].value;
+				} else {
+					data += hidden[i].name + "=" + hidden[i].value + "&";
+				}
 			}
-			console.log(url);
+			data = data.trim();
+			console.log(data);
 			// url 로 query 는 comContent 랑 hidden[i].name 으로 전달
 			$.ajax({
 				url: url,
 				type:'POST',
-				/* data: '',
-				success: function(s) {
-					console.log("suc: ", s);
-				},
-				error: function(xhr, status, error) {
-		            alert(error);
-		        } */
+				data:data,
 			});
-			// 새로고침
+			
 			window.location.reload();
 		}
 		function remove(btn) {
