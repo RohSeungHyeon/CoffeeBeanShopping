@@ -1,5 +1,7 @@
 package user.service;
  
+import java.util.List;
+
 import user.dao.*;
 import user.model.*;
 
@@ -46,7 +48,7 @@ public class ServiceImpl implements Service{
 	public String getUserEmail(String email) {
 		String result = null;
 		
-		dao.selectEmail(email);
+		result = dao.selectEmail(email);
 		
 		return result;
 	}
@@ -92,4 +94,10 @@ public class ServiceImpl implements Service{
 		}
 		
 	}
+
+	@Override
+	public List<User> getAllUser() {
+		return dao.getAll();
+	}
+	
 }

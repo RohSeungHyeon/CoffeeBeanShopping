@@ -1,6 +1,8 @@
 package user.service;
 
-import user.model.*;
+import java.util.List;
+
+import user.model.User;
 
 public interface Service {
 	// 사용자 생성
@@ -29,4 +31,7 @@ public interface Service {
 	
 	// 사용자 가입 일자 확인
 	public String getUserJoinDate(String email);
+	
+	// 사용자 목록 불러오기
+	public List<User> getAllUser();
 }

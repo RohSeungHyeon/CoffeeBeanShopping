@@ -51,7 +51,7 @@
 								<li class="nav-item"><a class="nav-link"
 									id="custom-tabs-one-member-tab" data-toggle="pill"
 									href="#custom-tabs-one-member" role="tab"
-									aria-controls="custom-tabs-one-member" aria-selected="false">회원관리</a>
+									aria-controls="custom-tabs-one-member" aria-selected="false">회원조회</a>
 								</li>
 								<li class="nav-item"><a class="nav-link"
 									id="custom-tabs-one-order-tab" data-toggle="pill"
@@ -139,6 +139,10 @@
 		
 	</script>
 	<script src="${pageContext.request.contextPath}/scripts/qnaControl.js">
+		
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/scripts/memberControl.js">
 		
 	</script>
 </body>

@@ -1,5 +1,7 @@
 package user.dao;
 
+import java.util.List;
+
 import user.model.*;
 
 public interface UserDao {
@@ -26,5 +28,8 @@ public interface UserDao {
 	
 	// 사용자 유형 선택
 	public String selectUserType(String email);
+
+	// 사용자 목록 불러오기
+	public List<User> getAll();
 
 }

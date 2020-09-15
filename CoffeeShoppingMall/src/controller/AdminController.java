@@ -17,6 +17,8 @@ import product.service.proService;
 import product.service.proServiceImpl;
 import qna.service.QnaService;
 import qna.service.QnaServiceImpl;
+import user.service.Service;
+import user.service.ServiceImpl;
 
 @WebServlet("/goAdmin")
 public class AdminController extends HttpServlet {
@@ -28,12 +30,14 @@ public class AdminController extends HttpServlet {
 		OrderService oService = new OrderServiceImpl();
 		NoticeService notservice = new NoticeServiceImpl();
 		QnaService qnaService = new QnaServiceImpl();
+		Service userService = new ServiceImpl();
 	
 		request.setAttribute("products", service.getAllProduct());
 		request.setAttribute("orderMap", oService.getOrderMap());
 		request.setAttribute("orderStatus", oService.getOrderStatus());
 		request.setAttribute("notices", notservice.getAll());
 		request.setAttribute("qnas", qnaService.getAll());
+		request.setAttribute("users", userService.getAllUser());
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/adminMain.jsp");
 		if (dispatcher != null) {

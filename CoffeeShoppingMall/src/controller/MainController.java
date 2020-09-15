@@ -18,9 +18,6 @@ import product.service.proServiceImpl;
 import qna.service.QnaService;
 import qna.service.QnaServiceImpl;
 
-/**
- * Servlet implementation class MainController
- */
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
 
@@ -30,6 +27,7 @@ public class MainController extends HttpServlet {
 		proService service = new proServiceImpl();
 		NoticeService notService = new NoticeServiceImpl();
 		QnaService qnaService = new QnaServiceImpl();
+		user.service.Service userService = new user.service.ServiceImpl();
 
 		ArrayList<Product> products = service.getRecoProduct();
 
