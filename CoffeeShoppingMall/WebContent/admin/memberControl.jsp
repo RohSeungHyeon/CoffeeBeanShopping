@@ -31,11 +31,15 @@
 					<td>${user.getPhone()}</td>
 					<c:choose>
 						<c:when
-							test='${user.getClass().getName().equals("user.model.Business")}'>
+							test='${user.userType.equals("사업자")}'>
 							<td>사업자</td>
 						</c:when>
-						<c:otherwise>
+						<c:when
+							test='${user.userType.equals("개인")}'>
 							<td>개인</td>
+						</c:when>
+						<c:otherwise>
+							<td>관리자</td>
 						</c:otherwise>
 					</c:choose>
 				</tr>

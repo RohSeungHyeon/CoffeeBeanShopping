@@ -1,4 +1,4 @@
-<%@ page import = "java.net.URLEncoder" %>
+ 	<%@ page import = "java.net.URLEncoder" %>
 <%@ page import = "java.security.SecureRandom" %>
 <%@ page import = "java.math.BigInteger" %>
 
@@ -96,13 +96,13 @@
 					</div>
 					<!-- /.col -->
 					<div class="col-4">
-						<button type="button" class="btn btn-primary btn-block" onclick="checkIdAndPwd()">로그인</button>
+						<button type="button" id="btn_login" class="btn btn-primary btn-block" onclick="checkIdAndPwd()">로그인</button>
 					</div>
 					<!-- /.col -->
 				</div>
 				
-				<div class="row">
-					<span class="" id="checkresult"></span>
+				<div class="row" style="display:block; text-align:center;">
+					<span id="checkresult"></span>
 				</div>
 
 				<div class="social-auth-links text-center mb-3">

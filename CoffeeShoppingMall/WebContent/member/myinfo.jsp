@@ -81,16 +81,22 @@
 									<tr>
 										<th class="header">사용자 유형</th>
 										<td class="content">
-										<c:if test="${userprofile.userType.equals('개인')}" var="typeResult">
+										<c:choose>
+											<c:when test="${userprofile.userType.equals('개인')}">
 											개인 <input type="radio" name="essential.userType" id="essential.userType" value="개인" checked disabled /> 
 											사업자 <input type="radio" name="essential.userType" id="essential.userType" value="사업자" disabled />
-										</c:if>
-										
-										<c:if test="${typeResult == false }">
+											</c:when>
+											
+											<c:when test="${userprofile.userType.equals('사업자')}">
 											개인 <input type="radio" name="essential.userType" id="essential.userType" value="개인"  disabled /> 
 											사업자 <input type="radio" name="essential.userType" id="essential.userType" value="사업자" checked disabled />
-										</c:if>
-										
+											</c:when>
+											
+											<c:otherwise>
+											<div id="type_admin" style="color: red;">관리자입니다</div>
+											</c:otherwise>
+											
+										</c:choose>										
 										</td>
 									</tr>
 									<tr>

@@ -592,6 +592,7 @@ public class UserDaoImpl implements UserDao {
 				user.setAddress(rs.getString("address"));
 				user.setOauth_rserver(rs.getString("oauth_rserver"));
 				user.setOauth_user_id(rs.getString("oauth_user_id"));
+				user.setUserType(rs.getString("usertype"));
 
 				if (rs.getString("gender") != null)
 					user.setGender(rs.getString("gender").equals("M") ? Genders.M : Genders.F);
