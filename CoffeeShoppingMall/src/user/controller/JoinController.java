@@ -175,7 +175,7 @@ public class JoinController extends HttpServlet {
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('등록되었습니다');");
-			out.print("location.href='shop/main.jsp';");
+			out.print("location.href='MainController';");
 			out.print("</script>");
 		}
 		else {

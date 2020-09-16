@@ -70,14 +70,15 @@
 						<c:otherwise>
 							<div class="info">
 								<span class="d-block mt-2" id="user_id">${userprofile.name}
-									님</span> <a href="#" class="d-block mt-2">내 정보</a> <a
+									님</span> <a href="${pageContext.request.contextPath}/member/myinfo.jsp" class="d-block mt-2">내 정보</a> <a
 									href="${pageContext.request.contextPath}/ViewCartController"
 									class="d-block mt-2">장바구니</a> <a href="#" class="d-block mt-2">주문내역</a>
 								<a href="${pageContext.request.contextPath}/logout.do"
-									class="d-block mt-2">로그아웃</a> <a
-									href="${pageContext.request.contextPath}/goAdmin"
+									class="d-block mt-2">로그아웃</a>
+								<c:if test="${userprofile.userType.equals('관리자')}"> 
+									<a href="${pageContext.request.contextPath}/goAdmin"
 									class="d-block mt-2">관리자페이지</a>
-
+								</c:if>
 							</div>
 						</c:otherwise>
 					</c:choose>

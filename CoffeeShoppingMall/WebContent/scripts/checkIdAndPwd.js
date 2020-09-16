@@ -26,7 +26,7 @@ function checkIdAndPwd() {
 					const jsonObj = JSON.parse(xhr.responseText);
 					
 					if(jsonObj.result) {
-						location.href = "../shop/main.jsp";
+						location.href = "../MainController";
 					} else {
 						element.innerHTML = "아이디나 패스워드가 일치하지 않습니다";
 					}

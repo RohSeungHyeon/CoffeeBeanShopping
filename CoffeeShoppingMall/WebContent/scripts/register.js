@@ -8,7 +8,7 @@ function cancelRegister() {
 	var callback = function() {
 		var resObj = JSON.parse(xhr.responseText);
 		if(resObj.result == true)
-		location.href = "main.jsp";
+		location.href = "../MainController";
 		else {
 			alert("문제 발생");
 		}

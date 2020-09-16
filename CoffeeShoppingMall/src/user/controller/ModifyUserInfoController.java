@@ -100,7 +100,7 @@ public class ModifyUserInfoController extends HttpServlet {
 			
 			out.print("<html>");
 			out.print("<head>");
-			out.print("<script type='text/javascript'>alert('수정되었습니다'); location.href='shop/main.jsp';</script>");
+			out.print("<script type='text/javascript'>alert('수정되었습니다'); location.href='../MainController';</script>");
 			out.print("</head><body></body></html>");
 		} else {
 			out.print("실패");
