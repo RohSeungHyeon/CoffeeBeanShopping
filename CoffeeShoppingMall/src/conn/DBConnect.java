@@ -1,15 +1,14 @@
 package conn;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class DBConnect {
 	private static DBConnect db = new DBConnect();
 	private Connection conn = null;
-	String dri = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "c##ora_user_2";
-	String pw = "88888888";
+	
+	private String jdbc_driver = "oracle.jdbc.driver.OracleDriver";
+	private String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe";
+
 	private DBConnect() {
 	}
 	public static DBConnect getInstance() {
@@ -18,8 +17,8 @@ public class DBConnect {
 	
 	public Connection getConnection() {
 		try {
-			Class.forName(dri);
-			conn = DriverManager.getConnection(url,id,pw);
+			Class.forName(jdbc_driver);
+			conn = DriverManager.getConnection(jdbc_url,"c##webproject","wjdxor04");
 		}catch(Exception e) {
 			
 		}

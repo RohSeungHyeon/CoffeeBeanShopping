@@ -30,13 +30,13 @@ public class LogoutController extends HttpServlet {
 			response.setContentType("text/html;charset=UTF-8");
 			out.print("<html><head>");
 			out.print("<script type='text/javascript'>alert('잘못된 접근입니다');location.href='"
-					+getServletContext().getContextPath()+"/MainController';");
+					+getServletContext().getContextPath()+"/shop/main.jsp';");
 			out.print("</script></head><body></body></html>");
 		} else {
 			session.invalidate();
 			out.print("<html><head>");
 			out.print("<script type='text/javascript'>location.href='"
-					+getServletContext().getContextPath()+"/MainController';");
+					+getServletContext().getContextPath()+"/shop/main.jsp';");
 			out.print("</script></head><body></body></html>");
 		}
 	}
