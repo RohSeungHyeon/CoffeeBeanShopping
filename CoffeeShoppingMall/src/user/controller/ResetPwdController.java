@@ -39,7 +39,7 @@ public class ResetPwdController extends HttpServlet {
 			StringBuffer pwd_temp = new StringBuffer();
 			Random rnd = new Random();
 			
-			for(int i = 0; i < 11; i++) {
+			for(int i = 0; i < 10; i++) {
 				if(i % 3 == 0) {
 					pwd_temp.append(String.valueOf((char) ((int) (rnd.nextInt(26)) + 97)));
 				} else if(i % 3 == 1) {
