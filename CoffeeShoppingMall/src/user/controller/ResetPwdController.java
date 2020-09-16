@@ -40,13 +40,11 @@ public class ResetPwdController extends HttpServlet {
 			Random rnd = new Random();
 			
 			for(int i = 0; i < 10; i++) {
-				if(i % 3 == 0) {
+				if(i % 2 == 0) {
 					pwd_temp.append(String.valueOf((char) ((int) (rnd.nextInt(26)) + 97)));
-				} else if(i % 3 == 1) {
-					pwd_temp.append(String.valueOf((char) ((int) (rnd.nextInt(26)) + 65)));
 				} else {
-					pwd_temp.append(String.valueOf((char) ((int) (rnd.nextInt(4) + 35))));
-				}
+					pwd_temp.append(String.valueOf((char) ((int) (rnd.nextInt(26)) + 65)));
+				} 
 			}
 			
 			service.setUserPwd(email, pwd_temp.toString());
