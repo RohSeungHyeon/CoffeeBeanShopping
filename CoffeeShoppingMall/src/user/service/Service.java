@@ -35,6 +35,9 @@ public interface Service {
 	// 사용자 패스워드 조회
 	public String getUserPwd(String email);
 	
+	// 사용자 패스워드 변경
+	public boolean setUserPwd(String email, String password);
+	
 	// 사용자 유형 확인
 	public String getUserType(String email);
 	
