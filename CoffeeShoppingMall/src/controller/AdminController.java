@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import notice.service.NoticeService;
 import notice.service.NoticeServiceImpl;
 import orderlist.service.OrderService;
@@ -26,22 +28,29 @@ public class AdminController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		proService service = new proServiceImpl();
-		OrderService oService = new OrderServiceImpl();
-		NoticeService notservice = new NoticeServiceImpl();
-		QnaService qnaService = new QnaServiceImpl();
-		Service userService = new ServiceImpl();
-	
-		request.setAttribute("products", service.getAllProduct());
-		request.setAttribute("orderMap", oService.getOrderMap());
-		request.setAttribute("orderStatus", oService.getOrderStatus());
-		request.setAttribute("notices", notservice.getAll());
-		request.setAttribute("qnas", qnaService.getAll());
-		request.setAttribute("users", userService.getAllUser());
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/adminMain.jsp");
-		if (dispatcher != null) {
-			dispatcher.forward(request, response);
+		String userType = (String) ((JSONObject) request.getSession().getAttribute("userprofile")).get("userType");
+		if (userType.equals("관리자")) {
+			proService service = new proServiceImpl();
+			OrderService oService = new OrderServiceImpl();
+			NoticeService notservice = new NoticeServiceImpl();
+			QnaService qnaService = new QnaServiceImpl();
+			Service userService = new ServiceImpl();
+
+			request.setAttribute("products", service.getAllProduct());
+			request.setAttribute("orderMap", oService.getOrderMap());
+			request.setAttribute("orderStatus", oService.getOrderStatus());
+			request.setAttribute("notices", notservice.getAll());
+			request.setAttribute("qnas", qnaService.getAll());
+			request.setAttribute("users", userService.getAllUser());
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/adminMain.jsp");
+			if (dispatcher != null) {
+				dispatcher.forward(request, response);
+			}
+		} else {
+			response.sendRedirect(request.getContextPath() + "/MainController");
 		}
+
 	}
 }
