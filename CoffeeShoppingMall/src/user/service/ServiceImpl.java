@@ -111,6 +111,16 @@ public class ServiceImpl implements Service{
 		return pwd;
 	}
 	
+	@Override
+	// 사용자 패스워드 변경
+	public boolean setUserPwd(String email, String password) {
+		if(dao.updateUserPwd(email, password) == 1 )
+			return true;
+		else 
+			return false;
+	}
+	
+	
 	// 사용자 유형 확인
 	@Override
 	public String getUserType(String email) {

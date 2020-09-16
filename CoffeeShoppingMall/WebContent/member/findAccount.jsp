@@ -65,11 +65,11 @@
 				<hr>
 				<h4>패스워드 분실</h4><br>
 				<p>가입 시 등록하신 이메일, 성함, 연락처를 입력하시면 임시 비밀번호를 발급해드립니다</p>
-				<form action="#" method="POST" onsubmit="return checkPwd()">
+				<form action="#" method="POST" onsubmit="return checkResetPwd()">
 				<table>
 				<tr>
 				<th>이메일</th>
-				<td><input type="text" placeholder="이메일을 입력해주세요" /></td>
+				<td><input type="text" id="email" placeholder="이메일을 입력해주세요" /></td>
 				</tr>
 				<tr>
 				<th>이름</th> 

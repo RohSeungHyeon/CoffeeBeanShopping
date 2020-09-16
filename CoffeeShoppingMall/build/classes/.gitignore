@@ -1,12 +1,3 @@
-/orderlist/
-/product/
+/smtp/
 /user/
-/comment/
-/conn/
-/controller/
-/member/
-/model/
-/notice/
-/qna/
-/conn/
-
+/mail/

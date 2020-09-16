@@ -15,4 +15,3 @@ function checkPwd() {
 		return true;
 	}
 }
-
