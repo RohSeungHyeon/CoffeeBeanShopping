@@ -1,6 +1,6 @@
 package user.service;
  
-import java.util.List;
+import java.util.*;
 
 import user.dao.*;
 import user.model.*;
@@ -28,10 +28,43 @@ public class ServiceImpl implements Service{
 		return dao.select(email);
 	}
 	
+	// 사업자 유형의 사용자 추가 정보 획득
+	@Override
+	public Business getBuyerInfo(String email) {
+		return (Business)dao.selectBuyerInfo(email);
+	}
+	
 	// 사용자 정보 수정
 	@Override
-	public boolean modifyUserInfo(User user) {
-		return false;
+	public boolean modifyUserInfo(User user, String userType) {
+		UserDao dao = new UserDaoImpl();
+		
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		
+		if(!user.getPassword().equals(""))
+			result1 = dao.updateUserPwd(user.getEmail(), user.getPassword());
+		else 
+			result1 = 1;
+		
+		
+		result2 = dao.updateUserInfo(user.getEmail(), user.getUserNickName(), user.getAddress(),
+				user.getPhone(), user.getGender(), user.getBirth());
+		
+		if(userType.equals("사업자")) {
+			Business buyer = (Business)user;
+			
+			result3 = dao.updateBuyerInfo(buyer.getEmail(), buyer.getCompanyName(), 
+					buyer.getCompanyAddress(), buyer.getCompanyPhone(), buyer.getRank());
+		} else
+			result3 = 1;
+			
+		if(result1 + result2 + result3 == 3)
+			return true;
+		else {
+			return false;
+		}
 	}
 	
 	// 사용자 등록 여부 조회
@@ -48,9 +81,24 @@ public class ServiceImpl implements Service{
 	public String getUserEmail(String email) {
 		String result = null;
 		
-		result = dao.selectEmail(email);
+		dao.selectEmail(email);
 		
 		return result;
+	}
+	
+	//사용자 이메일 조회
+	@Override
+	public String findUserAccount(String userName, String phone) {
+		String email = null;
+		
+		email = dao.selectEmail(userName, phone);
+		
+		return email;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		return dao.getAll();
 	}
 	
 	// 사용자 패스워드 조회
@@ -94,10 +142,4 @@ public class ServiceImpl implements Service{
 		}
 		
 	}
-
-	@Override
-	public List<User> getAllUser() {
-		return dao.getAll();
-	}
-	
 }

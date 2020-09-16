@@ -64,7 +64,7 @@
     
 	<div class="login-box">
 		<div class="login-logo">
-			<a href="${pageContext.request.contextPath}/MainController"><b>Green
+			<a href="${pageContext.request.contextPath}/shop/main.jsp"><b>Green
 					Coffee</b></a>
 		</div>
 		<!-- /.login-logo -->
@@ -114,7 +114,7 @@
 				<!-- /.social-auth-links -->
 
 				<p class="mb-1">
-					<a href="#">비밀번호 찾기</a>
+					<a href="findAccount.jsp">이메일/비밀번호 분실</a>
 				</p>
 				<p class="mb-0">
 					<a href="join.jsp" class="text-center">회원가입</a>

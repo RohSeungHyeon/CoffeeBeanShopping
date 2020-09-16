@@ -124,6 +124,20 @@
 							 
 							<select name="optional.birth_yy" id="optional.birth_yy" style="width: 80px">
 									<option value=""></option>
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
 									<option value="2006">2006</option>
 									<option value="2005">2005</option>
 									<option value="2004">2004</option>
@@ -285,7 +299,13 @@
 							</tr>
 							<tr>
 								<th class="header">사업지 연락처</th>
-								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" autocomplete = "off"/> </td>
+								<td class="content"> 
+									<input type="text" name="optional.phone_head" id="optional.phone_head" autocomplete = "off" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
+									-
+									<input type="text" name="optional.phone_front" id="optional.phone_front" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
+									-
+									<input type="text" name="optional.phone_back" id="optional.phone_back" autocomplete = "off" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
+								</td>
 							</tr>
 							<tr>
 								<th class="header">직급</th>
@@ -312,7 +332,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- User defined JavaScript -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="UTF-8" defer="defer"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="utf-8 "defer="defer"></script>
 	<!-- Bootstrap -->
 	<script src="../resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- AdminLTE -->

@@ -15,8 +15,7 @@
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- SweetAlert2 -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/plugins/sweetalert2/sweetalert2.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/plugins/sweetalert2/sweetalert2.min.css">
 <!-- Toastr -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources/plugins/toastr/toastr.min.css">

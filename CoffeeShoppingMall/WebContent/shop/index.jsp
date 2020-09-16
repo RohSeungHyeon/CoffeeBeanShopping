@@ -9,12 +9,28 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 <h1>메인 페이지</h1>
 <a href="${pageContext.request.contextPath}/LoginController">로그인</a><br>
 <a href="a">회원가입</a><br>
 <a href="a">비밀번호 id 찾기</a><br>
 <a href="a">마이페이지</a><br>
 <a href="a">공지사항</a><br>
+=======
+<h1>���� ������</h1>
+<a href="${pageContext.request.contextPath}/shop/login.jsp">�α���</a><br>
+<a href="${pageContext.request.contextPath}/shop/join.jsp">ȸ������</a><br>
+<%
+	if (!session.isNew()) {
+%>
+	<a href="${pageContext.request.contextPath}/shop/logout.jsp">�α׾ƿ�</a>
+<%
+	}
+%>
+<a href="a">��й�ȣ id ã��</a><br>
+<a href="a">����������</a><br>
+<a href="a">��������</a><br>
+>>>>>>> refs/heads/feature/JooJungTaek
 <a href="a">QnA</a><br>
 <a href="a">카테고리 별 상품 페이지</a><br>
 <a href="${pageContext.request.contextPath}/ProDetailController">상품 디테일</a><br>
