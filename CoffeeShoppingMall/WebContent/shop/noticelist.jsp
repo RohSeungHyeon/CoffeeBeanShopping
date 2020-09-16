@@ -23,12 +23,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1(예시확인)</td>
-				<td>안녕하세요.</td>
-				<td>고길동</td>
-				<td>2017-05-04</td>
-			</tr>
 			<c:forEach var="n" items="${notlist }">
 				<tr class="table-default"
 					onclick="location.href='${pageContext.request.contextPath }/NoticereadController?notID=${n.notID }'">
