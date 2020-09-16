@@ -132,4 +132,74 @@ public class OrderDaoImpl implements OrderDao {
 		}
 	}
 
+	@Override
+	public ArrayList<OrderList> selectOrderById(String id) {
+		ArrayList<OrderList> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "select * from orderlist NATURAL JOIN (select distinct id, order_date from orderlist) where id=? order by order_date desc";
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new OrderList(rs.getInt("order_id"), rs.getString("order_address"), rs.getDate("order_date"),
+						rs.getInt("order_count"), rs.getString("id"), rs.getInt("pro_id")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	@Override
+	public Map<String, String> selectOrderStatusById(String id) {
+		Map<String, String> map = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "select * from order_status where id=?";
+			conn = db.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			map = new HashMap<>();
+			while (rs.next()) {
+				map.put(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getDate("order_date"))
+						+ rs.getString("id"), rs.getString("status"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return map;
+	}
+
 }

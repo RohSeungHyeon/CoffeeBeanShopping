@@ -1,16 +1,22 @@
 package controller;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.*;
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import model.*;
-import notice.service.*;
-import product.service.*;
-import qna.service.*;
+import model.Product;
+import notice.service.NoticeService;
+import notice.service.NoticeServiceImpl;
+import product.service.proService;
+import product.service.proServiceImpl;
+import qna.service.QnaService;
+import qna.service.QnaServiceImpl;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {
@@ -21,7 +27,6 @@ public class MainController extends HttpServlet {
 		proService service = new proServiceImpl();
 		NoticeService notService = new NoticeServiceImpl();
 		QnaService qnaService = new QnaServiceImpl();
-		user.service.Service userService = new user.service.ServiceImpl();
 
 		ArrayList<Product> products = service.getRecoProduct();
 

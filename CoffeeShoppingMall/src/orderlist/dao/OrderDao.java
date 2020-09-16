@@ -13,4 +13,8 @@ public interface OrderDao {
 	Map<String, String> selectOrderStatus();
 
 	void updateOrderStatus(int order_id, String status);
+
+	ArrayList<OrderList> selectOrderById(String id);
+
+	Map<String, String> selectOrderStatusById(String id);
 }
