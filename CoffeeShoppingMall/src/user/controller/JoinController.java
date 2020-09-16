@@ -160,6 +160,7 @@ public class JoinController extends HttpServlet {
 		user.setUserNickName(userNickname);
 		user.setAddress(address);
 		user.setPhone(phone);
+		user.setUserType(userType);
 		
 		if(gender != null) user.setGender(gender);
 		if(birth != null) user.setBirth(birth);

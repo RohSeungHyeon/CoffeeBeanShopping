@@ -18,6 +18,7 @@ public abstract class User {
 	private String userNickName;
 	private String address;
 	private String phone;
+	private String userType;
 	
 	// 선택 기입 정보
 	// getter와 setter의 사용 유의
@@ -27,7 +28,7 @@ public abstract class User {
 	public User() {} 
 		
 	public User(String oauth_rserver, String oauth_user_id, String email, String password, String userName,
-			String userNickName, String address, String phone, Genders gender, Date birth) {
+			String userNickName, String address, String phone, Genders gender, Date birth, String userType) {
 		super();
 		this.oauth_rserver = oauth_rserver;
 		this.oauth_user_id = oauth_user_id;
@@ -39,6 +40,7 @@ public abstract class User {
 		this.phone = phone;
 		this.gender = gender;
 		this.birth = birth;
+		this.userType = userType;
 	}
 
 
@@ -123,6 +125,13 @@ public abstract class User {
 		this.birth = birth;
 	}
 
+	public String getUserType() {
+		return userType;
+	}
+	
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
 	
 	

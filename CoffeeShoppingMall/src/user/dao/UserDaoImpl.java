@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao {
 		User user = null;
 		
 		try {
-			String sql = "select A.id, A.email, A.password, A.usertype, A.name, A.nickname, A.phone, A.address, A.gender, A.birth, A.joindate, A.oauth_rserver, A.oauth_user_id, buyer_info.rank, buyer_info.company_name, buyer_info.company_addr, buyer_info.company_phone " + 
+			String sql = "select A.id, A.email, A.password, A.usertype, A.name, A.nickname, A.phone, A.address, A.gender, A.birth, A.joindate, A.oauth_rserver, A.oauth_user_id, A.usertype, buyer_info.rank, buyer_info.company_name, buyer_info.company_addr, buyer_info.company_phone " + 
 					"from (select member.id, member.email, member.password, member.usertype, member.name, member.nickname, member.phone, member.address, member.gender, member.birth, member.joindate, member_oauth.oauth_rserver, member_oauth.oauth_user_id " + 
 					"from member, member_oauth where member.id = member_oauth.member_id) A left outer join buyer_info ON A.id = buyer_info.id where email=? order by A.id desc";
 			
@@ -147,6 +147,7 @@ public class UserDaoImpl implements UserDao {
 				user.setBirth(resultSet.getDate("birth"));
 				user.setOauth_rserver(resultSet.getString("oauth_rserver"));
 				user.setOauth_user_id(resultSet.getString("oauth_user_id"));
+				user.setUserType(resultSet.getString("usertype"));
 				
 				if(user instanceof Business) {
 					Business business = (Business)user;
@@ -422,7 +423,7 @@ public class UserDaoImpl implements UserDao {
 
 		String userEmail = user.getEmail();
 		String password = user.getPassword();
-		String userType = (user instanceof Indivisual) ? "개인" : "사업자";
+		String userType = user.getUserType();
 		String userName = user.getUserName();
 		String userNickName = user.getUserNickName();
 		String phone = user.getPhone();
