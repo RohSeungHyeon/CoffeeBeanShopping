@@ -53,7 +53,6 @@ public class proDaoImpl implements proDao {
 		PreparedStatement pstmt = null;
 		boolean ok = false;
 		if (!cart_check(m_id, pro_id)) {
-			System.out.println("�ߺ�����");
 			return false;
 		}
 		try {

@@ -30,60 +30,70 @@
 
 		<div class="content-wrapper">
 			<section class="content">
-			
-							<div class="row">
+
+				<div class="row">
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title">제품 상세</h3>
 							</div>
-<div class="card-body table-responsive p-0"
-									style="height: 600px;">
-									
-				<%
-					Product p = (Product) request.getAttribute("product");
-				String m = (String) request.getAttribute("message");
-				%>
-								<table class="table table-head-fixed text-nowrap" id="tt" >
+							<div class="card-body table-responsive p-0"
+								style="height: 600px;">
+
+								<%
+									Product p = (Product) request.getAttribute("product");
+								String m = (String) request.getAttribute("message");
+								%>
+								<table class="table table-head-fixed text-nowrap" id="tt">
 									<tbody id="ttt">
-											<tr> <td>상품 번호</td><td><%=p.getPro_id() %></td></tr>
-											<tr><td>상품 명</td><td><%=p.getPro_name() %></td></tr>
-											<tr><td>사진</td><td>
-											<img src="${pageContext.request.contextPath}/<%=p.getPro_img() %>" class="product-image"
-							alt="Product Image" style="height: 150px; width: auto" />
-											</td></tr>
-											<tr><td>지역</td><td><%=p.getPro_region() %> </td></tr>
-											<tr><td>나라</td><td><%=p.getPro_country() %> </td></tr>
-											
-											<tr><td>가격</td><td><%=p.getPro_price() %></td></tr>
-											<tr><td>상세설명</td><td>이 커피는~~~~~~~
-											~~~~~~~~~<br>
-											<%=p.getPro_description() %>
-											~~~~~~~~~~<br>
-											~~~~~~~~~<br>
-											~~~~~~~~~~<br>
-											~~~~~~~~~~~<br>
-											~~~~~~~~~~~<br>
-											~~~~~~~~~~~이다.</td>
+										<tr>
+											<td>상품 번호</td>
+											<td><%=p.getPro_id()%></td>
+										</tr>
+										<tr>
+											<td>상품 명</td>
+											<td><%=p.getPro_name()%></td>
+										</tr>
+										<tr>
+											<td>사진</td>
+											<td><img
+												src="${pageContext.request.contextPath}/<%=p.getPro_img() %>"
+												class="product-image" alt="Product Image"
+												style="height: 150px; width: auto" /></td>
+										</tr>
+										<tr>
+											<td>지역</td>
+											<td><%=p.getPro_region()%></td>
+										</tr>
+										<tr>
+											<td>나라</td>
+											<td><%=p.getPro_country()%></td>
+										</tr>
+
+										<tr>
+											<td>가격</td>
+											<td><%=p.getPro_price()%></td>
+										</tr>
+										<tr>
+											<td>상세설명</td>
+											<td><%=p.getPro_description()%></td>
 									</tbody>
-								
+
 								</table>
-								</div>
+							</div>
 
-								<div style="text-align:right;">
-									<input type='button' value="장바구니 담기"
-										class="btn btn-block btn-secondary col-12"
-										style="width: 130px; display: inline-block; "
-										onclick="addCart(<%=p.getPro_id()%>, '${sessionScope.id }' )" />
-								</div>
-																<div style="text-align:right;">
+							<div style="text-align: right;">
+								<input type='button' value="장바구니 담기"
+									class="btn btn-block btn-secondary col-12"
+									style="width: 130px; display: inline-block;"
+									onclick="addCart(<%=p.getPro_id()%>, '${sessionScope.id }' )" />
+							</div>
+							<div style="text-align: right;">
 								<button class="btn btn-block btn-primary col-12"
-										style="width: 130px; display: inline-block; "
-										onclick="window.location.href='${pageContext.request.contextPath}/ViewCartController'">
-									장바구니 가기
-								</button>
-								</div>
-
+									style="width: 130px; display: inline-block;"
+									onclick="window.location.href='${pageContext.request.contextPath}/ViewCartController'">
+									장바구니 가기</button>
+							</div>
 			</section>
 		</div>
 
