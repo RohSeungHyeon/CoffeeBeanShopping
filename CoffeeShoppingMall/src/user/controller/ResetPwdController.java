@@ -33,7 +33,8 @@ public class ResetPwdController extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String name = request.getParameter("username");
 		
-		if(service.findUserAccount(name, phone).equals(email)) {
+		String pwd = service.findUserAccount(name, phone);
+		if(pwd != null && pwd.equals(email)) {
 			
 			// 임시 비밀번호 생성
 			StringBuffer pwd_temp = new StringBuffer();

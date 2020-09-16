@@ -55,8 +55,8 @@ public class SendEmailController extends HttpServlet {
 		    ses.setDebug(true);
 		     
 		    MimeMessage msg = new MimeMessage(ses); // 메일의 내용을 담을 객체
-		    String subject =
-		    		"CoffeeShoppingMall에서 요청하신 패스워드 초기화 정보입니다";
+		    
+		    String subject = "CoffeeShoppingMall에서 요청하신 정보입니다";
 		    msg.setSubject(subject); // 제목
 		     
 		    Address fromAddr = new InternetAddress(from);
@@ -64,8 +64,13 @@ public class SendEmailController extends HttpServlet {
 		     
 		    Address toAddr = new InternetAddress(to);
 		    msg.addRecipient(Message.RecipientType.TO, toAddr); // 받는 사람
-		     
-		    msg.setContent(pwd_temp, "text/html;charset=UTF-8"); // 내용과 인코딩
+		    
+		    StringBuffer content = new StringBuffer();
+		    content.append("안녕하세요 CoffeeShopMall입니다<br><br>");
+		    content.append("요청하신 초기화된 비밀번호는 " + pwd_temp + " 입니다<br><br>");
+		    content.append("로그인 하신 후 내 정보 보기에서 패스워드를 변경하신 후 이용 해 주시기 바랍니다<br><br>");
+		    content.append("감사합니다");
+		    msg.setContent(content.toString(), "text/html;charset=UTF-8"); // 내용과 인코딩
 		     
 		    Transport.send(msg); // 전송
 		} catch(Exception e){

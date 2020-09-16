@@ -41,7 +41,7 @@
 				<table>
 				<tr>
 				<th>이름</th> 
-				<td><input type="text" id="username" placeholder="이름을 입력해주세요" size="24"/></td>
+				<td><input type="text" id="username" placeholder="이름을 입력해주세요" autocomplete="off" size="24"/></td>
 				</tr>
 				<tr>
 				<th>연락처 </th>
@@ -69,11 +69,11 @@
 				<table>
 				<tr>
 				<th>이메일</th>
-				<td><input type="text" id="email" placeholder="이메일을 입력해주세요" /></td>
+				<td><input type="text" id="email" placeholder="이메일을 입력해주세요" autocomplete="off" /></td>
 				</tr>
 				<tr>
 				<th>이름</th> 
-				<td><input type="text" id="pwd_username" placeholder="이름을 입력해주세요" size="24"/></td>
+				<td><input type="text" id="pwd_username" placeholder="이름을 입력해주세요" autocomplete="off" size="24"/></td>
 				</tr>
 				<tr>
 				<th>연락처</th>
