@@ -108,7 +108,7 @@
 				<div class="row" style="display: block; text-align: center;">
 					<span id="checkresult"></span>
 				</div>
-				<!--  Kakao & Naver
+				
 				<div class="social-auth-links text-center mb-3">
 					<p>- OR -</p>
 					<a href="<%=apiURL_Kakao%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />

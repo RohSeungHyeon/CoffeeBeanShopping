@@ -37,7 +37,7 @@
 				<tr>
 					<th style="text-align: center;">내용</th>
 					<td><textarea name="notContent" rows="15" cols="45"
-							class="form-control" maxlength="50">${requestScope.notContent }</textarea></td>
+							class="form-control">${requestScope.notContent }</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="3"><input type="button" value="수정"
