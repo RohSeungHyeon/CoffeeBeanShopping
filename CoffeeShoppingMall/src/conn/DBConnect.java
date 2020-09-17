@@ -18,7 +18,7 @@ public class DBConnect {
 	public Connection getConnection() {
 		try {
 			Class.forName(jdbc_driver);
-			conn = DriverManager.getConnection(jdbc_url,"c##webproject","wjdxor04");
+			conn = DriverManager.getConnection(jdbc_url,"c##ora_user_2","88888888");
 		}catch(Exception e) {
 			
 		}

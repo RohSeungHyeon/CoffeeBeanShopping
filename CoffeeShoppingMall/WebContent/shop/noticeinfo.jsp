@@ -81,7 +81,7 @@
 									<td><textarea name="notContent" rows="15" cols="45"
 											class="form-control" maxlength="50" readonly>${requestScope.content }</textarea></td>
 								</tr>
-								<!--<c:if test="${sessionScope.id == n.notWriter and sessionScope.id != null}">
+								<c:if test="${sessionScope.nickname == n.notWriter and sessionScope.id != null}">
 					<tr>
 					<td colspan="2">
 					<input type = "submit" value="수정" class="btn btn-primary pull-right">
@@ -95,7 +95,7 @@
 						document.getElementsByName("notContent")[0].readOnly = false;
 					}
 					</script>
-				</c:if>-->
+				</c:if>
 
 							</table>
 						</div>

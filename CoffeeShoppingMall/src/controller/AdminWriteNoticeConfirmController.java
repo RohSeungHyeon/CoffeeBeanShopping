@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import model.Notice;
 import notice.service.NoticeService;
 import notice.service.NoticeServiceImpl;
@@ -23,7 +25,7 @@ public class AdminWriteNoticeConfirmController extends HttpServlet {
 		String content = request.getParameter("notContent");
 		content = content.replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
 		service.writeNotice(new Notice(0, request.getParameter("notTitle"),
-				(String) request.getSession().getAttribute("id"), null, content));
+				(String)((JSONObject) request.getSession().getAttribute("userprofile")).get("nickname"), null, content));
 
 		request.setAttribute("notices", service.getAll());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/noticeControl.jsp");

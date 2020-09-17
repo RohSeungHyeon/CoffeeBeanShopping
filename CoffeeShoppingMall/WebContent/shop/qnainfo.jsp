@@ -69,7 +69,7 @@ function del(qnaID){
 						<th style="text-align:center;">내용</th>
 						<td><textarea name="qnaContent" rows="15" cols="45" class="form-control" maxlength="50" readonly>${requestScope.content }</textarea></td>
 						</tr>
-					<c:if test="${sessionScope.id == q.qnaWriter }">
+					<c:if test="${sessionScope.userprofile.nickname == q.qnaWriter }">
 						<tr>
 						<td colspan="2">
 						<input type = "submit" value="수정" class="btn btn-primary pull-right">
@@ -106,9 +106,9 @@ function del(qnaID){
 				</c:if>
 			
 				<c:forEach var = "comlist" items="${comlist }">
-					<h4>${comlist.comDate }  관리자명:${comlist.comWriter }</h4>
+					<h4>${comlist.comDate }  작성자명:${comlist.comWriter }</h4>
 					<c:choose>
-						<c:when test="${sessionScope.id == comlist.comWriter }">
+						<c:when test="${sessionScope.userprofile.nickname == comlist.comWriter }">
 							<%-- 수정, 삭제 버튼 생성 --%>
 							<div>
 								<textarea name="comContent" rows="4" cols="40" class="form-control" maxlength="50">${comlist.comContent }</textarea>

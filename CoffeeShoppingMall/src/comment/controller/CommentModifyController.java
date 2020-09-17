@@ -42,21 +42,20 @@ public class CommentModifyController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		
 		CommentService comservice= new CommentServiceImpl();
-		int comId = Integer.parseInt(request.getParameter("comID"));
 		
 		HttpSession session = request.getSession();
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
 		
 //			Service service = new ServiceImpl();
-			String id = (String) session.getAttribute("id");
+			String id = (String) session.getAttribute("comnickname");
 //			Member m = service.getMember(id);
 			String comcontent = request.getParameter("comContent");
 			
 			QnaService qnaservice = new QnaServiceImpl();
 			Qna q = (Qna) session.getAttribute("q");
 			
-			String qnaId1 = request.getParameter("qnaID");
-			int qnaId = Integer.parseInt(qnaId1);
+			int qnaId = Integer.parseInt(request.getParameter("qnaID"));
+			int comId = Integer.parseInt(request.getParameter("comID"));
 			Comment com = comservice.getComment(comId, qnaId);
 			com.setComContent(comcontent);
 		

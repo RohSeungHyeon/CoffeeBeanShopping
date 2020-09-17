@@ -79,6 +79,7 @@ public class LoginController extends HttpServlet {
 
 				session.setAttribute("m", user);
 				session.setAttribute("id", user.getEmail());
+				session.setAttribute("comnickname", user.getUserNickName());
 
 				// 응답 메시지 출력
 				result.put("result", true);

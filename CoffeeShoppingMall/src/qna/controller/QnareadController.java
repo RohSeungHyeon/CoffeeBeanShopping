@@ -54,6 +54,7 @@ public class QnareadController extends HttpServlet {
 		request.setAttribute("content", content);
 		
 		
+		
 //		System.out.println("qnaID: " + qnaID);
 		ArrayList<Comment> comlist = comservice.getComList(qnaID);
 //		for (Comment c : comlist) {

@@ -50,7 +50,7 @@ public class CommentWriteController extends HttpServlet {
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
 		
 //			Service service = new ServiceImpl();
-			String id = (String) session.getAttribute("id");
+			String id = (String) session.getAttribute("comnickname");
 			String comcontent = request.getParameter("comContent");
 			Qna q = (Qna) session.getAttribute("q");
 //			Member m = service.getMember(id);

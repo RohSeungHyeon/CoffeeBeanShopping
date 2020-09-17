@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Qna;
 import qna.service.QnaService;
@@ -37,11 +38,12 @@ public class QnalistController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset = utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+		HttpSession session = request.getSession();
 		QnaService qnaservice = new QnaServiceImpl();
 		
 		ArrayList<Qna> qnalist = (ArrayList<Qna>)qnaservice.getAll();
 		request.setAttribute("qnalist", qnalist);
+
 		
 		RequestDispatcher dispathcer = request.getRequestDispatcher("/shop/qnalist.jsp");
 		if(dispathcer !=null) {

@@ -48,7 +48,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>작성자<input type="text" class="form-control" placeholder="작성자" name="notWriter" maxlength="50" value="${sessionScope.id }" readonly style="background-color: #eeeeee; text-align: center; "/></td>
+							<td>작성자<input type="text" class="form-control" placeholder="작성자" name="notWriter" maxlength="50" value="${sessionScope.userprofile.nickname }" readonly style="background-color: #eeeeee; text-align: center; "/></td>
 						</tr>
 						<tr>
 							<td><input type="text" class="form-control" placeholder="글 제목" name="notTitle" maxlength="50"/></td>

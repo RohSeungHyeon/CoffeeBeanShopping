@@ -47,7 +47,7 @@ public class CommentDeleteController extends HttpServlet {
 		Boolean isLogin = (Boolean) session.getAttribute("flag");
 
 //			Service service = new ServiceImpl();
-		String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("comnickname");
 //			Member m = service.getMember(id);
 
 		QnaService qnaservice = new QnaServiceImpl();
@@ -56,15 +56,13 @@ public class CommentDeleteController extends HttpServlet {
 		int comId = Integer.parseInt(request.getParameter("comID"));
 		int qnaId = Integer.parseInt(request.getParameter("qnaID"));
 		Comment com = comservice.getComment(comId, qnaId);
-
+		
 		// �̰� ����� ���� �´��� Ȯ��
 		if (com.getComWriter().equals(id) == false)
 			return;
-
+		
 		// �Խù� ����
 		comservice.deleteCom(com);
-
-//			response.setHeader("Refresh", "0; URL=" + request.getContextPath() + "/QnareadController?qnaID=" + qnaId);
 
 	}
 
