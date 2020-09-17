@@ -114,7 +114,7 @@
 					<a href="<%=apiURL_Kakao%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />
 					</a> <a href="<%=apiURL_Naver%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/naver_login_custom.PNG" width="300px" />
 					</a>
-				</div> -->
+				</div> 
 				<!-- /.social-auth-links -->
 
 				<p class="mb-1">

@@ -67,7 +67,7 @@ function del(qnaID){
 						</tr>
 						<tr>
 						<th style="text-align:center;">내용</th>
-						<td><textarea name="qnaContent" rows="15" cols="45" class="form-control" maxlength="50" readonly>${requestScope.content }</textarea></td>
+						<td><textarea name="qnaContent" rows="15" cols="45" class="form-control" readonly>${requestScope.content }</textarea></td>
 						</tr>
 					<c:if test="${sessionScope.userprofile.nickname == q.qnaWriter }">
 						<tr>
@@ -91,7 +91,7 @@ function del(qnaID){
 				<form method="post" action="${pageContext.request.contextPath}/CommentWriteController">
 					<div>
 						<h4>Comment</h4>
-						<textarea name="comContent" rows="4" cols="40" class="form-control" maxlength="50" placeholder="댓글입력해"></textarea>
+						<textarea name="comContent" rows="4" cols="40" class="form-control" placeholder="댓글입력해"></textarea>
 						<input type="hidden" name="qnaID" value="${q.qnaID }">
 						<input type = "submit" value="댓글달기" class="btn btn-primary pull-right" id="btnComment">
 					</div>
@@ -111,7 +111,7 @@ function del(qnaID){
 						<c:when test="${sessionScope.userprofile.nickname == comlist.comWriter }">
 							<%-- 수정, 삭제 버튼 생성 --%>
 							<div>
-								<textarea name="comContent" rows="4" cols="40" class="form-control" maxlength="50">${comlist.comContent }</textarea>
+								<textarea name="comContent" rows="4" cols="40" class="form-control" >${comlist.comContent }</textarea>
 								<input type = "hidden" name="comID" value="${comlist.comID }">
 								<input type = "hidden" name="qnaID" value="${q.qnaID}"/>
 								<input type = "button" value="수정" onclick="modify(this);" class="btn btn-info pull-right">
