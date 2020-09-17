@@ -1,22 +1,16 @@
 package controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
-import model.Product;
-import notice.service.NoticeService;
-import notice.service.NoticeServiceImpl;
-import product.service.proService;
-import product.service.proServiceImpl;
-import qna.service.QnaService;
-import qna.service.QnaServiceImpl;
+import model.*;
+import notice.service.*;
+import product.service.*;
+import qna.service.*;
 
 @WebServlet("/MainController")
 public class MainController extends HttpServlet {

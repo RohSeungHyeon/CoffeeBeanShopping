@@ -152,4 +152,15 @@ public class ServiceImpl implements Service{
 		}
 		
 	}
+	
+	// 사용자의 OAuth id 확인
+	@Override
+	public String getUserOauthId(String email) {
+		String result = null;
+		
+		User user = getUserInfo(email);
+		if(user != null) result = user.getOauth_user_id();
+		
+		return result;
+	}
 }

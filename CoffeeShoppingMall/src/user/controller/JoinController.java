@@ -38,6 +38,7 @@ public class JoinController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
@@ -173,6 +174,8 @@ public class JoinController extends HttpServlet {
 		}
 		
 		if(service.createUser(user) == 1) {
+			if(session != null && session.getAttribute("userprofile") != null)
+				((JSONObject)session.getAttribute("userprofile")).put("userType", userType);
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('등록되었습니다');");

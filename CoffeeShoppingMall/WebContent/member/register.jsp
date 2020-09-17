@@ -18,7 +18,7 @@
 	String birthday = (String)userProfile.get("birthday");
 	String gender = (String)userProfile.get("gender");
 	
-	if(infoFrom.equals("naver")) {
+	if(infoFrom.equals("naver") && birthday != null) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(birthday.charAt(0));
 		buffer.append(birthday.charAt(1));
@@ -39,11 +39,6 @@
 		<meta charset="UTF-8">
 		<title>회원 가입</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/join.css"/>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/requestHttp.js" charset="utf-8" defer="defer"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="utf-8" defer="defer"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/register.js" charset="utf-8" defer="defer"></script>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
-		
 	</head>
 	<body>
 		<h2>회원 가입</h2>
@@ -91,24 +86,24 @@
 							</tr>
 							<tr>
 								<th class="header"> 이름 </th>
-								<td class="content"> <input type="text" name="essential.name" id="essential.name" value="<%=name%>"/> </td>
+								<td class="content"> <input type="text" name="essential.name" id="essential.name" value="<%=name%>" autocomplete="off"/> </td>
 							</tr>
 							<tr>
 								<th class="header"> 닉네임 </th>
-								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" value="<%=nickName%>" /> </td>
+								<td class="content"> <input type="text" name="essential.nickname" id="essential.nickname" value="<%=nickName%>" autocomplete="off"/> </td>
 							</tr>
 							<tr>
 								<th class="header"> 주소 </th>
-								<td class="content"> <input type="text" name="essential.address" id="essential.address" /> </td>
+								<td class="content"> <input type="text" name="essential.address" id="essential.address" autocomplete="off"/> </td>
 							</tr>
 							<tr>
 								<th class="header">연락처</th>
 								<td class="content"> 
-									<input type="text" name="essential.phone_head" id="essential.phone_head" maxlength="3" style="width: 70px;" onkeyup="checkPhone(event)" />
+									<input type="text" name="essential.phone_head" id="essential.phone_head" maxlength="3" style="width: 70px;" autocomplete="off" onkeyup="checkPhone(event)" />
 									-
-									<input type="text" name="essential.phone_front" id="essential.phone_front" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" />
+									<input type="text" name="essential.phone_front" id="essential.phone_front" maxlength="4" style="width: 70px;" autocomplete="off" onkeyup="checkPhone(event)" />
 									-
-									<input type="text" name="essential.phone_back" id="essential.phone_back" maxlength="4" style="width: 70px;" onkeyup="checkPhone(event)" /> 
+									<input type="text" name="essential.phone_back" id="essential.phone_back" maxlength="4" style="width: 70px;" autocomplete="off" onkeyup="checkPhone(event)" /> 
 								</td>
 							</tr>
 							
@@ -142,6 +137,20 @@
 							 
 							<select name="optional.birth_yy" id="optional.birth_yy$" style="width: 80px">
 									<option value=""></option>
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
 									<option value="2006">2006</option>
 									<option value="2005">2005</option>
 									<option value="2004">2004</option>
@@ -319,19 +328,19 @@
 						<tbody>
 							<tr>
 								<th class="header">상호명</th>
-								<td class="content"><input type="text" name="optional.buyer.name" id="optional.buyer.name"/> </td>
+								<td class="content"><input type="text" name="optional.buyer.name" id="optional.buyer.name" autocomplete="off" /> </td>
 							</tr>
 							<tr>
 								<th class="header">사업지 주소</th>
-								<td class="content"><input type="text" name="optional.buyer.address" id="optional.buyer.address" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.address" id="optional.buyer.address" autocomplete="off" /> </td>
 							</tr>
 							<tr>
 								<th class="header">사업지 연락처</th>
-								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.phone" id="optional.buyer.phone" autocomplete="off" /> </td>
 							</tr>
 							<tr>
 								<th class="header">직급</th>
-								<td class="content"><input type="text" name="optional.buyer.rank" id="optional.buyer.rank" /> </td>
+								<td class="content"><input type="text" name="optional.buyer.rank" id="optional.buyer.rank" autocomplete="off" /> </td>
 							</tr>
 							
 						</tbody>
@@ -341,10 +350,12 @@
 				<input type="submit" value="등록" />
 				<!--  등록 취소 시 OAuth를 이용해 세션 객체에 할당한 정보 소거 -->
 				<input type="button" id="btn_cancel" value="취소" onclick="cancelRegister()">
-				
-				
-			</form>
+			</form>		
 		</div>
 
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/requestHttp.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/join.js" charset="utf-8"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/register.js" charset="utf-8"></script>
 	</body>
 </html>
