@@ -1,10 +1,11 @@
- 	<%@ page import = "java.net.URLEncoder" %>
-<%@ page import = "java.security.SecureRandom" %>
-<%@ page import = "java.math.BigInteger" %>
+
+<%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.security.SecureRandom"%>
+<%@ page import="java.math.BigInteger"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
-	
+	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
 	rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
-<%-- OAuth 2.0을 이용한 로그인 처리 --%>
+	<%-- OAuth 2.0을 이용한 로그인 처리 --%>
 	<%
 		// NAVER, DAUM OAuth 이용을 위한 설정
     	String clientId_naver = "saB2IXUZKHMePX6dD7xG";
@@ -61,7 +62,7 @@
     	
     	// 세션 객체에 위변조 방지를 위한 상태 토큰 저장
     %>
-    
+
 	<div class="login-box">
 		<div class="login-logo">
 			<a href="${pageContext.request.contextPath}/shop/main.jsp"><b>Green
@@ -73,7 +74,8 @@
 				<p class="login-box-msg">로그인 해주세요!</p>
 
 				<div class="input-group mb-3">
-					<input type="text" name="email" id="email" class="form-control" placeholder="id@email.com" autocomplete="off">
+					<input type="text" name="email" id="email" class="form-control"
+						placeholder="id@email.com" autocomplete="off">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-user"></span>
@@ -81,7 +83,8 @@
 					</div>
 				</div>
 				<div class="input-group mb-3">
-					<input type="password" name="pwd" id="pwd" class="form-control" placeholder="비밀번호">
+					<input type="password" name="pwd" id="pwd" class="form-control"
+						placeholder="비밀번호">
 					<div class="input-group-append">
 						<div class="input-group-text">
 							<span class="fas fa-lock"></span>
@@ -91,26 +94,28 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="icheck-primary">
-							<input type="checkbox" id="remember"> <label for="remember"> 아이디 기억하기 </label>
+							<input type="checkbox" id="remember"> <label
+								for="remember"> 아이디 기억하기 </label>
 						</div>
 					</div>
 					<!-- /.col -->
 					<div class="col-4">
-						<button type="button" id="btn_login" class="btn btn-primary btn-block" onclick="checkIdAndPwd()">로그인</button>
+						<button type="button" id="btn_login"
+							class="btn btn-primary btn-block" onclick="checkIdAndPwd()">로그인</button>
 					</div>
 					<!-- /.col -->
 				</div>
-				
-				<div class="row" style="display:block; text-align:center;">
+
+				<div class="row" style="display: block; text-align: center;">
 					<span id="checkresult"></span>
 				</div>
-
+				<!--  Kakao & Naver
 				<div class="social-auth-links text-center mb-3">
 					<p>- OR -</p>
 					<a href="<%=apiURL_Kakao%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/kakao_login_custom.PNG" width="300px" />
 					</a> <a href="<%=apiURL_Naver%>" class="btn btn-block"> <img src="${pageContext.request.contextPath}/resources/img/login/naver_login_custom.PNG" width="300px" />
 					</a>
-				</div>
+				</div> -->
 				<!-- /.social-auth-links -->
 
 				<p class="mb-1">
@@ -136,6 +141,6 @@
 	<!-- User defined script -->
 	<script src="../scripts/requestHttp.js"></script>
 	<script src="../scripts/checkIdAndPwd.js"></script>
-		
+
 </body>
 </html>
