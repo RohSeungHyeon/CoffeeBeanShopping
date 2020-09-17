@@ -43,5 +43,8 @@ public interface Service {
 	
 	// 사용자 가입 일자 확인
 	public String getUserJoinDate(String email);
+	
+	// 사용자의 OAuth id 확인
+	public String getUserOauthId(String email);
 
 }

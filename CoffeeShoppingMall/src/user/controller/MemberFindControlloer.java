@@ -57,7 +57,7 @@ public class MemberFindControlloer extends HttpServlet {
 		if(service.isRegisterdUser(email)) {
 			
 			profileObject.put("userType", service.getUserType(email));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/main.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/MainController");
 			
 			if(dispatcher != null)
 				dispatcher.forward(request, response);
@@ -69,7 +69,6 @@ public class MemberFindControlloer extends HttpServlet {
 			out.print("location.href='../member/register.jsp';");
 			out.print("</script>");
 		}
-		
 		
 		out.close();
 	}
